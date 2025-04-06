@@ -210,17 +210,16 @@
   
 
 <script>
-    // Check if userId exists in localStorage
-    const userId = localStorage.getItem('userId');
-    
-    // If userId does not exist, hide the Dashboard link and redirect to index.html
-    if (!userId) {
-        // Hide the Dashboard link
-        document.getElementById('dashboard-link').style.display = 'none';
-        
-        // Redirect to index.html
-        window.location.href = 'sign-in.html';
+  document.addEventListener('DOMContentLoaded', () => {
+    const userIds = localStorage.getItem('adminId');
+
+    if (!userIds) {
+     
+
+      // Redirect to sign-in
+      window.location.href = 'index.html';
     }
+  });
 </script>
 
 
@@ -232,7 +231,7 @@
   localStorage.removeItem('adminToken');
 
   // Redirect to the sign-in page
-  window.location.href = 'sign-in.html';
+  window.location.href = 'index.html';
 });
 
 </script>
@@ -258,7 +257,7 @@
       };
   
       try {
-        const response = await fetch('http://localhost:5000/api/account/bank-details', {
+        const response = await fetch('https://urban-wealth.onrender.com/api/account/bank-details', {
           method: 'POST',  // Use POST method
           headers: {
             'Content-Type': 'application/json',  // Sending JSON data

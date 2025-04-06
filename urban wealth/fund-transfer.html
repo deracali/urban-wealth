@@ -60,7 +60,7 @@
                 <div class="site-header-container">
                     <div class="side-logo">
                         <a href="dashboard.html">
-                            <img src="assets/images/logo/logo.png" alt="logo">
+                             <p>URBAN WEALTH</p>
                         </a>
                     </div>
                     <ul class="dashboard-menu">
@@ -355,19 +355,21 @@
 
     </div>
 
-    <script>
-        // Check if userId exists in localStorage
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
         const userId = localStorage.getItem('userId');
         
-        // If userId does not exist, hide the Dashboard link and redirect to index.html
         if (!userId) {
-            // Hide the Dashboard link
-            document.getElementById('dashboard-link').style.display = 'none';
-            
-            // Redirect to index.html
+            const dashboardLink = document.getElementById('dashboard-link');
+            if (dashboardLink) {
+                dashboardLink.style.display = 'none';
+            }
+
+            // Redirect to sign-in
             window.location.href = 'sign-in.html';
         }
-    </script>
+    });
+</script>
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/modernizr-3.6.0.min.js"></script>

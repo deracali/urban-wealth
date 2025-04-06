@@ -458,23 +458,22 @@
   localStorage.removeItem('adminToken');
 
   // Redirect to the sign-in page
-  window.location.href = 'sign-in.html';
+  window.location.href = 'index.html';
 });
 
 </script>
 
 <script>
-  // Check if userId exists in localStorage
-  const userId = localStorage.getItem('userId');
-  
-  // If userId does not exist, hide the Dashboard link and redirect to index.html
-  if (!userId) {
-      // Hide the Dashboard link
-      document.getElementById('dashboard-link').style.display = 'none';
-      
-      // Redirect to index.html
-      window.location.href = 'sign-in.html';
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const userIds = localStorage.getItem('adminId');
+
+    if (!userIds) {
+     
+
+      // Redirect to sign-in
+      window.location.href = 'index.html';
+    }
+  });
 </script>
 
 
@@ -487,7 +486,7 @@
     // Function to fetch payments
     async function fetchPayments() {
       try {
-        const res = await fetch('http://localhost:5000/api/upload/payments'); // Fetch all payments
+        const res = await fetch('https://urban-wealth.onrender.com/api/upload/payments'); // Fetch all payments
         const data = await res.json();
         console.log('API Response:', data);
 
@@ -539,7 +538,7 @@
     // Function to get user email based on userId
     async function getUserEmail(userId) {
       try {
-        const res = await fetch(`http://localhost:5000/api/users/user/${userId}`); // Fetch user by userId
+        const res = await fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`); // Fetch user by userId
         const data = await res.json();
         return data.email || 'Unknown'; // Assuming 'email' is returned from API, adjust as necessary
       } catch (err) {
@@ -583,7 +582,7 @@
 
   async function fetchUsers() {
     try {
-      const res = await fetch('http://localhost:5000/api/users/users');
+      const res = await fetch('https://urban-wealth.onrender.com/api/users/users');
       const users = await res.json();
 
       // Store the users in the allUsers array
@@ -634,7 +633,7 @@
     if (!confirm("Are you sure you want to delete this user?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/delete/${userId}`, {
+      const res = await fetch(`https://urban-wealth.onrender.com/api/users/delete/${userId}`, {
         method: 'DELETE'
       });
 
@@ -663,13 +662,13 @@
   async function fetchData() {
     try {
       // Fetch users data
-      const usersResponse = await fetch('http://localhost:5000/api/users/users');
+      const usersResponse = await fetch('https://urban-wealth.onrender.com/api/users/users');
       const usersData = await usersResponse.json();
       const totalUsers = usersData.length;
       console.log('Total Users:', totalUsers); // Log total users
   
       // Fetch payments data
-      const paymentsResponse = await fetch('http://localhost:5000/api/upload/payments');
+      const paymentsResponse = await fetch('https://urban-wealth.onrender.com/api/upload/payments');
       const paymentsData = await paymentsResponse.json();
       const paymentsArray = paymentsData.payments || [];
   
@@ -698,7 +697,7 @@
   
     async function loadWithdrawals() {
       try {
-        const response = await fetch('http://localhost:5000/api/withdrawals');
+        const response = await fetch('https://urban-wealth.onrender.com/api/withdrawals');
         const result = await response.json();
         const withdrawals = result.withdrawals;
   
@@ -734,7 +733,7 @@
   
     async function updateStatus(withdrawalId) {
       try {
-        const response = await fetch(`http://localhost:5000/api/${withdrawalId}/status`, {
+        const response = await fetch(`https://urban-wealth.onrender.com/api/${withdrawalId}/status`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json'
@@ -773,7 +772,7 @@
   <script>
     async function fetchBankDetails() {
       try {
-        const response = await fetch('http://localhost:5000/api/account/get');
+        const response = await fetch('https://urban-wealth.onrender.com/api/account/get');
         const data = await response.json();
   
         const tbody = document.getElementById('bankdetails');
@@ -841,7 +840,7 @@
       };
   
       try {
-        const res = await fetch(`http://localhost:5000/api/account/update/${id}`, {
+        const res = await fetch(`https://urban-wealth.onrender.com/api/account/update/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedData)
@@ -861,7 +860,7 @@
       if (!confirm('Are you sure you want to delete this entry?')) return;
   
       try {
-        const res = await fetch(`http://localhost:5000/api/account/delete/${id}`, {
+        const res = await fetch(`https://urban-wealth.onrender.com/api/account/delete/${id}`, {
           method: 'DELETE',
         });
   

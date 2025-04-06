@@ -92,7 +92,7 @@
                     <div class="header-area">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="assets/images/logo/logo.png" alt="logo">
+                                 <p>URBAN WEALTH</p>
                             </a>
                         </div>
                         <div class="logo-2">
@@ -104,9 +104,10 @@
                             <li>
                                 <a href="index.html">Home</a>
                             </li>
-                            <li>
-                                <a href="dashboard.html">Dashboard</a>
-                            </li>
+                           <li>
+    <a href="dashboard.html" id="dashboard-link">Dashboard</a>
+</li>
+
                             <li>
                                 <a href="about.html">About</a>
                             </li>
@@ -472,19 +473,21 @@
 
         
     </div>
-    <script>
-        // Check if userId exists in localStorage
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
         const userId = localStorage.getItem('userId');
         
-        // If userId does not exist, hide the Dashboard link and redirect to index.html
         if (!userId) {
-            // Hide the Dashboard link
-            document.getElementById('dashboard-link').style.display = 'none';
-            
-            // Redirect to index.html
+            const dashboardLink = document.getElementById('dashboard-link');
+            if (dashboardLink) {
+                dashboardLink.style.display = 'none';
+            }
+
+            // Redirect to sign-in
             window.location.href = 'sign-in.html';
         }
-    </script>
+    });
+</script>
     
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/modernizr-3.6.0.min.js"></script>

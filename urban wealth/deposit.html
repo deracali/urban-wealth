@@ -210,7 +210,7 @@
                 <div class="site-header-container">
                     <div class="side-logo">
                         <a href="dashboard.html">
-                            <img src="assets/images/logo/logo.png" alt="logo">
+                             <p>URBAN WEALTH</p>
                         </a>
                     </div>
                     <ul class="dashboard-menu">
@@ -732,19 +732,21 @@
 
     </div>
 
-    <script>
-        // Check if userId exists in localStorage
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
         const userId = localStorage.getItem('userId');
         
-        // If userId does not exist, hide the Dashboard link and redirect to index.html
         if (!userId) {
-            // Hide the Dashboard link
-            document.getElementById('dashboard-link').style.display = 'none';
-            
-            // Redirect to index.html
+            const dashboardLink = document.getElementById('dashboard-link');
+            if (dashboardLink) {
+                dashboardLink.style.display = 'none';
+            }
+
+            // Redirect to sign-in
             window.location.href = 'sign-in.html';
         }
-    </script>
+    });
+</script>
 
 
 
@@ -770,7 +772,7 @@
     
     if (userIds) {
         // Fetch user data from the API
-        fetch(`http://localhost:5000/api/users/user/${userIds}`)
+        fetch(`https://urban-wealth.onrender.com/api/users/user/${userIds}`)
             .then(response => response.json())
             .then(data => {
                 const balanceHistory = data.balanceHistory || [];
@@ -824,7 +826,7 @@
 
 <script>
     // Fetch data from your API and populate the list
-    fetch('http://localhost:5000/api/account/get')
+    fetch('https://urban-wealth.onrender.com/api/account/get')
       .then(response => response.json())
       .then(data => {
         const ul = document.getElementById('bank-details-list');
@@ -882,7 +884,7 @@
   formData.append('userId', userId);     // from localStorage
 
   try {
-    const res = await fetch('http://localhost:5000/api/upload/payment', {
+    const res = await fetch('https://urban-wealth.onrender.com/api/upload/payment', {
       method: 'POST',
       body: formData,
     });
@@ -969,7 +971,7 @@
   
     if (Id) {
       // Fetch the balance from the API
-      fetch(`http://localhost:5000/api/users/user/${Id}`)
+      fetch(`https://urban-wealth.onrender.com/api/users/user/${Id}`)
         .then(response => response.json())
         .then(data => {
           const balance = data.balance || 0;

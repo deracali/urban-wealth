@@ -92,7 +92,7 @@
                     <div class="header-area">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="assets/images/logo/logo.png" alt="logo">
+                                 <p>URBAN WEALTH</p>
                             </a>
                         </div>
                         <div class="logo-2">
@@ -104,9 +104,10 @@
                             <li>
                                 <a href="index.html">Home</a>
                             </li>
-                            <li>
-                                <a href="dashboard.html">Dashboard</a>
-                            </li>
+                           <li>
+    <a href="dashboard.html" id="dashboard-link">Dashboard</a>
+</li>
+
                             <li>
                                 <a href="about.html">About</a>
                             </li>
@@ -355,7 +356,7 @@
         // Function to fetch withdrawal history from the API
         async function fetchWithdrawals() {
             try {
-                const response = await fetch('http://localhost:5000/api/withdrawals');
+                const response = await fetch('https://urban-wealth.onrender.com/api/withdrawals');
                 const withdrawals = await response.json();
                 const data = withdrawals.withdrawals
                 console.log(data)

@@ -256,17 +256,16 @@
   
 
 <script>
-  // Check if userId exists in localStorage
-  const userIds = localStorage.getItem('userId');
-  
-  // If userId does not exist, hide the Dashboard link and redirect to index.html
-  if (!userIds) {
-      // Hide the Dashboard link
-      document.getElementById('dashboard-link').style.display = 'none';
-      
-      // Redirect to index.html
-      window.location.href = 'sign-in.html';
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const userIds = localStorage.getItem('adminId');
+
+    if (!userIds) {
+     
+
+      // Redirect to sign-in
+      window.location.href = 'index.html';
+    }
+  });
 </script>
 
 
@@ -277,7 +276,7 @@
   localStorage.removeItem('adminToken');
 
   // Redirect to the sign-in page
-  window.location.href = 'sign-in.html';
+  window.location.href = 'index.html';
 });
 
 </script>
@@ -310,7 +309,7 @@
       if (response.ok) {
         alert('Balance updated successfully!');
       } else {
-        alert(`Failed: ${data.message || 'Something went wrong'}`);
+        alert(`Failed: ${data.error || 'Something went wrong'}`);
       }
     } catch (error) {
       console.error('Error:', error);
