@@ -1,0 +1,198 @@
+﻿<!-- meta tags and other links -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Wealth - Tailwind CSS Admin Dashboard HTML Template</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" sizes="16x16">
+  <!-- google fonts -->
+  <link href="../../css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <!-- remix icon font css  -->
+  <link rel="stylesheet" href="assets/css/remixicon.css">
+  <!-- Apex Chart css -->
+  <link rel="stylesheet" href="assets/css/lib/apexcharts.css">
+  <!-- Data Table css -->
+  <link rel="stylesheet" href="assets/css/lib/dataTables.min.css">
+  <!-- Text Editor css -->
+  <link rel="stylesheet" href="assets/css/lib/editor-katex.min.css">
+  <link rel="stylesheet" href="assets/css/lib/editor.atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/lib/editor.quill.snow.css">
+  <!-- Date picker css -->
+  <link rel="stylesheet" href="assets/css/lib/flatpickr.min.css">
+  <!-- Calendar css -->
+  <link rel="stylesheet" href="assets/css/lib/full-calendar.css">
+  <!-- Vector Map css -->
+  <link rel="stylesheet" href="assets/css/lib/jquery-jvectormap-2.0.5.css">
+  <!-- Popup css -->
+  <link rel="stylesheet" href="assets/css/lib/magnific-popup.css">
+  <!-- Slick Slider css -->
+  <link rel="stylesheet" href="assets/css/lib/slick.css">
+  <!-- prism css -->
+  <link rel="stylesheet" href="assets/css/lib/prism.css">
+  <!-- file upload css -->
+  <link rel="stylesheet" href="assets/css/lib/file-upload.css">
+  
+  <link rel="stylesheet" href="assets/css/lib/audioplayer.css">
+  <!-- main css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="dark:bg-neutral-800 bg-neutral-100 dark:text-white">
+
+<section class="bg-white dark:bg-dark-2 flex flex-wrap min-h-[100vh]">  
+    <div class="lg:w-1/2 lg:block hidden">
+        <div class="flex items-center flex-col h-full justify-center">
+            <img src="assets/images/auth/auth-img.png" alt="">
+        </div>
+    </div>
+    <div class="lg:w-1/2 py-8 px-6 flex flex-col justify-center">
+        <div class="lg:max-w-[464px] mx-auto w-full">
+            <div>
+                <a href="index.html" class="mb-2.5 max-w-[290px]">
+                    <img src="assets/images/logo.png" alt="">
+                </a>
+                <h4 class="mb-3">Sign Up to your Account</h4>
+                <p class="mb-8 text-secondary-light text-lg">Welcome back! please enter your detail</p>
+            </div>
+            <form id="admin-signup-form" action="#">
+                <div class="icon-field mb-4 relative">
+                  <span class="absolute start-4 top-1/2 -translate-y-1/2 pointer-events-none flex text-xl">
+                    <iconify-icon icon="f7:person"></iconify-icon>
+                  </span>
+                  <input type="text" id="admin-name" class="form-control h-[56px] ps-11 border-neutral-300 bg-neutral-50 dark:bg-dark-2 rounded-xl" placeholder="Username">
+                </div>
+                <div class="icon-field mb-4 relative">
+                  <span class="absolute start-4 top-1/2 -translate-y-1/2 pointer-events-none flex text-xl">
+                    <iconify-icon icon="mage:email"></iconify-icon>
+                  </span>
+                  <input type="email" id="admin-email" class="form-control h-[56px] ps-11 border-neutral-300 bg-neutral-50 dark:bg-dark-2 rounded-xl" placeholder="Email">
+                </div>
+                <div class="mb-5">
+                  <div class="relative">
+                    <div class="icon-field">
+                      <span class="absolute start-4 top-1/2 -translate-y-1/2 pointer-events-none flex text-xl">
+                        <iconify-icon icon="solar:lock-password-outline"></iconify-icon>
+                      </span> 
+                      <input type="password" id="admin-password" class="form-control h-[56px] ps-11 border-neutral-300 bg-neutral-50 dark:bg-dark-2 rounded-xl" placeholder="Password">
+                    </div>
+                    <span class="toggle-password ri-eye-line cursor-pointer absolute end-0 top-1/2 -translate-y-1/2 me-4 text-secondary-light" data-toggle="#admin-password"></span>
+                  </div>
+                  <span class="mt-3 text-sm text-secondary-light">Your password must have at least 8 characters</span>
+                </div>
+              
+                <!-- rest of your form unchanged -->
+                <button type="submit" class="btn btn-primary justify-center text-sm btn-sm px-3 py-4 w-full rounded-xl mt-8"> Sign Up</button>
+              </form>
+              
+        </div>
+    </div>
+</section>
+
+  <!-- jQuery library js -->
+  <script src="assets/js/lib/jquery-3.7.1.min.js"></script>
+  <!-- Apex Chart js -->
+  <script src="assets/js/lib/apexcharts.min.js"></script>
+  <!-- Data Table js -->
+  <script src="assets/js/lib/simple-datatables.min.js"></script>
+  <!-- Iconify Font js -->
+  <script src="assets/js/lib/iconify-icon.min.js"></script>
+  <!-- jQuery UI js -->
+  <script src="assets/js/lib/jquery-ui.min.js"></script>
+  <!-- Vector Map js -->
+  <script src="assets/js/lib/jquery-jvectormap-2.0.5.min.js"></script>
+  <script src="assets/js/lib/jquery-jvectormap-world-mill-en.js"></script>
+  <!-- Popup js -->
+  <script src="assets/js/lib/magnifc-popup.min.js"></script>
+  <!-- Slick Slider js -->
+  <script src="assets/js/lib/slick.min.js"></script>
+  <!-- prism js -->
+  <script src="assets/js/lib/prism.js"></script>
+  <!-- file upload js -->
+  <script src="assets/js/lib/file-upload.js"></script>
+  <!-- audio player -->
+  <script src="assets/js/lib/audioplayer.js"></script>
+  
+  <script src="assets/js/flowbite.min.js"></script>
+  <!-- main js -->
+  <script src="assets/js/app.js"></script>
+
+<script>
+      // ================== Password Show Hide Js Start ==========
+      function initializePasswordToggle(toggleSelector) {
+        $(toggleSelector).on('click', function() {
+            $(this).toggleClass("ri-eye-off-line");
+            var input = $($(this).attr("data-toggle"));
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    }
+    // Call the function
+    initializePasswordToggle('.toggle-password');
+  // ========================= Password Show Hide Js End ===========================
+</script>
+
+
+
+
+
+<script>
+    // Check if userId exists in localStorage
+    const adminId = localStorage.getItem('adminId');
+    
+    // If userId does not exist, hide the Dashboard link and redirect to index.html
+    if (!adminId) {
+        // Hide the Dashboard link
+        document.getElementById('dashboard-link').style.display = 'none';
+        
+        // Redirect to index.html
+        window.location.href = 'sign-in.html';
+    }
+</script>
+
+
+<script>
+    document.getElementById("admin-signup-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+  
+      const name = document.getElementById("admin-name").value.trim();
+      const email = document.getElementById("admin-email").value.trim();
+      const password = document.getElementById("admin-password").value.trim();
+  
+      if (!name || !email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+  
+      try {
+        const response = await fetch("http://localhost:5000/api/admin/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name, email, password })
+        });
+  
+        const data = await response.json();
+
+        if (!response.ok) {
+          alert(data.message || "Signup failed");
+        } else {
+          localStorage.setItem("adminToken", data.token);
+          localStorage.setItem("adminId", data.admin._id);
+  
+          alert("Signup successful!");
+          window.location.href = "index-5.html";
+        }
+      } catch (error) {
+        console.error("Signup error:", error);
+        alert("An error occurred. Please try again later.");
+      }
+    });
+  </script>
+  
+
+</body>
+</html>

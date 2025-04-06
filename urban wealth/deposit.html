@@ -1,0 +1,1008 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Urban Wealth - HYIP Investment HTML Template</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/odometer.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/owl.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+</head>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      margin: 0 5px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: #d6cfff;
+      color: #4f3de3;
+    }
+
+    .coin-checker {
+      margin-top: 40px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: orange;
+    }
+
+    .subtitle {
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    .radar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border: 8px solid #ffc83d;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .radar::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: conic-gradient(#3deaff 0deg, transparent 90deg);
+      animation: rotate 2s linear infinite;
+      transform-origin: center;
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .timer {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .strength-bar {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+
+    .bar {
+      width: 80%;
+      height: 8px;
+      background: #ccc;
+      border-radius: 10px;
+      margin: 10px auto;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 60%;
+      background: linear-gradient(to right, #3f51b5, #8e24aa);
+      border-radius: 10px;
+    }
+
+    #flex{
+        display: flex;
+        margin-top: 40px;
+    }
+
+    #refreshBtn {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00c292;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 40%;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -20%);
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 100;
+      border-radius: 12px;
+      max-height: 70vh; /* Adjust height as needed */
+      overflow-y: auto;
+    }
+
+    .popup h3 {
+      margin-top: 0;
+    }
+
+    .popup ul {
+      text-align: left;
+    }
+
+    .popup ul li {
+      margin-bottom: 8px;
+    }
+
+    .popup .close-btn {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+ 
+  </style>
+<body>
+    <div class="main--body dashboard-bg">
+        <!--========== Preloader ==========-->
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay"></div>
+        <!--========== Preloader ==========-->
+        
+        
+        <!--=======SideHeader-Section Starts Here=======-->
+        <div class="notify-overlay"></div>
+        <section class="dashboard-section">
+            <div class="side-header oh">
+                <div class="cross-header-bar d-xl-none">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="site-header-container">
+                    <div class="side-logo">
+                        <a href="dashboard.html">
+                            <img src="assets/images/logo/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <ul class="dashboard-menu">
+                      <li id="dashboard-link">
+    <a href="dashboard.html"><i class="flaticon-man"></i>Dashboard</a>
+</li>
+                       
+                        <li>
+                            <a href="deposit.html" class="active"><i class="flaticon-interest"></i>Deposits</a>
+                        </li>
+                      
+                      
+                       
+                       
+                       
+                        <li>
+                            <a href="javascript:void(0)"><i class="flaticon-right-arrow"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dasboard-body">
+                <div class="dashboard-hero">
+                    <div class="header-top">
+                        <div class="container">
+                            <div class="mobile-header d-flex justify-content-between d-lg-none align-items-center">
+                                <div class="author">
+                                    <img src="assets/images/dashboard/author.png" alt="dashboard">
+                                </div>
+                                <div class="cross-header-bar">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="mobile-header-content d-lg-flex flex-wrap justify-content-lg-between align-items-center">
+                                <ul class="support-area">
+                                    <li>
+                                        <a href="#0"><i class="flaticon-support"></i>Support</a>
+                                    </li>
+                                    <li>
+                                        <a href="Mailto:info@Urban Wealth.com"><i class="flaticon-email"></i><span class="__cf_email__" data-cfemail="741d1a121b341c0d1d0418151a105a171b19">[email&#160;protected]</span> </a>
+                                    </li>
+                                  
+                                </ul>
+                                <div class="dashboard-header-right d-flex flex-wrap justify-content-center justify-content-sm-between justify-content-lg-end align-items-center">
+                                   
+                                    <ul class="dashboard-right-menus">
+                                     
+                                       
+                                        <li>
+                                            <a href="#0" class="author">
+                                                <div class="thumb">
+                                                    <img src="assets/images/dashboard/author.png" alt="dashboard">
+                                                    <span class="checked">
+                                                        <i class="flaticon-checked"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="content">
+                                                      <h6 class="title" id="userName"></h6>
+  
+                                                </div>
+                                            </a>
+                                            <div class="notification-area">
+                                                <div class="author-header">
+                                                    <div class="thumb">
+                                                        <img src="assets/images/dashboard/author.png" alt="dashboard">
+                                                    </div>
+                                                     <h6 class="title" id="userEmail"></h6>
+    <a href="#" id="userEmailLink">
+        <span class="__cf_email__" id="emailMasked" data-cfemail="99d3f6f1f7fdf6fcd9fef4f8f0f5b7faf6f4">[email protected]</span>
+    </a>
+                                                </div>
+                                                <div class="author-body">
+                                                    <ul>
+                                                       
+                                                        <li>
+                                                            <a href="#0"><i class="fas fa-user-edit"></i>Edit Profile</a>
+                                                        </li>
+                                                       <li>
+    <a href="#0" id="logoutButton"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-hero-content text-white">
+                        <h3 class="title">Deposits</h3>
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li>
+                                Deposit
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row justify-content-center mt--85">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="dashboard-item">
+                                <div class="dashboard-inner">
+                                    <div class="cont">
+                                        <span class="title">Balance</span>
+                                        <h5 class="amount" id="userBalance">Loading...</h5>
+                                        <div class="text-center">
+                                            <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="thumb">
+                                        <img src="assets/images/dashboard/dashboard1.png" alt="dasboard">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="deposit">
+                        <h3 class="main-title">Make Deposits</h3>
+                        <h4 class="main-subtitle">01. Select the Plan</h4>
+                        <div class="deposit-wrapper">
+                            <div class="deposit-item">
+                                <div class="deposit-inner">
+                                    <div class="deposit-header">
+                                        <h3 class="title">120%</h3>
+                                        <span><b>every day</b></span>
+                                    </div>
+                                    <div class="deposit-body">
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer1.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Deposit</h5>
+                                                <h5 class="subtitle"><span class="min">$10</span><span class="to">to</span><span class="max">$3500</span></h5>
+                                            </div>
+                                        </div>
+                                        <span class="bal-shape"></span>
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer2.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Terms</h5>
+                                                <h5 class="subtitle">10 days</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#0" class="select-plan"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                            <div class="deposit-item">
+                                <div class="deposit-inner active">
+                                    <div class="deposit-header">
+                                        <h3 class="title">120%</h3>
+                                        <span><b>every day</b></span>
+                                    </div>
+                                    <div class="deposit-body">
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer1.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Deposit</h5>
+                                                <h5 class="subtitle"><span class="min">$10</span><span class="to">to</span><span class="max">$3500</span></h5>
+                                            </div>
+                                        </div>
+                                        <span class="bal-shape"></span>
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer2.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Terms</h5>
+                                                <h5 class="subtitle">10 days</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#0" class="select-plan"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                            <div class="deposit-item">
+                                <div class="deposit-inner">
+                                    <div class="deposit-header">
+                                        <h3 class="title">120%</h3>
+                                        <span><b>every day</b></span>
+                                    </div>
+                                    <div class="deposit-body">
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer1.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Deposit</h5>
+                                                <h5 class="subtitle"><span class="min">$10</span><span class="to">to</span><span class="max">$3500</span></h5>
+                                            </div>
+                                        </div>
+                                        <span class="bal-shape"></span>
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer2.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Terms</h5>
+                                                <h5 class="subtitle">10 days</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#0" class="select-plan"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                            <div class="deposit-item">
+                                <div class="deposit-inner">
+                                    <div class="deposit-header">
+                                        <h3 class="title">120%</h3>
+                                        <span><b>every day</b></span>
+                                    </div>
+                                    <div class="deposit-body">
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer1.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Deposit</h5>
+                                                <h5 class="subtitle"><span class="min">$10</span><span class="to">to</span><span class="max">$3500</span></h5>
+                                            </div>
+                                        </div>
+                                        <span class="bal-shape"></span>
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer2.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Terms</h5>
+                                                <h5 class="subtitle">10 days</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#0" class="select-plan"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                            <div class="deposit-item">
+                                <div class="deposit-inner">
+                                    <div class="deposit-header">
+                                        <h3 class="title">120%</h3>
+                                        <span><b>every day</b></span>
+                                    </div>
+                                    <div class="deposit-body">
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer1.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Deposit</h5>
+                                                <h5 class="subtitle"><span class="min">$10</span><span class="to">to</span><span class="max">$3500</span></h5>
+                                            </div>
+                                        </div>
+                                        <span class="bal-shape"></span>
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer2.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Terms</h5>
+                                                <h5 class="subtitle">10 days</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#0" class="select-plan"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                            <div class="deposit-item">
+                                <div class="deposit-inner">
+                                    <div class="deposit-header">
+                                        <h3 class="title">120%</h3>
+                                        <span><b>every day</b></span>
+                                    </div>
+                                    <div class="deposit-body">
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer1.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Deposit</h5>
+                                                <h5 class="subtitle"><span class="min">$10</span><span class="to">to</span><span class="max">$3500</span></h5>
+                                            </div>
+                                        </div>
+                                        <span class="bal-shape"></span>
+                                        <div class="item">
+                                            <div class="item-thumb">
+                                                <img src="assets/images/offer/offer2.png" alt="offer">
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="title">Terms</h5>
+                                                <h5 class="subtitle">10 days</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#0" class="select-plan"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="deposit-system">
+                            <h4 class="main-subtitle">02. Choose Payment  System</h4>
+                            <div class="text-center deposit-method-slider owl-theme owl-carousel">
+                                <a href="#0" class="deposit-method-item active">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/01.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/02.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/03.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/04.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/05.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/06.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/07.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/01.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/02.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/03.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/04.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/05.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/06.png" alt="payment">
+                                    </div>
+                                </a>
+                                <a href="#0" class="deposit-method-item">
+                                    <div class="thumb">
+                                        <div class="check">
+                                            <img src="assets/images/dashboard/payment/check.png" alt="payment">
+                                        </div>
+                                        <img src="assets/images/dashboard/payment/07.png" alt="payment">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tabs">
+                            <div class="tab active" data-tab="coin-purchase">Coin Purchase</div>
+                            <div class="tab" data-tab="sales">Sales</div>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <div class="coin-checker tab-pane active" id="coin-purchase">
+                                <div class="title">Coin Checker</div>
+                                <div class="subtitle">Looking for available coin</div>
+                                <div class="radar"></div>
+                                <div class="timer" id="timer">Hold Time: 00:01:04</div>
+                                
+                                <button id="refreshBtn">Refresh Now</button>
+                        
+                                <div class="strength-bar">
+                                    <div class="bar">
+                                        <div class="bar-fill"></div>
+                                    </div>
+                                    <div>Bid Strength &nbsp;&nbsp;&nbsp;&nbsp; 23.8 pool</div>
+                                </div>
+                            </div>
+                            
+                            <div class="sales tab-pane" id="sales">
+                                <div id="flex" class="sales-details flex bg-white p-6 rounded-lg shadow-md mt-8">
+                                    <!-- <h4 class="text-xl font-semibold text-gray-700 mt-6 mb-4 text-center">Balance History</h4> -->
+                                    <div class="">
+                                        <table class="table-auto bg-gray-100 rounded-lg shadow-lg">
+                                            <thead>
+                                                <tr class="bg-gray-200">
+                                                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700">Date</th>
+                                                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700">Withdrawal Amount</th>
+                                                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="balanceHistoryTable">
+                                                <!-- User's balance history will be populated here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                          <!-- Deposit System -->
+                          <!-- <div class="deposit-system">
+                            <h4 class="main-subtitle">03. Enter the amount of Deposit:</h4>
+                            <form class="make-deposit">
+                              <div class="form-group">
+                                <input type="text" placeholder="Enter your amount" class="make-amount">
+                              </div>
+                              <div class="form-group">
+                                <label for="total-profit">Total Profit</label>
+                                <input type="text" readonly value="$180.00" class="readonly">
+                              </div>
+                              <div class="form-group">
+                                <button type="submit" class="custom-button border-0">Make Deposit</button>
+                              </div>
+                            </form>
+                          </div> -->
+                        
+                          <!-- Popup -->
+                          <div class="popup" id="popup">
+                            <h3>Available Account Numbers</h3>
+                            <ul id="bank-details-list"></ul>
+                            <button class="close-btn" onclick="closePopup()">Close</button>
+                          </div>
+                        
+                    </div>
+                </div>
+                <div class="container-fluid sticky-bottom">
+                    <div class="dashboard-footer">
+                        <div class="d-flex flex-wrap justify-content-between m-0-15-none">
+                            <div class="left">
+                                &copy; 2020 <a href="#0">Urban Wealth</a>  |  All right reserved.
+                            </div>
+                            <div class="right">
+                                <ul>
+                                    <li>
+                                        <a href="#0">Terms of use</a>
+                                    </li>
+                                    <li>
+                                        <a href="#0">Privacy policy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=======SideHeader-Section Ends Here=======-->
+        
+
+    </div>
+
+    <script>
+        // Check if userId exists in localStorage
+        const userId = localStorage.getItem('userId');
+        
+        // If userId does not exist, hide the Dashboard link and redirect to index.html
+        if (!userId) {
+            // Hide the Dashboard link
+            document.getElementById('dashboard-link').style.display = 'none';
+            
+            // Redirect to index.html
+            window.location.href = 'sign-in.html';
+        }
+    </script>
+
+
+
+
+<script>
+    document.getElementById('logoutButton').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        
+        // Remove userId and token from localStorage
+        localStorage.removeItem('userId');
+        localStorage.removeItem('token');
+        
+        // Optionally, redirect to the login page or homepage
+        window.location.href = '/login';  // Change '/login' to your actual login route
+    });
+</script>
+
+
+
+<script>
+    // Get the userId from localStorage
+    const userIds = localStorage.getItem('userId');
+    
+    if (userIds) {
+        // Fetch user data from the API
+        fetch(`http://localhost:5000/api/users/user/${userIds}`)
+            .then(response => response.json())
+            .then(data => {
+                const balanceHistory = data.balanceHistory || [];
+    
+                // Get the table body element
+                const tableBody = document.getElementById('balanceHistoryTable');
+    
+                // Loop through the balance history and populate the table
+                balanceHistory.forEach(entry => {
+                    const row = document.createElement('tr');
+                    row.classList.add('border-t');
+    
+                    const dateCell = document.createElement('td');
+                    dateCell.classList.add('py-3', 'px-4', 'text-sm', 'text-gray-800');
+                    dateCell.textContent = new Date(entry.date).toLocaleDateString();
+    
+                    const amountCell = document.createElement('td');
+                    amountCell.classList.add('py-3', 'px-4', 'text-sm');
+                    amountCell.textContent = `$${entry.withdrawalAmount.toFixed(2)}`;
+    
+                    // Apply color based on the status using inline styles as a debug
+                    const statusCell = document.createElement('td');
+                    statusCell.classList.add('py-3', 'px-4', 'text-sm', 'font-medium');
+                    statusCell.textContent = entry.status.charAt(0).toUpperCase() + entry.status.slice(1);
+    
+                    if (entry.status === 'withdrawal') {
+                        // Use inline styles if Tailwind is not working
+                        statusCell.style.color = 'red'; // Red for withdrawal
+                    } else if (entry.status === 'deposit') {
+                        statusCell.style.color = 'green'; // Green for deposit
+                    }
+    
+                    // Append the cells to the row
+                    row.appendChild(dateCell);
+                    row.appendChild(amountCell);
+                    row.appendChild(statusCell);
+    
+                    // Append the row to the table body
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    } else {
+        console.error('User ID not found in localStorage');
+    }
+</script>
+
+
+
+<script>
+    // Fetch data from your API and populate the list
+    fetch('http://localhost:5000/api/account/get')
+      .then(response => response.json())
+      .then(data => {
+        const ul = document.getElementById('bank-details-list');
+  
+        data.forEach((detail, index) => {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `
+            <strong>Bank:</strong> ${detail.bank}<br>
+            <strong>Name:</strong> ${detail.name}<br>
+            <strong>Account:</strong> ${detail.account}<br>
+            <strong>Amount:</strong> ${detail.amount}<br>
+            <button onclick="showUploadSection(this)">Upload</button>
+            <div class="upload-section" style="display: none; margin-top: 10px;">
+              <input type="file" accept="image/*,application/pdf" id="file-input-${index}"><br><br>
+              <button onclick="submitProof(this, ${detail.amount}, ${index})">Submit</button>
+            </div>
+            ${index !== data.length - 1 ? '<hr>' : ''}
+          `;
+          ul.appendChild(listItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching bank details:', error);
+      });
+  
+    function showUploadSection(button) {
+      // Find the next sibling div (the upload section) and toggle its visibility
+      const section = button.nextElementSibling;
+      section.style.display = section.style.display === 'none' ? 'block' : 'none';
+    }
+  
+    async function submitProof(btn, bankAmount, index) {
+  const uploadSection = btn.parentElement;
+  const fileInput = uploadSection.querySelector(`#file-input-${index}`);
+  
+  if (!fileInput) {
+    alert("File input is not available.");
+    return;
+  }
+
+  const userId = localStorage.getItem('userId');
+  const file = fileInput.files[0];
+
+  if (!file || !userId) {
+    alert("Please upload a file and ensure userId is in localStorage.");
+    return;
+  }
+
+  // Convert the amount to a string before appending to FormData (string conversion for safety)
+  const amount = String(bankAmount);  // Ensure it's converted to a string if needed
+
+  const formData = new FormData();
+  formData.append('image', file);        // image or pdf
+  formData.append('amount', amount);     // Append as a string to ensure safe serialization
+  formData.append('userId', userId);     // from localStorage
+
+  try {
+    const res = await fetch('http://localhost:5000/api/upload/payment', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!res.ok) {
+      throw new Error(`Network response was not ok. Status: ${res.status}`);
+    }
+
+    const responseData = await res.json();
+    
+    if (responseData && responseData.status) {
+      alert("Upload successful!");
+      console.log(responseData);
+    } else {
+      alert("Upload failed: " + (responseData?.message || "Unknown error"));
+    }
+  } catch (error) {
+    alert(error);
+    console.error("Error during upload:", error);
+  }
+}
+
+  </script>
+  
+
+
+    
+<script>
+    // Function to handle tab switching
+    const tabs = document.querySelectorAll('.tab');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove 'active' class from all tabs and hide all tab panes
+            tabs.forEach(t => t.classList.remove('active'));
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+
+            // Add 'active' class to the clicked tab and the corresponding tab pane
+            tab.classList.add('active');
+            const activeTab = tab.getAttribute('data-tab');
+            document.getElementById(activeTab).classList.add('active');
+        });
+    });
+</script>
+
+
+    <script>
+        let timerEl = document.getElementById("timer");
+        let refreshBtn = document.getElementById("refreshBtn");
+        let popup = document.getElementById("popup");
+    
+        let totalTime = 64; // 1:04 in seconds
+    
+        let interval = setInterval(() => {
+          if (totalTime <= 0) {
+            clearInterval(interval);
+            timerEl.style.display = "none";
+            refreshBtn.style.display = "inline-block";
+            return;
+          }
+    
+          totalTime--;
+    
+          let minutes = Math.floor(totalTime / 60);
+          let seconds = totalTime % 60;
+          timerEl.textContent = `Hold Time: 00:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }, 1000);
+    
+        refreshBtn.onclick = function () {
+          popup.style.display = "block";
+        };
+    
+        function closePopup() {
+          popup.style.display = "none";
+        }
+      </script>
+
+
+
+<script>
+    // Get the userId from localStorage
+    const Id = localStorage.getItem('userId');
+  
+    if (Id) {
+      // Fetch the balance from the API
+      fetch(`http://localhost:5000/api/users/user/${Id}`)
+        .then(response => response.json())
+        .then(data => {
+          const balance = data.balance || 0;
+          document.getElementById('userBalance').innerText = `${balance} USD`;
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+          document.getElementById('userBalance').innerText = 'Error loading balance';
+        });
+    } else {
+      console.error('User ID not found in localStorage');
+      document.getElementById('userBalance').innerText = 'User ID not found';
+    }
+  </script>
+  
+
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/modernizr-3.6.0.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- <script src="assets/js/magnific-popup.min.js"></script> -->
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/nice-select.js"></script>
+    <script src="assets/js/owl.min.js"></script>
+    <script src="assets/js/paroller.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/circle-progress.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
+</body>
+
+</html>

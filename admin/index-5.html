@@ -1,0 +1,917 @@
+<!-- meta tags and other links -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Wealth - Tailwind CSS Admin Dashboard HTML Template</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" sizes="16x16">
+  <!-- google fonts -->
+  <link href="../../css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <!-- remix icon font css  -->
+  <link rel="stylesheet" href="assets/css/remixicon.css">
+  <!-- Apex Chart css -->
+  <link rel="stylesheet" href="assets/css/lib/apexcharts.css">
+  <!-- Data Table css -->
+  <link rel="stylesheet" href="assets/css/lib/dataTables.min.css">
+  <!-- Text Editor css -->
+  <link rel="stylesheet" href="assets/css/lib/editor-katex.min.css">
+  <link rel="stylesheet" href="assets/css/lib/editor.atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/lib/editor.quill.snow.css">
+  <!-- Date picker css -->
+  <link rel="stylesheet" href="assets/css/lib/flatpickr.min.css">
+  <!-- Calendar css -->
+  <link rel="stylesheet" href="assets/css/lib/full-calendar.css">
+  <!-- Vector Map css -->
+  <link rel="stylesheet" href="assets/css/lib/jquery-jvectormap-2.0.5.css">
+  <!-- Popup css -->
+  <link rel="stylesheet" href="assets/css/lib/magnific-popup.css">
+  <!-- Slick Slider css -->
+  <link rel="stylesheet" href="assets/css/lib/slick.css">
+  <!-- prism css -->
+  <link rel="stylesheet" href="assets/css/lib/prism.css">
+  <!-- file upload css -->
+  <link rel="stylesheet" href="assets/css/lib/file-upload.css">
+  
+  <link rel="stylesheet" href="assets/css/lib/audioplayer.css">
+  <!-- main css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<style>
+  .hidden {
+    display: none;
+  }
+  .form-input {
+    border: 1px solid #ccc;
+    padding: 4px;
+    border-radius: 4px;
+    width: 100%;
+  }
+</style>
+<body class="dark:bg-neutral-800 bg-neutral-100 dark:text-white">
+<aside class="sidebar">
+  <button type="button" class="sidebar-close-btn !mt-4">
+    <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+  </button>
+  <div>
+    <a href="index.html" class="sidebar-logo">
+      <img src="assets/images/logo.png" alt="site logo" class="light-logo">
+      <img src="assets/images/logo-light.png" alt="site logo" class="dark-logo">
+      <img src="assets/images/logo-icon.png" alt="site logo" class="logo-icon">
+    </a>
+  </div>
+  <div class="sidebar-menu-area">
+    <ul class="sidebar-menu" id="sidebar-menu">
+      <li class="dropdown">
+        <a href="javascript:void(0)">
+          <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
+          <span>Dashboard</span>
+        </a>
+        <li>
+          <a href="index-5.html"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Investment</a>
+        </li>   <li>
+          <a href="bankdetails.html"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Account</a>
+        </li>
+  </div>
+</aside>
+
+<main class="dashboard-main">
+  <div class="navbar-header border-b border-neutral-200 dark:border-neutral-600">
+  <div class="flex items-center justify-between">
+    <div class="col-auto">
+      <div class="flex flex-wrap items-center gap-[16px]">
+        <button type="button" class="sidebar-toggle">
+          <iconify-icon icon="heroicons:bars-3-solid" class="icon non-active"></iconify-icon>
+          <iconify-icon icon="iconoir:arrow-right" class="icon active"></iconify-icon>
+        </button>
+        <button type="button" class="sidebar-mobile-toggle d-flex !leading-[0]">
+          <iconify-icon icon="heroicons:bars-3-solid" class="icon !text-[30px]"></iconify-icon>
+        </button>
+      
+        
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="flex flex-wrap items-center gap-3">
+        <button type="button" id="theme-toggle" class="w-10 h-10 bg-neutral-200 dark:bg-neutral-700 dark:text-white rounded-full flex justify-center items-center">
+          <span id="theme-toggle-dark-icon" class="hidden">
+            <i class="ri-sun-line"></i>
+          </span>
+          <span id="theme-toggle-light-icon" class="hidden">
+            <i class="ri-moon-line"></i>
+          </span>
+        </button>  
+
+      
+
+
+      
+
+
+        <button data-dropdown-toggle="dropdownProfile" class="flex justify-center items-center rounded-full" type="button">
+          <img src="assets/images/user.png" alt="image" class="w-10 h-10 object-fit-cover rounded-full">
+        </button>
+        <div id="dropdownProfile" class="z-10 hidden bg-white dark:bg-neutral-700 rounded-lg shadow-lg dropdown-menu-sm p-3">
+          <div class="py-3 px-4 rounded-lg bg-primary-50 dark:bg-primary-600/25 mb-4 flex items-center justify-between gap-2">
+            <div>
+              <h6 class="text-lg text-neutral-900 font-semibold mb-0">Shahidul Islam</h6>
+              <span class="text-neutral-500">Admin</span>
+            </div>
+            <button type="button" class="hover:text-danger-600">
+              <iconify-icon icon="radix-icons:cross-1" class="icon text-xl"></iconify-icon> 
+            </button>
+          </div>
+
+          <div class="max-h-[400px] overflow-y-auto scroll-sm pe-2">
+            <ul class="flex flex-col">
+              
+              <li>
+  <a id="logoutLink" class="text-black px-0 py-2 hover:text-danger-600 flex items-center gap-4" href="javascript:void(0)">
+    <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon> Log Out
+  </a>
+</li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-main-body">
+
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+  <h6 class="font-semibold mb-0 dark:text-white">Dashboard</h6>
+  <ul class="flex items-center gap-[6px]">
+    <li class="font-medium">
+      <a href="index.html" class="flex items-center gap-2 text-neutral-600 hover:text-primary-600 dark:text-white dark:hover:text-primary-600">
+        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
+        Dashboard
+      </a>
+    </li>
+    <li class="text-neutral-600 dark:text-white">-</li>
+    <li class="text-neutral-600 font-medium dark:text-white">Investment</li>
+  </ul>
+</div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-6">  
+        
+        <!-- Dashboard Widget Start -->
+        <div class="card px-xl-6 px-4 py-4 shadow-none rounded-lg border-neutral-200 dark:border-neutral-600 h-full bg-gradient-to-r from-primary-600/10 to-bg-white">
+          <div class="card-body p-0">
+            <div class="flex flex-wrap items-center justify-between gap-1">
+              <div class="flex items-center">
+                <div class="w-[64px] h-[64px] rounded-2xl bg-white flex-shrink-0 dark:bg-neutral-800/75 flex justify-center items-center me-2xl-5 me-xl-4 me-3">
+                  <span class="w-10 h-10 bg-primary-600 shrink-0 text-white flex justify-center items-center rounded-lg h6 mb-0">
+                    <iconify-icon icon="flowbite:users-group-solid" class="icon"></iconify-icon>
+                  </span>
+                </div>
+                <div>
+                  <span class="mb-2 font-medium text-secondary-light text-base">New Users</span>
+                  <h6 class="font-semibold my-1" id="newUsersCount">0</h6>
+                  <p class="text-sm mb-0">Increase by <span class="bg-success-100 dark:bg-success-600/50 px-1 py-0.5 rounded-sm font-medium text-success-600 dark:text-success-400 text-sm" id="newUsersThisWeek">+0</span> this week</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card px-xl-6 px-4 py-4 shadow-none rounded-lg border-neutral-200 dark:border-neutral-600 h-full bg-gradient-to-r from-purple-600/10 to-bg-white">
+          <div class="card-body p-0">
+            <div class="flex flex-wrap items-center justify-between gap-1">
+              <div class="flex items-center">
+                <div class="w-[64px] h-[64px] rounded-2xl bg-white flex-shrink-0 dark:bg-neutral-800/75 flex justify-center items-center me-2xl-5 me-xl-4 me-3">
+                  <span class="w-10 h-10 bg-purple-600 shrink-0 text-white flex justify-center items-center rounded-lg h6 mb-0">
+                    <iconify-icon icon="solar:wallet-bold" class="text-white text-2xl mb-0"></iconify-icon>
+                  </span>
+                </div>
+                <div>
+                  <span class="mb-2 font-medium text-secondary-light text-base">Total Deposit</span>
+                  <h6 class="font-semibold my-1" id="totalDeposit">0</h6>
+                  <p class="text-sm mb-0">Increase by <span class="bg-danger-100 dark:bg-danger-600/50 px-1 py-0.5 rounded-sm font-medium text-danger-600 dark:text-danger-400 text-sm" id="depositThisWeek">+0</span> this week</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- <div class="card px-xl-6 px-4 py-4 shadow-none rounded-lg border-neutral-200 dark:border-neutral-600 h-full bg-gradient-to-r from-red-600/10 to-bg-white">
+          <div class="card-body p-0">
+            <div class="flex flex-wrap items-center justify-between gap-1">
+              <div class="flex items-center">
+                <div class="w-[64px] h-[64px] rounded-2xl bg-white flex-shrink-0 dark:bg-neutral-800/75 flex justify-center items-center me-2xl-5 me-xl-4 me-3">
+                  <span class="w-10 h-10 bg-red-600 shrink-0 text-white flex justify-center items-center rounded-lg h6 mb-0">
+                    <iconify-icon icon="fa6-solid:file-invoice-dollar" class="text-white text-2xl mb-0"></iconify-icon>
+                  </span>
+                </div>
+                <div>
+                  <span class="mb-2 font-medium text-secondary-light text-base">Total Expense</span>
+                  <h6 class="font-semibold my-1" id="totalExpense">0</h6>
+                  <p class="text-sm mb-0">Increase by <span class="bg-success-100 dark:bg-success-600/50 px-1 py-0.5 rounded-sm font-medium text-success-600 dark:text-success-400 text-sm" id="expenseThisWeek">+0</span> this week</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card px-xl-6 px-4 py-4 shadow-none rounded-lg border-neutral-200 dark:border-neutral-600 h-full bg-gradient-to-r from-success-600/10 to-bg-white">
+          <div class="card-body p-0">
+            <div class="flex flex-wrap items-center justify-between gap-1">
+              <div class="flex items-center">
+                <div class="w-[64px] h-[64px] rounded-2xl bg-white flex-shrink-0 dark:bg-neutral-800/75 flex justify-center items-center me-2xl-5 me-xl-4 me-3">
+                  <span class="w-10 h-10 bg-success-600 shrink-0 text-white flex justify-center items-center rounded-lg h6 mb-0">
+                    <iconify-icon icon="streamline:bag-dollar-solid" class="icon"></iconify-icon>
+                  </span>
+                </div>
+                <div>
+                  <span class="mb-2 font-medium text-secondary-light text-base">Total Earning</span>
+                  <h6 class="font-semibold my-1" id="totalEarning">0</h6>
+                  <p class="text-sm mb-0">Increase by <span class="bg-success-100 dark:bg-success-600/50 px-1 py-0.5 rounded-sm font-medium text-success-600 dark:text-success-400 text-sm" id="earningThisWeek">+0</span> this week</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        
+        <!-- Dashboard Widget End -->
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">  
+        <!-- Revenue Statistics Start -->
+        <div class="col-span-12 2xl:col-span-8">
+            <div class="card h-full rounded-lg border-0">
+                <div class="card-body p-6">
+                  <div class="flex items-center flex-wrap gap-2 justify-between">
+                    <div>
+                      <h6 class="mb-2 font-bold text-lg">Revenue Statistics</h6>
+                      <span class="text-sm font-medium text-secondary-light">Yearly earning overview</span>
+                    </div>
+                    <div class="">
+                      <select class="form-select form-select-sm w-auto bg-white dark:bg-neutral-700 border text-secondary-light">
+                        <option>Yearly</option>
+                        <option>Monthly</option>
+                        <option>Weekly</option>
+                        <option>Today</option>
+                      </select>
+                    </div>
+                  </div>
+      
+                  <div class="mt-6 mb-6 flex flex-wrap">
+                    <div class="me-10">
+                        <span class="text-secondary-light text-sm mb-1">Income</span>
+                        <div class="">
+                            <h6 class="font-semibold inline-block mb-0">$26,201</h6>
+                            <span class="!text-success-600 font-bold inline-flex items-center gap-1">10% <iconify-icon icon="iconamoon:arrow-up-2-fill" class="icon"></iconify-icon> </span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-secondary-light text-sm mb-1">Expenses</span>
+                        <div class="">
+                            <h6 class="font-semibold inline-block mb-0">$18,120</h6>
+                            <span class="!text-danger-600 font-bold inline-flex items-center gap-1">10% <iconify-icon icon="iconamoon:arrow-down-2-fill" class="icon"></iconify-icon> </span>
+                        </div>
+                    </div>
+                  </div>
+                  
+                  <div id="upDownBarchart"></div>
+                  
+                </div>
+            </div>
+        </div>
+        <!-- Revenue Statistics End -->
+
+     
+      
+
+        <!-- Latest Investments Start -->
+        <div class="col-span-12  2xl:col-span-6">
+            <div class="card h-full border-0">
+                <div class="card-body p-6">
+                    <div class="flex items-center flex-wrap gap-2 justify-between mb-5">
+                        <h6 class="font-bold text-lg mb-0">Latest Investments</h6>
+                        <a href="javascript:void(0)" class="text-primary-600 dark:text-primary-600 hover-text-primary flex items-center gap-1">
+                            View All
+                            <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
+                        </a>
+                    </div>
+                    <div class="table-responsive scroll-sm">
+                      <table class="table bordered-table sm-table mb-0" id="paymentTable">
+                        <thead>
+                          <tr>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date</th>
+                            <th scope="col" class="text-center">User ID</th>
+                            <th scope="col" class="text-center">Image</th>
+                          </tr>
+                        </thead>
+                        <tbody id="paymentBody">
+                          <!-- Populated dynamically -->
+                        </tbody>
+                      </table>
+                    </div>
+                    <div id="loadMoreContainer" class="text-center my-4">
+                      <button id="loadMoreButton" class="bg-primary text-white px-4 py-2 rounded-lg" onclick="loadMorePayments()">Load More</button>
+                    </div>
+                    <!-- Image Popup Modal -->
+                    <div id="imageModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center">
+                      <div class="bg-white p-4 rounded-lg relative">
+                        <button class="absolute top-2 right-2 text-black" onclick="closeImagePopup()">✕</button>
+                        <img id="popupImage" src="" alt="Payment Image" class="max-w-full h-auto rounded-md" />
+                      </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Latest Investments End -->
+
+
+ 
+
+        <!-- Project Status Start -->
+        <div class="col-span-12 2xl:col-span-4">
+          <div class="card h-full border-0">
+            <div class="card-body p-6">
+              <div class="flex items-center flex-wrap gap-2 justify-between mb-5">
+                <h6 class="mb-2 font-bold text-lg">User Accounts</h6>
+              
+              </div>
+        
+              <div class="table-responsive scroll-sm">
+                <table class="table sm-table bordered-table mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Balance</th>
+                      <th scope="col">Action</th>
+                      <th scope="col">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody id="user-table-body">
+                    <!-- User rows will be populated here dynamically -->
+                  </tbody>
+                </table>
+                <!-- Load More Button -->
+                
+              </div>
+              <button id="load-more-btn" onclick="loadMore()" class="btn btn-sm bg-blue-600 text-white rounded-md px-3 py-1 hover:bg-blue-700 mt-4">
+                Load More
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-span-12  2xl:col-span-6">
+          <div class="card h-full border-0">
+            <div class="card-body p-6">
+              <div class="flex items-center flex-wrap gap-2 justify-between mb-5">
+                <h6 class="font-bold text-lg mb-0">Withdrawals</h6>
+                <a href="javascript:void(0)" class="text-primary-600 dark:text-primary-600 hover-text-primary flex items-center gap-1">
+                  View All
+                  <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
+                </a>
+              </div>
+              <div class="table-responsive scroll-sm">
+                <table class="table bordered-table sm-table mb-0" id="withdrawalTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Date</th>
+                      <th scope="col" class="text-center">Account Number</th>
+                      <th scope="col" class="text-center">Account Holder Name</th>
+                      <th scope="col" class="text-center">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="Withdrawals">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+              <div id="loadMoreContainer" class="text-center my-4">
+                <button id="loadMoreButton" class="bg-primary text-white px-4 py-2 rounded-lg" onclick="loadMorePayments()">Load More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+
+
+        <div class="col-span-12  2xl:col-span-6">
+          <div class="card h-full border-0">
+            <div class="card-body p-6">
+              <div class="flex items-center flex-wrap gap-2 justify-between mb-5">
+                <h6 class="font-bold text-lg mb-0">Bank Details</h6>
+                <a href="javascript:void(0)" class="text-primary-600 dark:text-primary-600 hover-text-primary flex items-center gap-1">
+                  View All
+                  <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
+                </a>
+              </div>
+              <div class="table-responsive scroll-sm">
+                <table class="table bordered-table sm-table mb-0" id="bankdetailsTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Date</th>
+                      <th scope="col" class="text-center">Account Number</th>
+                      <th scope="col" class="text-center">Account Holder Name</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody id="bankdetails">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+              <div id="loadMoreContainer" class="text-center my-4">
+                <button id="loadMoreButton" class="bg-primary text-white px-4 py-2 rounded-lg" onclick="loadMorePayments()">Load More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- Project Status End -->
+    </div>
+    
+  </div>
+
+  <footer class="d-footer">
+  <div class="flex items-center justify-between gap-3 flex-wrap">
+    <p class="mb-0 text-neutral-600">&copy; 2025 Urban Wealth. All Rights Reserved.</p>
+
+  </div>
+</footer>
+</main>
+
+<script>
+  document.getElementById('logoutLink').addEventListener('click', function() {
+  // Remove adminId and adminToken from localStorage
+  localStorage.removeItem('adminId');
+  localStorage.removeItem('adminToken');
+
+  // Redirect to the sign-in page
+  window.location.href = 'sign-in.html';
+});
+
+</script>
+
+<script>
+  // Check if userId exists in localStorage
+  const userId = localStorage.getItem('userId');
+  
+  // If userId does not exist, hide the Dashboard link and redirect to index.html
+  if (!userId) {
+      // Hide the Dashboard link
+      document.getElementById('dashboard-link').style.display = 'none';
+      
+      // Redirect to index.html
+      window.location.href = 'sign-in.html';
+  }
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let allPayments = []; // Store all payments
+    let currentPage = 0; // Start with the first page (0 index)
+    const paymentsPerPage = 10; // Show 10 payments per page
+
+    // Function to fetch payments
+    async function fetchPayments() {
+      try {
+        const res = await fetch('http://localhost:5000/api/upload/payments'); // Fetch all payments
+        const data = await res.json();
+        console.log('API Response:', data);
+
+        allPayments = Array.isArray(data) ? data : data.payments || []; // Assuming data.payments contains the array of payments
+
+        renderPayments(); // Render the first 10 payments
+
+        // Show "Load More" button if there are more payments to show
+        if (allPayments.length > paymentsPerPage) {
+          document.getElementById('loadMoreContainer').style.display = 'block';
+        }
+      } catch (err) {
+        console.error('Error fetching payments:', err);
+      }
+    }
+
+    // Function to render payments in the table
+    async function renderPayments() {
+      const tbody = document.getElementById('paymentBody');
+      tbody.innerHTML = ''; // Clear the existing rows
+
+      // Determine the range of payments to display
+      const startIndex = currentPage * paymentsPerPage;
+      const endIndex = startIndex + paymentsPerPage;
+      const paymentsToDisplay = allPayments.slice(startIndex, endIndex);
+
+      for (const payment of paymentsToDisplay) {
+        // Fetch user data based on userId
+        const userEmail = await getUserEmail(payment.userId);
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>$${payment.amount.toLocaleString()}</td>
+          <td>${new Date(payment.createdAt).toLocaleDateString()}</td>
+          <td class="text-center">${userEmail}</td> <!-- Display user email -->
+          <td class="text-center">
+            <button class="btn-primary px-3 py-1.5 rounded-lg text-sm" onclick="showImagePopup('${payment.image}')">View</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }
+
+      // Check if there are more payments to load
+      if (currentPage * paymentsPerPage + paymentsPerPage >= allPayments.length) {
+        document.getElementById('loadMoreButton').style.display = 'none'; // Hide "Load More" button if all payments are shown
+      }
+    }
+
+    // Function to get user email based on userId
+    async function getUserEmail(userId) {
+      try {
+        const res = await fetch(`http://localhost:5000/api/users/user/${userId}`); // Fetch user by userId
+        const data = await res.json();
+        return data.email || 'Unknown'; // Assuming 'email' is returned from API, adjust as necessary
+      } catch (err) {
+        console.error('Error fetching user email:', err);
+        return 'Error'; // If there's an error fetching user data, return 'Error'
+      }
+    }
+
+    // Load more payments when the button is clicked
+    function loadMorePayments() {
+      currentPage += 1; // Move to the next page
+      renderPayments(); // Render the next set of payments
+    }
+
+    // Initial fetch of payments
+    fetchPayments();
+
+    // Show image popup
+    window.showImagePopup = function(imageUrl) {
+      const modal = document.getElementById('imageModal');
+      const popupImage = document.getElementById('popupImage');
+      popupImage.src = imageUrl;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    };
+
+    // Close image popup
+    window.closeImagePopup = function() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    };
+  });
+</script>
+
+<!-- Script to Populate Users -->
+<script>
+  let currentPage = 1;
+  const usersPerPage = 10;
+  let allUsers = [];
+
+  async function fetchUsers() {
+    try {
+      const res = await fetch('http://localhost:5000/api/users/users');
+      const users = await res.json();
+
+      // Store the users in the allUsers array
+      allUsers = users;
+
+      // Show the first 10 users
+      displayUsers(0, usersPerPage);
+    } catch (err) {
+      console.error("Error fetching users:", err);
+    }
+  }
+
+  function displayUsers(startIndex, endIndex) {
+    const tbody = document.getElementById('user-table-body');
+    const usersToDisplay = allUsers.slice(startIndex, endIndex);
+
+    usersToDisplay.forEach(user => {
+      const tr = document.createElement('tr');
+
+      tr.innerHTML = `
+        <td class="font-semibold">${user.name}</td>
+        <td>${user.email}</td>
+        <td><span class="text-green-600 font-medium">$${user.balance.toFixed(2)}</span></td>
+        <td>
+          <a href="fund-transfer.html?userId=${user._id}" class="btn btn-sm bg-blue-600 text-white rounded-md px-3 py-1 hover:bg-blue-700">View</a>
+        </td>
+        <td>
+          <button onclick="deleteUser('${user._id}')" class="btn btn-sm bg-red-600 text-white rounded-md px-3 py-1 hover:bg-red-700">Delete</button>
+        </td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function loadMore() {
+    const startIndex = currentPage * usersPerPage;
+    const endIndex = startIndex + usersPerPage;
+
+    // Display the next 10 users
+    displayUsers(startIndex, endIndex);
+
+    // Increment the current page
+    currentPage++;
+  }
+
+  async function deleteUser(userId) {
+    if (!confirm("Are you sure you want to delete this user?")) return;
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/users/delete/${userId}`, {
+        method: 'DELETE'
+      });
+
+      if (res.ok) {
+        alert("User deleted successfully.");
+
+      } else {
+       const error = await  res.json();
+        alert("Delete failed: " + error.error);
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
+      alert("Something went wrong.");
+    }
+  }
+
+  // Fetch users on load
+  document.addEventListener('DOMContentLoaded', fetchUsers);
+</script>
+
+
+
+
+
+<script>
+  async function fetchData() {
+    try {
+      // Fetch users data
+      const usersResponse = await fetch('http://localhost:5000/api/users/users');
+      const usersData = await usersResponse.json();
+      const totalUsers = usersData.length;
+      console.log('Total Users:', totalUsers); // Log total users
+  
+      // Fetch payments data
+      const paymentsResponse = await fetch('http://localhost:5000/api/upload/payments');
+      const paymentsData = await paymentsResponse.json();
+      const paymentsArray = paymentsData.payments || [];
+  
+      // Calculate total deposit
+      const totalDeposit = paymentsArray.reduce((acc, payment) => acc + payment.amount, 0);
+      console.log('Total Deposit:', totalDeposit); // Log total deposit
+  
+      // Populate the fields with the data
+      document.getElementById('newUsersCount').textContent = totalUsers;
+      document.getElementById('totalDeposit').textContent = totalDeposit;
+  
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+  
+  fetchData(); // Call fetchData on load
+  </script>
+  
+
+
+  
+  <script>
+    let currentIndex = 0;
+    const batchSize = 10;
+  
+    async function loadWithdrawals() {
+      try {
+        const response = await fetch('http://localhost:5000/api/withdrawals');
+        const result = await response.json();
+        const withdrawals = result.withdrawals;
+  
+        const batch = withdrawals.slice(currentIndex, currentIndex + batchSize);
+        currentIndex += batchSize;
+  
+        const tbody = document.getElementById('Withdrawals');
+  
+        batch.forEach(withdrawal => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${withdrawal.amount}</td>
+            <td>${new Date(withdrawal.createdAt).toLocaleDateString()}</td>
+            <td class="text-center">${withdrawal.accountNumber}</td>
+            <td class="text-center">${withdrawal.accountHolderName}</td>
+            <td class="text-center" id="status-${withdrawal._id}">${withdrawal.status}</td>
+            <td class="text-center">
+              <button onclick="updateStatus('${withdrawal._id}')" class="btn btn-sm btn-primary">
+                Approve
+              </button>
+            </td>
+          `;
+          tbody.appendChild(row);
+        });
+  
+        if (currentIndex >= withdrawals.length) {
+          document.getElementById('loadMoreButton').style.display = 'none';
+        }
+      } catch (error) {
+        console.error('Error loading withdrawals:', error);
+      }
+    }
+  
+    async function updateStatus(withdrawalId) {
+      try {
+        const response = await fetch(`http://localhost:5000/api/${withdrawalId}/status`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ status: 'approved' })
+        });
+  
+        const result = await response.json();
+  
+        if (response.ok) {
+          // Update status cell in table
+          document.getElementById(`status-${withdrawalId}`).innerText = result.withdrawal.status;
+          alert('Status updated successfully!');
+        } else {
+          alert('Failed to update status: ' + result.error);
+        }
+      } catch (err) {
+        console.error('Error updating status:', err);
+        alert('Error updating status');
+      }
+    }
+  
+    function loadMorePayments() {
+      loadWithdrawals();
+    }
+  
+    // Initial load
+    loadWithdrawals();
+  </script>
+  
+
+
+
+
+
+  <script>
+    async function fetchBankDetails() {
+      try {
+        const response = await fetch('http://localhost:5000/api/account/get');
+        const data = await response.json();
+  
+        const tbody = document.getElementById('bankdetails');
+        tbody.innerHTML = '';
+  
+        data.forEach(detail => {
+          const row = document.createElement('tr');
+          row.setAttribute('data-id', detail._id);
+  
+          row.innerHTML = `
+            <td>
+              <span class="amount-text">${detail.amount}</span>
+              <input type="number" class="amount-input hidden form-input" value="${detail.amount}" />
+            </td>
+            <td>${new Date(detail.createdAt || Date.now()).toLocaleDateString()}</td>
+            <td class="text-center">
+              <span class="account-text">${detail.account}</span>
+              <input type="text" class="account-input hidden form-input" value="${detail.account}" />
+            </td>
+            <td class="text-center">
+              <span class="name-text">${detail.name}</span>
+              <input type="text" class="name-input hidden form-input" value="${detail.name}" />
+            </td>
+       
+            <td class="text-center">
+              <button class="edit-btn text-blue-600" onclick="toggleEdit(this)">Edit</button>
+              <button class="save-btn text-green-600 hidden" onclick="saveEdit(this)">Save</button>
+              <button class="delete-btn text-red-600 ml-2" onclick="deleteEntry('${detail._id}')">Delete</button>
+            </td>
+          `;
+  
+          tbody.appendChild(row);
+        });
+  
+      } catch (error) {
+        console.error('Error fetching bank details:', error);
+      }
+    }
+  
+    function toggleEdit(btn) {
+      const row = btn.closest('tr');
+  
+      // Toggle inputs and spans
+      row.querySelector('.amount-text').classList.add('hidden');
+      row.querySelector('.account-text').classList.add('hidden');
+      row.querySelector('.name-text').classList.add('hidden');
+  
+      row.querySelector('.amount-input').classList.remove('hidden');
+      row.querySelector('.account-input').classList.remove('hidden');
+      row.querySelector('.name-input').classList.remove('hidden');
+  
+      // Toggle buttons
+      row.querySelector('.edit-btn').classList.add('hidden');
+      row.querySelector('.save-btn').classList.remove('hidden');
+    }
+  
+    async function saveEdit(btn) {
+      const row = btn.closest('tr');
+      const id = row.getAttribute('data-id');
+  
+      const updatedData = {
+        amount: parseFloat(row.querySelector('.amount-input').value),
+        account: row.querySelector('.account-input').value,
+        name: row.querySelector('.name-input').value
+      };
+  
+      try {
+        const res = await fetch(`http://localhost:5000/api/account/update/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedData)
+        });
+  
+        if (res.ok) {
+          fetchBankDetails();
+        } else {
+          alert('Failed to update entry');
+        }
+      } catch (error) {
+        console.error('Update error:', error);
+      }
+    }
+  
+    async function deleteEntry(id) {
+      if (!confirm('Are you sure you want to delete this entry?')) return;
+  
+      try {
+        const res = await fetch(`http://localhost:5000/api/account/delete/${id}`, {
+          method: 'DELETE',
+        });
+  
+        if (res.ok) {
+          fetchBankDetails();
+        } else {
+          alert('Failed to delete entry');
+        }
+      } catch (error) {
+        console.error('Delete error:', error);
+      }
+    }
+  
+    window.addEventListener('DOMContentLoaded', fetchBankDetails);
+  </script>
+  
+
+
+
+
+
+  <!-- jQuery library js -->
+  <script src="assets/js/lib/jquery-3.7.1.min.js"></script>
+  <!-- Apex Chart js -->
+  <script src="assets/js/lib/apexcharts.min.js"></script>
+  <!-- Data Table js -->
+  <script src="assets/js/lib/simple-datatables.min.js"></script>
+  <!-- Iconify Font js -->
+  <script src="assets/js/lib/iconify-icon.min.js"></script>
+  <!-- jQuery UI js -->
+  <script src="assets/js/lib/jquery-ui.min.js"></script>
+  <!-- Vector Map js -->
+  <script src="assets/js/lib/jquery-jvectormap-2.0.5.min.js"></script>
+  <script src="assets/js/lib/jquery-jvectormap-world-mill-en.js"></script>
+  <!-- Popup js -->
+  <script src="assets/js/lib/magnifc-popup.min.js"></script>
+  <!-- Slick Slider js -->
+  <script src="assets/js/lib/slick.min.js"></script>
+  <!-- prism js -->
+  <script src="assets/js/lib/prism.js"></script>
+  <!-- file upload js -->
+  <script src="assets/js/lib/file-upload.js"></script>
+  <!-- audio player -->
+  <script src="assets/js/lib/audioplayer.js"></script>
+  
+  <script src="assets/js/flowbite.min.js"></script>
+  <!-- main js -->
+  <script src="assets/js/app.js"></script>
+
+<script src="assets/js/homeFiveChart.js"></script>
+
+</body>
+</html>

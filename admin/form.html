@@ -1,0 +1,384 @@
+﻿<!-- meta tags and other links -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Wealth - Tailwind CSS Admin Dashboard HTML Template</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" sizes="16x16">
+  <!-- google fonts -->
+  <link href="../../css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <!-- remix icon font css  -->
+  <link rel="stylesheet" href="assets/css/remixicon.css">
+  <!-- Apex Chart css -->
+  <link rel="stylesheet" href="assets/css/lib/apexcharts.css">
+  <!-- Data Table css -->
+  <link rel="stylesheet" href="assets/css/lib/dataTables.min.css">
+  <!-- Text Editor css -->
+  <link rel="stylesheet" href="assets/css/lib/editor-katex.min.css">
+  <link rel="stylesheet" href="assets/css/lib/editor.atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/lib/editor.quill.snow.css">
+  <!-- Date picker css -->
+  <link rel="stylesheet" href="assets/css/lib/flatpickr.min.css">
+  <!-- Calendar css -->
+  <link rel="stylesheet" href="assets/css/lib/full-calendar.css">
+  <!-- Vector Map css -->
+  <link rel="stylesheet" href="assets/css/lib/jquery-jvectormap-2.0.5.css">
+  <!-- Popup css -->
+  <link rel="stylesheet" href="assets/css/lib/magnific-popup.css">
+  <!-- Slick Slider css -->
+  <link rel="stylesheet" href="assets/css/lib/slick.css">
+  <!-- prism css -->
+  <link rel="stylesheet" href="assets/css/lib/prism.css">
+  <!-- file upload css -->
+  <link rel="stylesheet" href="assets/css/lib/file-upload.css">
+  
+  <link rel="stylesheet" href="assets/css/lib/audioplayer.css">
+  <!-- main css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="dark:bg-neutral-800 bg-neutral-100 dark:text-white">
+<aside class="sidebar">
+  <button type="button" class="sidebar-close-btn !mt-4">
+    <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+  </button>
+  <div>
+    <a href="index.html" class="sidebar-logo">
+      <img src="assets/images/logo.png" alt="site logo" class="light-logo">
+      <img src="assets/images/logo-light.png" alt="site logo" class="dark-logo">
+      <img src="assets/images/logo-icon.png" alt="site logo" class="logo-icon">
+    </a>
+  </div>
+  <div class="sidebar-menu-area">
+    <ul class="sidebar-menu" id="sidebar-menu">
+      <li class="dropdown">
+        <a href="javascript:void(0)">
+          <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
+          <span>Dashboard</span>
+        </a>
+        <li>
+          <a href="index-5.html"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Investment</a>
+        </li>   <li>
+          <a href="bankdetails.html"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Account</a>
+        </li>
+  </div>
+</aside>
+
+<main class="dashboard-main">
+  <div class="navbar-header border-b border-neutral-200 dark:border-neutral-600">
+  <div class="flex items-center justify-between">
+    <div class="col-auto">
+      <div class="flex flex-wrap items-center gap-[16px]">
+        <button type="button" class="sidebar-toggle">
+          <iconify-icon icon="heroicons:bars-3-solid" class="icon non-active"></iconify-icon>
+          <iconify-icon icon="iconoir:arrow-right" class="icon active"></iconify-icon>
+        </button>
+        <button type="button" class="sidebar-mobile-toggle d-flex !leading-[0]">
+          <iconify-icon icon="heroicons:bars-3-solid" class="icon !text-[30px]"></iconify-icon>
+        </button>
+      
+        
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="flex flex-wrap items-center gap-3">
+        <button type="button" id="theme-toggle" class="w-10 h-10 bg-neutral-200 dark:bg-neutral-700 dark:text-white rounded-full flex justify-center items-center">
+          <span id="theme-toggle-dark-icon" class="hidden">
+            <i class="ri-sun-line"></i>
+          </span>
+          <span id="theme-toggle-light-icon" class="hidden">
+            <i class="ri-moon-line"></i>
+          </span>
+        </button>  
+
+      
+
+
+      
+
+
+        <button data-dropdown-toggle="dropdownProfile" class="flex justify-center items-center rounded-full" type="button">
+          <img src="assets/images/user.png" alt="image" class="w-10 h-10 object-fit-cover rounded-full">
+        </button>
+        <div id="dropdownProfile" class="z-10 hidden bg-white dark:bg-neutral-700 rounded-lg shadow-lg dropdown-menu-sm p-3">
+          <div class="py-3 px-4 rounded-lg bg-primary-50 dark:bg-primary-600/25 mb-4 flex items-center justify-between gap-2">
+            <div>
+              <h6 class="text-lg text-neutral-900 font-semibold mb-0">Shahidul Islam</h6>
+              <span class="text-neutral-500">Admin</span>
+            </div>
+            <button type="button" class="hover:text-danger-600">
+              <iconify-icon icon="radix-icons:cross-1" class="icon text-xl"></iconify-icon> 
+            </button>
+          </div>
+
+          <div class="max-h-[400px] overflow-y-auto scroll-sm pe-2">
+            <ul class="flex flex-col">
+              
+              <li>
+  <a id="logoutLink" class="text-black px-0 py-2 hover:text-danger-600 flex items-center gap-4" href="javascript:void(0)">
+    <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon> Log Out
+  </a>
+</li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-main-body">
+
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+  <h6 class="font-semibold mb-0 dark:text-white">Input From</h6>
+  <ul class="flex items-center gap-[6px]">
+    <li class="font-medium">
+      <a href="index.html" class="flex items-center gap-2 text-neutral-600 hover:text-primary-600 dark:text-white dark:hover:text-primary-600">
+        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
+        Dashboard
+      </a>
+    </li>
+    <li class="text-neutral-600 dark:text-white">-</li>
+    <li class="text-neutral-600 font-medium dark:text-white">Input Form</li>
+  </ul>
+</div>
+    
+    <div class="grid grid-cols-12 gap-5">
+      <div class="md:col-span-6 col-span-12">
+        <div class="card border-0">
+          <div class="card-header">
+            <h6 class="text-lg font-semibold mb-0">Default Inputs</h6>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-12">
+                <label class="form-label">Basic Input</label>
+                <input type="text" name="#0" class="form-control">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input with Placeholder</label>
+                <input type="text" name="#0" class="form-control" placeholder="info@gmail.com">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input with Phone </label>
+                <input type="text" class="form-control grow" placeholder="+1 (555) 253-08515">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input Date</label>
+                <input type="date" name="#0" class="form-control">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input with Payment</label>
+                <div class="flex">
+                  <span class="inline-flex items-center px-3 border rounded-e-0 border-e-0 rounded-s-md border-neutral-200 dark:border-neutral-600">
+                    <img src="assets/images/card/payment-icon.png" alt="image">
+                  </span>
+                  <input type="text" class="form-control grow rounded-ss-none rounded-es-none" placeholder="Card Number">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- card end -->
+        <div class="card border-0 mt-6">
+          <div class="card-header">
+            <h6 class="text-lg font-semibold mb-0">Input Group</h6>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-12">
+                <label class="form-label">Input</label>
+                <div class="flex">
+                  <span class="inline-flex items-center px-3 border rounded-e-0 border-e-0 rounded-s-md border-neutral-200 dark:border-neutral-600">
+                    <iconify-icon icon="mynaui:envelope"></iconify-icon>
+                  </span>
+                  <input type="text" class="form-control grow rounded-ss-none rounded-es-none" placeholder="info@gmail.com">
+                </div>
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input</label>
+                <div class="flex">
+                  <select class="form-select flex-grow-0 rounded-se-none rounded-ee-none border-e-0 w-auto">
+                    <option>US</option>
+                    <option>US</option>
+                    <option>US</option>
+                    <option>US</option>
+                    <option>US</option>
+                  </select>
+                  <input type="text" class="form-control grow rounded-ss-none rounded-es-none" placeholder="info@gmail.com">
+                </div>
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input</label>
+                <div class="flex">
+                  <input type="text" class="form-control grow rounded-se-none rounded-ee-none" placeholder="info@gmail.com">
+                  <select class="form-select flex-grow-0 rounded-ss-none rounded-es-none border-s-0 w-auto">
+                    <option>US</option>
+                    <option>US</option>
+                    <option>US</option>
+                    <option>US</option>
+                    <option>US</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input</label>
+                <div class="flex">
+                  <span class="inline-flex items-center px-3 border rounded-e-0 border-e-0 rounded-s-md border-neutral-200 dark:border-neutral-600">
+                  
+                  </span>
+                  <input type="text" class="form-control grow rounded-ss-none rounded-es-none" placeholder="www.random.com">
+                </div>
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input</label>
+                <div class="flex">
+                  <input type="text" class="form-control grow rounded-se-none rounded-ee-none" placeholder="www.random.com">
+                  <button type="button" class="inline-flex items-center px-3 border rounded-s-0 border-s-0 rounded-e-md border-neutral-200 dark:border-neutral-600"><iconify-icon icon="lucide:copy"></iconify-icon>Copy</button>
+                </div>
+                <p class="text-sm mt-2 mb-0">This is a hint text to help user.</p>
+              </div>
+            </div>
+          </div>
+        </div><!-- card end -->
+      </div>
+      <div class="md:col-span-6 col-span-12">
+        <div class="card border-0">
+          <div class="card-header">
+            <h6 class="text-lg font-semibold mb-0">Input Sizing</h6>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-12">
+                <label class="form-label">Input Large</label>
+                <input type="text" name="#0" class="form-control py-4" placeholder="info@gmail.com">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input Medium</label>
+                <input type="text" name="#0" class="form-control" placeholder="info@gmail.com">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input Small</label>
+                <input type="text" name="#0" class="form-control py-2 text-sm" placeholder="info@gmail.com">
+              </div>
+            </div>
+          </div>
+        </div><!-- card end -->
+        <div class="card border-0 mt-6">
+          <div class="card-header"> 
+            <h6 class="text-lg font-semibold mb-0">File Input Sizing</h6>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-12">
+                <label class="form-label">Large Size File Input </label>
+                <input class="border border-neutral-200 dark:border-neutral-600 w-full rounded-lg text-lg" name="#0" type="file">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Medium Size File Input </label>
+                <input class="border border-neutral-200 dark:border-neutral-600 w-full rounded-lg" type="file" name="#0">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Small Size File Input </label>
+                <input class="border border-neutral-200 dark:border-neutral-600 w-full rounded-lg text-xs" name="#0" type="file">
+              </div>
+            </div>
+          </div>
+        </div><!-- card end -->
+        <div class="card border-0 mt-6">
+          <div class="card-header">
+            <h6 class="text-lg font-semibold mb-0">Custom Forms</h6>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-12">
+                <label class="form-label">Readonly Input</label>
+                <input type="text" name="#0" class="form-control" placeholder="info@gmail.com" value="info@gmail.com" readonly="">
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Input with Phone </label>
+                <div class="flex">
+                  <select class="form-select flex-grow-0 rounded-se-none rounded-ee-none border-e-0 w-auto">
+                    <option>US</option>
+                    <option>US</option>
+                    <option>US</option>
+                    <option>US</option>
+                  </select>
+                  <input type="text" name="#0" class="form-control grow rounded-ss-none rounded-es-none" placeholder="+1 (555) 000-0000">
+                </div>
+              </div>
+              <div class="col-span-12">
+                <label class="form-label">Medium Size File Input </label>
+                <input class="border border-neutral-200 dark:border-neutral-600 w-full rounded-lg" type="file" name="#0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12">
+        <div class="card border-0">
+          <div class="card-header">
+            <h5 class="text-lg font-semibold mb-0">Textarea input field</h5>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-cols-12 gap-5">
+              <div class="lg:col-span-4 col-span-12">
+                <label class="form-label">Description</label>
+                <textarea name="#0" class="form-control" rows="4" cols="50" placeholder="Enter a description..."></textarea>
+              </div>
+              <div class="lg:col-span-4 col-span-12">
+                <label class="form-label">Description</label>
+                <textarea name="#0" class="form-control" rows="4" cols="50" placeholder="Enter a description..." readonly=""></textarea>
+              </div>
+              <div class="lg:col-span-4 col-span-12">
+                <label class="form-label">Description</label>
+                <textarea class="form-control border-danger-600" rows="4" cols="50" placeholder="Enter a description..." required=""></textarea>
+                <div class="text-danger-600 text-sm">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="d-footer">
+  <div class="flex items-center justify-between gap-3 flex-wrap">
+    <p class="mb-0 text-neutral-600">&copy; 2025 Urban Wealth. All Rights Reserved.</p>
+   2025
+  </div>
+</footer>
+</main>
+  
+  <!-- jQuery library js -->
+  <script src="assets/js/lib/jquery-3.7.1.min.js"></script>
+  <!-- Apex Chart js -->
+  <script src="assets/js/lib/apexcharts.min.js"></script>
+  <!-- Data Table js -->
+  <script src="assets/js/lib/simple-datatables.min.js"></script>
+  <!-- Iconify Font js -->
+  <script src="assets/js/lib/iconify-icon.min.js"></script>
+  <!-- jQuery UI js -->
+  <script src="assets/js/lib/jquery-ui.min.js"></script>
+  <!-- Vector Map js -->
+  <script src="assets/js/lib/jquery-jvectormap-2.0.5.min.js"></script>
+  <script src="assets/js/lib/jquery-jvectormap-world-mill-en.js"></script>
+  <!-- Popup js -->
+  <script src="assets/js/lib/magnifc-popup.min.js"></script>
+  <!-- Slick Slider js -->
+  <script src="assets/js/lib/slick.min.js"></script>
+  <!-- prism js -->
+  <script src="assets/js/lib/prism.js"></script>
+  <!-- file upload js -->
+  <script src="assets/js/lib/file-upload.js"></script>
+  <!-- audio player -->
+  <script src="assets/js/lib/audioplayer.js"></script>
+  
+  <script src="assets/js/flowbite.min.js"></script>
+  <!-- main js -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
