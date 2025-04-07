@@ -158,3 +158,45 @@ export const deleteUserById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+
+
+// Update demoBalance controller
+export const updateDemoBalance = async (req, res) => {
+  const { id } = req.params;
+  const { demoBalance, withdrawalAmount } = req.body;
+
+  try {
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    // Handle demoBalance deposit or update
+    if (demoBalance !== undefined) {
+      user.demoBalance += demoBalance; // Add the new demo balance to the existing demo balance
+    }
+
+    // Handle withdrawal for demoBalance
+    if (withdrawalAmount !== undefined) {
+      if (user.demoBalance < withdrawalAmount) {
+        return res.status(400).json({ message: 'Insufficient demo balance for withdrawal' });
+      }
+
+      // Subtract the withdrawal amount from demoBalance
+      user.demoBalance -= withdrawalAmount;
+    }
+
+    // Save the updated user data
+    await user.save();
+
+    // Exclude password from response
+    const { password: _, ...userWithoutPassword } = user.toObject();
+
+    res.status(200).json({
+      message: 'Demo balance updated successfully',
+      user: userWithoutPassword,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+

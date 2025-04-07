@@ -21,7 +21,65 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 </head>
+<style>
+    
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 15px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.status-pending {
+  background: #e0f0ff;
+  color: #007bff;
+  padding: 5px 10px;
+  border-radius: 12px;
+}
+
+.cancel-btn {
+  background: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.deposit-system{
+    width: 70%;
+    margin: 0 auto;
+}
+</style>
 <body>
     <div class="main--body dashboard-bg">
         <!--========== Preloader ==========-->
@@ -162,7 +220,7 @@
                                 <a href="index.html">Home</a>
                             </li>
                             <li>
-                                Funds Transfer
+                               Bid
                             </li>
                         </ul>
                     </div>
@@ -174,7 +232,7 @@
                                 <div class="dashboard-inner">
                                     <div class="cont">
                                         <span class="title">Balance</span>
-                                        <h5 class="amount" id="userBalance">Loading...</h5>
+                                        <h5 class="amount" id="demoBalance">Loading...</h5>
                                         <div class="text-center">
                                             <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
@@ -187,14 +245,7 @@
                         </div>
                     </div>
                     <div class="deposit">
-                        <h3 class="main-title">Transfer Funds</h3>
-                        <div class="available-balance">
-                            <h5 class="title">Available Balance</h5>
-                            <div class="amount">
-                                <sup>$</sup>
-                                185.00
-                            </div>
-                        </div>
+                       
                         <div class="deposit-system pt-0">
                             <h4 class="main-subtitle">01. Choose Payment  System</h4>
                             <div class="text-center deposit-method-slider owl-theme owl-carousel">
@@ -313,20 +364,33 @@
                             </div>
                         </div>
                         <div class="deposit-system">
-                            <h4 class="main-subtitle">02.Enter the amount of Transfer:</h4>
-                            <form class="make-deposit">
-                                <div class="form-group">
-                                    <input type="text" placeholder="$180.00" class="make-amount">
-                                </div>
-                                <div class="form-group">
-                                    <label for="total-profit">Will be Displayed</label>
-                                    <input type="text" readonly="" value="$180.00" class="readonly">
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="custom-button border-0">Transfer Funds</button>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="card">
+                                <h2>Bid Coin</h2>
+                                <input type="number" id="amountInput" placeholder="Amount">
+                                <button onclick="submitBid()">Bid</button>
+                              </div>
+                            <div class="card">
+                                <h2>Bided Coins</h2>
+                                <table>
+                                  <thead>
+                                    <tr>
+                                      <th>Type</th>
+                                      <th>Date</th>
+                                      <th>Status</th>
+                                      <th>Value</th>
+                                      <th>Countdown</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id="bidsTableBody">
+                                    <!-- Bids will appear here -->
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          
+                          </div>
+                          
                     </div>
                 </div>
                 <div class="container-fluid sticky-bottom">
@@ -370,6 +434,159 @@
         }
     });
 </script>
+
+
+<script>
+    // Load existing bids from localStorage on page load
+    document.addEventListener('DOMContentLoaded', loadBids);
+
+    function submitBid() {
+        const amountInput = document.getElementById('amountInput');
+        const amount = parseFloat(amountInput.value);
+        const tableBody = document.getElementById('bidsTableBody');
+    
+        if (!amount || amount <= 0) {
+            alert("Please enter a valid amount");
+            return;
+        }
+    
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+            alert("User ID not found in localStorage");
+            return;
+        }
+    
+        const today = new Date().toISOString().split('T')[0];
+        const countdownId = `countdown-${Date.now()}`;
+    
+        // Add bid row to UI
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td style="color: green;">Bid</td>
+            <td>${today}</td>
+            <td><span class="status-pending">pending</span></td>
+            <td>₦${Number(amount).toLocaleString()}.00</td>
+            <td id="${countdownId}">24:00:00</td>
+            <td><button class="cancel-btn" onclick="cancelBid(this)">Cancel</button></td>
+        `;
+        tableBody.appendChild(row);
+        amountInput.value = '';
+    
+        // Start countdown
+        startCountdown(countdownId, 24 * 60 * 60);
+    
+        // Save bid to localStorage
+        saveBid({ amount, date: today, countdownId, status: 'pending' });
+    
+        // Update demo balance (only)
+        fetch(`http://localhost:5000/api/users/update-demo-balance/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                demoBalance: amount // subtract this amount
+            }),
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Bid successful');
+            } else {
+                alert(data.message || 'Failed to update balance');
+            }
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            alert('Error updating balance');
+        });
+    }
+  
+    function startCountdown(elementId, totalSeconds) {
+        const countdownEl = document.getElementById(elementId);
+    
+        const interval = setInterval(() => {
+            if (totalSeconds <= 0) {
+                clearInterval(interval);
+                countdownEl.textContent = "Expired";
+                return;
+            }
+    
+            const hrs = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+    
+            countdownEl.textContent = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            totalSeconds--;
+        }, 1000);
+    }
+  
+    // Save bid data to localStorage
+    function saveBid(bid) {
+        const bids = JSON.parse(localStorage.getItem('bids')) || [];
+        bids.push(bid);
+        localStorage.setItem('bids', JSON.stringify(bids));
+    }
+  
+    // Load bids from localStorage and display them
+    function loadBids() {
+        const bids = JSON.parse(localStorage.getItem('bids')) || [];
+        const tableBody = document.getElementById('bidsTableBody');
+        bids.forEach(bid => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td style="color: green;">Bid</td>
+                <td>${bid.date}</td>
+                <td><span class="status-pending">${bid.status}</span></td>
+                <td>₦${Number(bid.amount).toLocaleString()}.00</td>
+                <td id="${bid.countdownId}">24:00:00</td>
+                <td><button class="cancel-btn" onclick="cancelBid(this)">Cancel</button></td>
+            `;
+            tableBody.appendChild(row);
+            startCountdown(bid.countdownId, 24 * 60 * 60);
+        });
+    }
+
+    // Function to cancel a bid and remove it from localStorage
+    function cancelBid(button) {
+        const row = button.parentElement.parentElement;
+        row.remove();
+
+        const bids = JSON.parse(localStorage.getItem('bids')) || [];
+        const updatedBids = bids.filter(bid => bid.countdownId !== row.querySelector('td[id]').id);
+        localStorage.setItem('bids', JSON.stringify(updatedBids));
+    }
+</script>
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userId = localStorage.getItem('userId');
+      const balanceEl = document.getElementById('demoBalance');
+  
+      if (!userId) {
+        balanceEl.textContent = 'User not found';
+        return;
+      }
+  
+      fetch(`http://localhost:5000/api/users/user/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.demoBalance !== undefined) {
+            balanceEl.textContent = `₦${Number(data.demoBalance).toLocaleString()}.00`;
+          } else {
+            balanceEl.textContent = 'Unable to load balance';
+          }
+        })
+        .catch(err => {
+          console.error('Error fetching demoBalance:', err);
+          balanceEl.textContent = 'Error';
+        });
+    });
+  </script>
+
+
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/modernizr-3.6.0.min.js"></script>

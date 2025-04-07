@@ -185,7 +185,22 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="dashboard-item">
+                                <div class="dashboard-inner">
+                                    <div class="cont">
+                                        <span class="title">Balance</span>
+                                        <h5 class="amount" id="demoBalance">Loading...</h5>
+                                        <div class="text-center">
+                                            <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="thumb">
+                                        <img src="assets/images/dashboard/dashboard1.png" alt="dasboard">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                        
                     </div>
                     <div class="row pb-30">
@@ -730,6 +745,37 @@ if (Ids) {
     <script src="assets/js/chart.js"></script>
     <script src="assets/js/circle-progress.js"></script>
     <script src="assets/js/main.js"></script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const userId = localStorage.getItem('userId');
+          const balanceEl = document.getElementById('demoBalance');
+      
+          if (!userId) {
+            balanceEl.textContent = 'User not found';
+            return;
+          }
+      
+          fetch(`http://localhost:5000/api/users/user/${userId}`)
+            .then(res => res.json())
+            .then(data => {
+              if (data && data.demoBalance !== undefined) {
+                balanceEl.textContent = `₦${Number(data.demoBalance).toLocaleString()}.00`;
+              } else {
+                balanceEl.textContent = 'Unable to load balance';
+              }
+            })
+            .catch(err => {
+              console.error('Error fetching demoBalance:', err);
+              balanceEl.textContent = 'Error';
+            });
+        });
+      </script>
+    
+
+
 
     <script>
         $('.progress1.circle').circleProgress({
