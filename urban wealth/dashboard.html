@@ -173,7 +173,7 @@
                             <div class="dashboard-item">
                                 <div class="dashboard-inner">
                                     <div class="cont">
-                                        <span class="title">Balance</span>
+                                        <span class="title">Main Balance</span>
                                         <h5 class="amount" id="userBalance">Loading...</h5>
                                         <div class="text-center">
                                             <a href="deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
@@ -189,10 +189,10 @@
                             <div class="dashboard-item">
                                 <div class="dashboard-inner">
                                     <div class="cont">
-                                        <span class="title">Balance</span>
+                                        <span class="title">Bid</span>
                                         <h5 class="amount" id="demoBalance">Loading...</h5>
                                         <div class="text-center">
-                                            <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
+                                            <a href="fund-transfer.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                     <div class="thumb">
@@ -758,7 +758,7 @@ if (Ids) {
             return;
           }
       
-          fetch(`http://localhost:5000/api/users/user/${userId}`)
+          fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`)
             .then(res => res.json())
             .then(data => {
               if (data && data.demoBalance !== undefined) {

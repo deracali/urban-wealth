@@ -384,87 +384,115 @@
 
 
 <script>
-    // Get the userId from localStorage
     const userIds = localStorage.getItem('userId');
-    
-    if (userIds) {
-        // Fetch the balance from the API
+
+    function fetchAndDisplayBalance() {
         fetch(`https://urban-wealth.onrender.com/api/users/user/${userIds}`)
             .then(response => response.json())
             .then(data => {
                 const balance = data.balance || 0;
-                // Update the available balance in the input field
                 document.getElementById('availableBalance').value = `$${balance.toFixed(2)}`;
             })
             .catch(error => {
                 console.error('Error fetching user data:', error);
                 document.getElementById('availableBalance').value = 'Error loading balance';
             });
+    }
+
+    if (userIds) {
+        fetchAndDisplayBalance();
     } else {
         console.error('User ID not found in localStorage');
         document.getElementById('availableBalance').value = 'User ID not found';
     }
-    
-    // Handle withdrawal form submission
-    document.getElementById('withdrawalForm').addEventListener('submit', function(event) {
+
+    document.getElementById('withdrawalForm').addEventListener('submit', function (event) {
         event.preventDefault();
-    
+
         const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
         const availableBalance = parseFloat(document.getElementById('availableBalance').value.replace('$', ''));
         const accountNumber = document.getElementById('accountNumber').value.trim();
         const bankName = document.getElementById('bankName').value.trim();
         const accountHolderName = document.getElementById('accountHolderName').value.trim();
-    
+        const submitBtn = document.querySelector("#withdrawalForm button[type='submit']");
+        submitBtn.disabled = true;
+
         if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
             alert('Please enter a valid amount to withdraw.');
+            submitBtn.disabled = false;
             return;
         }
-    
+
         if (withdrawAmount > availableBalance) {
             alert('Insufficient funds for withdrawal.');
+            submitBtn.disabled = false;
             return;
         }
-    
+
         if (!accountNumber || !bankName || !accountHolderName) {
             alert('Please fill in all withdrawal details.');
+            submitBtn.disabled = false;
             return;
         }
-    
-        // Make the withdrawal API request
+
+        // Step 1: Record the withdrawal in the DB
         fetch('https://urban-wealth.onrender.com/api/withdrawal', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                userIds: userIds, // You might want to include userId here if needed
-                accountNumber: accountNumber,
-                bankName: bankName,
-                accountHolderName: accountHolderName,
+                userIds,
+                accountNumber,
+                bankName,
+                accountHolderName,
                 amount: withdrawAmount,
             }),
         })
         .then(response => response.json())
         .then(data => {
-            if (data) {
+            if (!data || data.error) {
+                throw new Error('Withdrawal record failed.');
+            }
+
+            // Step 2: Update user balance
+            return fetch(`https://urban-wealth.onrender.com/api/users/update/${userIds}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    withdrawalAmount: withdrawAmount
+                }),
+            });
+        })
+        .then(response => response.json())
+        .then(updateData => {
+            if (updateData.message === 'User updated successfully') {
                 alert('Withdrawal successful!');
-                // Update the available balance after successful withdrawal
-                document.getElementById('availableBalance').value = `$${(availableBalance - withdrawAmount).toFixed(2)}`;
-                document.getElementById('withdrawAmount').value = ''; // Clear input field
-                document.getElementById('accountNumber').value = ''; // Clear account number
-                document.getElementById('bankName').value = ''; // Clear bank name
-                document.getElementById('accountHolderName').value = ''; // Clear account holder name
+                fetchAndDisplayBalance();
+
+                // Clear fields
+                document.getElementById('withdrawAmount').value = '';
+                document.getElementById('accountNumber').value = '';
+                document.getElementById('bankName').value = '';
+                document.getElementById('accountHolderName').value = '';
+            } else if (updateData.message === 'Insufficient funds for withdrawal') {
+                alert('Insufficient funds on the server.');
             } else {
-                alert('Failed to process withdrawal.');
+                throw new Error('Balance update failed.');
             }
         })
         .catch(error => {
-            console.error('Error processing withdrawal:', error);
-            alert('Failed to process withdrawal.');
+            console.error('Error during withdrawal process:', error);
+            alert('Something went wrong. Please try again.');
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
         });
     });
-    </script>
-    
+</script>
+
 
 
 

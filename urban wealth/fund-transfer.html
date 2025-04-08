@@ -79,6 +79,56 @@ th, td {
     width: 70%;
     margin: 0 auto;
 }
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    thead tr {
+      display: none;
+    }
+
+    tr {
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    td {
+      text-align: right;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+  }
 </style>
 <body>
     <div class="main--body dashboard-bg">
@@ -234,7 +284,7 @@ th, td {
                                         <span class="title">Balance</span>
                                         <h5 class="amount" id="demoBalance">Loading...</h5>
                                         <div class="text-center">
-                                            <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
+                                            <a href="fund-transfer.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                     <div class="thumb">
@@ -444,21 +494,22 @@ th, td {
         const amountInput = document.getElementById('amountInput');
         const amount = parseFloat(amountInput.value);
         const tableBody = document.getElementById('bidsTableBody');
-    
+
         if (!amount || amount <= 0) {
             alert("Please enter a valid amount");
             return;
         }
-    
+
         const userId = localStorage.getItem('userId');
         if (!userId) {
             alert("User ID not found in localStorage");
             return;
         }
-    
+
         const today = new Date().toISOString().split('T')[0];
         const countdownId = `countdown-${Date.now()}`;
-    
+        const timestamp = Date.now(); // Store creation time
+
         // Add bid row to UI
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -471,22 +522,20 @@ th, td {
         `;
         tableBody.appendChild(row);
         amountInput.value = '';
-    
-        // Start countdown
+
+        // Start countdown for 24 hours (86400 seconds)
         startCountdown(countdownId, 24 * 60 * 60);
-    
-        // Save bid to localStorage
-        saveBid({ amount, date: today, countdownId, status: 'pending' });
-    
-        // Update demo balance (only)
-        fetch(`http://localhost:5000/api/users/update-demo-balance/${userId}`, {
+
+        // Save bid to localStorage with timestamp
+        saveBid({ amount, date: today, countdownId, status: 'pending', timestamp });
+
+        // Update demo balance on backend
+        fetch(`https://urban-wealth.onrender.com/api/users/update-demo-balance/${userId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                demoBalance: amount // subtract this amount
-            }),
+            body: JSON.stringify({ demoBalance: amount })
         })
         .then(res => res.json())
         .then(data => {
@@ -501,59 +550,84 @@ th, td {
             alert('Error updating balance');
         });
     }
-  
+
+    // Start countdown with given seconds left
     function startCountdown(elementId, totalSeconds) {
         const countdownEl = document.getElementById(elementId);
-    
+
         const interval = setInterval(() => {
             if (totalSeconds <= 0) {
                 clearInterval(interval);
                 countdownEl.textContent = "Expired";
                 return;
             }
-    
+
             const hrs = Math.floor(totalSeconds / 3600);
             const mins = Math.floor((totalSeconds % 3600) / 60);
             const secs = totalSeconds % 60;
-    
+
             countdownEl.textContent = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
             totalSeconds--;
         }, 1000);
     }
-  
+
     // Save bid data to localStorage
     function saveBid(bid) {
         const bids = JSON.parse(localStorage.getItem('bids')) || [];
         bids.push(bid);
         localStorage.setItem('bids', JSON.stringify(bids));
     }
-  
+
     // Load bids from localStorage and display them
     function loadBids() {
-        const bids = JSON.parse(localStorage.getItem('bids')) || [];
-        const tableBody = document.getElementById('bidsTableBody');
-        bids.forEach(bid => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td style="color: green;">Bid</td>
-                <td>${bid.date}</td>
-                <td><span class="status-pending">${bid.status}</span></td>
-                <td>₦${Number(bid.amount).toLocaleString()}.00</td>
-                <td id="${bid.countdownId}">24:00:00</td>
-                <td><button class="cancel-btn" onclick="cancelBid(this)">Cancel</button></td>
-            `;
-            tableBody.appendChild(row);
-            startCountdown(bid.countdownId, 24 * 60 * 60);
-        });
-    }
+    let bids = JSON.parse(localStorage.getItem('bids')) || [];
+    const tableBody = document.getElementById('bidsTableBody');
+
+    // Patch missing timestamps
+    bids = bids.map(bid => {
+        if (!bid.timestamp) {
+            bid.timestamp = Date.now(); // Assume added now
+        }
+        return bid;
+    });
+
+    // Save back patched bids
+    localStorage.setItem('bids', JSON.stringify(bids));
+
+    bids.forEach(bid => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td style="color: green;" data-label="Type">Bid</td>
+        <td data-label="Date">${bid.date}</td>
+        <td data-label="Status"><span class="status-pending">${bid.status}</span></td>
+        <td data-label="Value">₦${Number(bid.amount).toLocaleString()}.00</td>
+        <td data-label="Countdown" id="${bid.countdownId}">Loading...</td>
+        <td data-label="Action"><button class="cancel-btn" onclick="cancelBid(this)">Cancel</button></td>
+    `;
+    tableBody.appendChild(row);
+
+
+        const timePassed = Math.floor((Date.now() - bid.timestamp) / 1000);
+        const timeLeft = 24 * 60 * 60 - timePassed;
+
+        if (timeLeft > 0) {
+            startCountdown(bid.countdownId, timeLeft);
+        } else {
+            document.getElementById(bid.countdownId).textContent = "Expired";
+        }
+    });
+}
 
     // Function to cancel a bid and remove it from localStorage
     function cancelBid(button) {
         const row = button.parentElement.parentElement;
+        const countdownEl = row.querySelector('td[id]');
+        const countdownId = countdownEl.id;
+
         row.remove();
 
         const bids = JSON.parse(localStorage.getItem('bids')) || [];
-        const updatedBids = bids.filter(bid => bid.countdownId !== row.querySelector('td[id]').id);
+        const updatedBids = bids.filter(bid => bid.countdownId !== countdownId);
         localStorage.setItem('bids', JSON.stringify(updatedBids));
     }
 </script>
@@ -570,7 +644,7 @@ th, td {
         return;
       }
   
-      fetch(`http://localhost:5000/api/users/user/${userId}`)
+      fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`)
         .then(res => res.json())
         .then(data => {
           if (data && data.demoBalance !== undefined) {

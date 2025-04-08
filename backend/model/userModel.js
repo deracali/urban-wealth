@@ -22,20 +22,6 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 1000,  // Set a demo balance for testing purposes
   },
-  bids: [
-    {
-      amount: Number,
-      status: {
-        type: String,
-        enum: ['pending', 'completed', 'expired'],
-        default: 'pending',
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-    }
-  ],
   balanceHistory: [
     {
       withdrawalAmount: {

@@ -178,7 +178,7 @@ export const updateDemoBalance = async (req, res) => {
     // Handle withdrawal for demoBalance
     if (withdrawalAmount !== undefined) {
       if (user.demoBalance < withdrawalAmount) {
-        return res.status(400).json({ message: 'Insufficient demo balance for withdrawal' });
+        return res.status(400).json({ message: 'Insufficient balance for withdrawal' });
       }
 
       // Subtract the withdrawal amount from demoBalance
@@ -192,7 +192,7 @@ export const updateDemoBalance = async (req, res) => {
     const { password: _, ...userWithoutPassword } = user.toObject();
 
     res.status(200).json({
-      message: 'Demo balance updated successfully',
+      message: 'Updated successfully',
       user: userWithoutPassword,
     });
   } catch (err) {
