@@ -541,30 +541,45 @@
       try {
         const response = await fetch('https://urban-wealth.onrender.com/api/defaulterpayment/payments');
         const data = await response.json();
-    
-        const list = document.getElementById('bank-details-list');
-        list.innerHTML = ''; // Clear previous list
-    
+  
+        const listContainer = document.getElementById('bank-details-list');
+        listContainer.innerHTML = ''; // Clear previous list
+  
+        // Add professional text at the top
+        const notice = document.createElement('p');
+        notice.innerHTML = `
+          <strong>Notice to Defaulters:</strong><br>
+          Kindly make all outstanding payments to the account(s) listed below. 
+          Ensure you include your full name and reference number when making the payment to avoid delays in processing. 
+          Thank you for your cooperation.
+        `;
+        notice.style.color = '#fff';
+        notice.style.marginBottom = '15px';
+        notice.style.fontSize = '16px';
+  
+        // Insert the notice BEFORE the list
+        listContainer.parentNode.insertBefore(notice, listContainer);
+  
         if (Array.isArray(data) && data.length > 0) {
           data.forEach(account => {
             const li = document.createElement('li');
             li.textContent = `Bank: ${account.bankName}, Acc No: ${account.accountNumber}`;
-            list.appendChild(li);
+            listContainer.appendChild(li);
           });
         } else {
           const li = document.createElement('li');
           li.textContent = 'No bank details available.';
-          list.appendChild(li);
+          listContainer.appendChild(li);
         }
       } catch (error) {
         console.error('Error fetching bank details:', error);
       }
     }
-    
+  
     // Immediately call it when page loads
     fetchBankDetails();
-    </script>
-
+  </script>
+  
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/modernizr-3.6.0.min.js"></script>
     <script src="assets/js/plugins.js"></script>

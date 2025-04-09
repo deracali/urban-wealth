@@ -1,6 +1,6 @@
 import express from 'express';
 import fileUpload from 'express-fileupload';
-import { createPayment, getAllPayments, getPaymentById } from '../controller/defaultersPayment';
+import { createPayment, getAllPayments, getPaymentById } from '../controller/defaultersPayment.js';
 
 const defaultPaymentRoutes = express.Router();
 

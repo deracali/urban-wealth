@@ -459,7 +459,7 @@
     
 
   // Withdrawal form submit handler
-document.getElementById('withdrawalForm').addEventListener('submit', async function (event) {
+  document.getElementById('withdrawalForm').addEventListener('submit', async function (event) {
   event.preventDefault();
 
   const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
@@ -489,21 +489,28 @@ document.getElementById('withdrawalForm').addEventListener('submit', async funct
   }
 
   try {
-    // First fetch full user info to get balance and demoBalance
+    // Fetch user info including isBlocked
     const userRes = await fetch(`https://urban-wealth.onrender.com/api/users/user/${userIds}`);
     const userData = await userRes.json();
-    const { balance, demoBalance } = userData;
+    const { balance, demoBalance, isBlocked } = userData;
+
+    // 🔥 Check if user is blocked
+    if (isBlocked) {
+      alert('Your account is restricted from making withdrawals. Please update your information in settings.');
+      window.location.href = 'setting.html'; // Redirect to settings page
+      return;
+    }
 
     if (demoBalance !== undefined && balance !== undefined) {
       if (demoBalance < balance) {
-        const confirmWithdrawal = confirm('Warning: Your demo balance is below your real balance.\nAre you 100% committed to withdrawing?');
+        const confirmWithdrawal = confirm('Warning: Your bid balance is below your real balance.\nAre you 100% committed to withdrawing?');
         if (!confirmWithdrawal) {
           submitBtn.disabled = false;
           return;
         }
       }
     } else {
-      alert('Unable to verify demo balance, please try again later.');
+      alert('Unable to verify bid balance, please try again later.');
       submitBtn.disabled = false;
       return;
     }
