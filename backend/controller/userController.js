@@ -2,10 +2,6 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../model/userModel.js';
 
-// Signup controller
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import User from '../model/userModel.js';
 
 // Utility to generate a simple random referral code
 const generateReferralCode = () => {
