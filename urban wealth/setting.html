@@ -174,10 +174,10 @@
                             <div class="dashboard-item">
                                 <div class="dashboard-inner">
                                     <div class="cont">
-                                        <span class="title">Balance</span>
+                                        <span class="title"> referralBonus</span>
                                         <h5 class="amount" id="userBalance">Loading...</h5>
                                         <div class="text-center">
-                                            <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
+                                            <a href="bonusWithdrawal.html" class="normal-button">Withdraw<i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                  
@@ -185,100 +185,81 @@
                             </div>
                         </div>
                     </div>
+
+                    <ul id="bank-details-list"></ul>
+
                     <div class="partners">
                         <h3 class="main-title">Settings</h3>
                         <div class="row mb-30-none">
                             <div class="col-lg-6 mb-30">
                                 <div class="create_wrapper mw-100">
-                                    <h5 class="subtitle">Personal Info</h5>
-                                    <div class="d-flex align-items-center mb-30">
-                                        <div class="update_user">
-                                            <img src="assets/images/dashboard/user.png" alt="dashboard">
-                                        </div>
-                                        <div class="pl-3">
-                                            <span class="sub_subtitle cl-title fz-sm d-block">JPEG Or PNG 500 x 500px</span>
-                                            <label for="update_profile" class="custom-button m-0 mt-2 lh-40 h-40">Browse Image</label>
-                                            <input type="file" id="update_profile" class="profile_update_input">
-                                        </div>
-                                    </div>
-                                    <form class="create_ticket_form row mb-30-none">
+                                    <h5 class="subtitle">Personal Info Edit</h5>
+                                 
+                                    <form id="updateUserForm" class="create_ticket_form row mb-30-none">
                                         <div class="create_form_group col-sm-12">
-                                            <label for="account_name">Account Name:</label>
-                                            <input type="text" id="account_name" placeholder="Account Name">
+                                          <label for="account_name">Account Name:</label>
+                                          <input type="text" id="account_name" placeholder="Account Name">
                                         </div>
+                                      
                                         <div class="create_form_group col-sm-12">
-                                            <label for="full_name">Full Name:</label>
-                                            <input type="text" id="full_name" placeholder="Full Name">
+                                          <label for="account_email">Your Email Address:</label>
+                                          <input type="email" id="account_email" placeholder="Enter your Email">
                                         </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="account_email">Your Email Address:</label>
-                                            <input type="text" id="account_email" placeholder="Enter your Email">
-                                        </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="account_mobile">Mobile No:</label>
-                                            <input type="text" id="account_mobile" placeholder="Enter your Mobile No">
-                                        </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="account_address">Address:</label>
-                                            <input type="text" id="account_address" placeholder="Enter Address">
-                                        </div>
-                                        <div class="create_form_group col-sm-6">
-                                            <label for="account_city">City:</label>
-                                            <input type="text" id="account_city" placeholder="Enter your City">
-                                        </div>
-                                        <div class="create_form_group col-sm-6">
-                                            <label for="account_state">State</label>
-                                            <input type="text" id="account_state" placeholder="Enter your State">
-                                        </div>
-                                        <div class="create_form_group col-sm-6">
-                                            <label for="country_name">Country:</label>
-                                            <input type="text" id="country_name" placeholder="Enter your Country">
-                                        </div>
+                                      
                                         <div class="create_form_group col-sm-6 align-self-end">
-                                            <button type="submit" class="custom-button border-0">Save</button>
+                                          <button type="submit" class="custom-button border-0">Save</button>
                                         </div>
-                                    </form>
+                                      </form>
+                                      
+                                      
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-30">
                                 <div class="create_wrapper mw-100">
-                                    <h5 class="subtitle">payment system</h5>
-                                    <form class="create_ticket_form row mb-30-none">
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="perfect_money">Perfect Money:</label>
-                                            <input type="text" id="perfect_money" value="U12\34567">
-                                        </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="payer_account">Your Payeer acc no:</label>
-                                            <input type="text" id="payer_account" value="P1234567">
-                                        </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="payment_gateway">Paypal:</label>
-                                            <input type="text" id="payment_gateway" value="Johndoe@gmail.com">
-                                        </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="bitcoin_account_no">Your Bitcoin acc no:</label>
-                                            <input type="text" id="bitcoin_account_no" value="55550002220022">
-                                        </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="litecoin_account">Your Litecoin acc no:</label>
-                                            <input type="text" id="litecoin_account" value="55550002220022">
-                                        </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="dogecoin_account">Your Dogecoin acc no:</label>
-                                            <input type="text" id="dogecoin_account" value="55550002220022">
-                                        </div>
-                                        <div class="create_form_group col-sm-12">
-                                            <label for="ethereum_account">Your Ethereum acc no:</label>
-                                            <input type="text" id="ethereum_account" value="55550002220022">
-                                        </div>
-                                        <div class="create_form_group col-sm-6 align-self-end">
-                                            <button type="submit" class="custom-button border-0">Save</button>
-                                        </div>
+                                    <h5 class="subtitle">Payment System Edit</h5>
+                                  
+                                    <form id="paymentForm" class="create_ticket_form row mb-30-none">
+                                      <div class="create_form_group col-sm-12">
+                                        <label for="perfect_money">Perfect Money:</label>
+                                        <input type="text" id="perfect_money" value="U1234567">
+                                      </div>
+                                      <div class="create_form_group col-sm-12">
+                                        <label for="payer_account">Your Payeer acc no:</label>
+                                        <input type="text" id="payer_account" value="P1234567">
+                                      </div>
+                                      <div class="create_form_group col-sm-12">
+                                        <label for="payment_gateway">Paypal:</label>
+                                        <input type="text" id="payment_gateway" value="Johndoe@gmail.com">
+                                      </div>
+                                      <div class="create_form_group col-sm-12">
+                                        <label for="bitcoin_account_no">Your Bitcoin acc no:</label>
+                                        <input type="text" id="bitcoin_account_no" value="55550002220022">
+                                      </div>
+                                      <div class="create_form_group col-sm-12">
+                                        <label for="litecoin_account">Your Litecoin acc no:</label>
+                                        <input type="text" id="litecoin_account" value="55550002220022">
+                                      </div>
+                                      <div class="create_form_group col-sm-12">
+                                        <label for="dogecoin_account">Your Dogecoin acc no:</label>
+                                        <input type="text" id="dogecoin_account" value="55550002220022">
+                                      </div>
+                                      <div class="create_form_group col-sm-12">
+                                        <label for="ethereum_account">Your Ethereum acc no:</label>
+                                        <input type="text" id="ethereum_account" value="55550002220022">
+                                      </div>
+                                      <div class="create_form_group col-sm-12">
+                                        <label for="bank_account">Your Bank Account:</label>
+                                        <input type="text" id="bank_account" placeholder="Enter your bank account number">
+                                      </div>
+                                  
+                                      <div class="create_form_group col-sm-6 align-self-end">
+                                        <button type="submit" class="custom-button border-0">Save</button>
+                                      </div>
                                     </form>
-                                </div>
+                                  </div>
+                                  
                             </div>
-                            <div class="col-lg-6 mb-30">
+                            <!-- <div class="col-lg-6 mb-30">
                                 <div class="create_wrapper mw-100">
                                     <h5 class="subtitle">Other settings</h5>
                                     <form class="create_ticket_form mb-30-none">
@@ -353,7 +334,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -448,6 +429,141 @@
 
 
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    document.getElementById('updateUserForm').addEventListener('submit', async (e) => {
+      e.preventDefault(); // prevent form reload
+  
+      const name = document.getElementById('account_name').value.trim();
+      const email = document.getElementById('account_email').value.trim();
+  
+      const userId = localStorage.getItem('userId'); // ✅ get userId from localStorage
+  
+      if (!userId) {
+        alert('User ID not found. Please log in again.');
+        window.location.href = '/login.html'; // Optional: redirect if userId missing
+        return;
+      }
+  
+      try {
+        const response = await axios.put(`/api/users/update/${userId}`, { name, email });
+  
+        if (response.status === 200) {
+          alert('Profile updated successfully!');
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error('Error updating user:', error.response?.data || error.message);
+        alert('Failed to update user.');
+      }
+    });
+  </script>
+  
+
+
+
+
+<script>
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop page reload
+  
+      // Collect all the payment inputs
+      const paymentData = {
+        perfectMoney: document.getElementById('perfect_money').value.trim(),
+        payeerAccount: document.getElementById('payer_account').value.trim(),
+        paypal: document.getElementById('payment_gateway').value.trim(),
+        bitcoin: document.getElementById('bitcoin_account_no').value.trim(),
+        litecoin: document.getElementById('litecoin_account').value.trim(),
+        dogecoin: document.getElementById('dogecoin_account').value.trim(),
+        ethereum: document.getElementById('ethereum_account').value.trim(),
+        bankAccount: document.getElementById('bank_account').value.trim()  // <-- NEW BANK ACCOUNT FIELD
+      };
+  
+      // Save to LocalStorage
+      localStorage.setItem('paymentMethods', JSON.stringify(paymentData));
+  
+      alert('Payment methods saved successfully!');
+      console.log('Saved Payment Methods:', paymentData);
+    });
+  
+    // Auto-fill form if data exists (optional)
+    window.addEventListener('load', function() {
+      const savedPayment = localStorage.getItem('paymentMethods');
+      if (savedPayment) {
+        const payment = JSON.parse(savedPayment);
+        document.getElementById('perfect_money').value = payment.perfectMoney || '';
+        document.getElementById('payer_account').value = payment.payeerAccount || '';
+        document.getElementById('payment_gateway').value = payment.paypal || '';
+        document.getElementById('bitcoin_account_no').value = payment.bitcoin || '';
+        document.getElementById('litecoin_account').value = payment.litecoin || '';
+        document.getElementById('dogecoin_account').value = payment.dogecoin || '';
+        document.getElementById('ethereum_account').value = payment.ethereum || '';
+        document.getElementById('bank_account').value = payment.bankAccount || ''; // <-- LOAD BANK ACCOUNT FIELD
+      }
+    });
+  </script>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userId = localStorage.getItem('userId');
+      const balanceEl = document.getElementById('userBalance');
+  
+      if (!userId) {
+        balanceEl.textContent = 'User not found';
+        return;
+      }
+  
+      fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.referralBonus !== undefined) {
+            balanceEl.textContent = `₦${Number(data.referralBonus).toLocaleString()}.00`;
+          } else {
+            balanceEl.textContent = 'Unable to load  referralBonusbalance';
+          }
+        })
+        .catch(err => {
+          console.error('Error fetching  referralBonus:', err);
+          balanceEl.textContent = 'Error';
+        });
+    });
+  </script>
+
+
+
+<script>
+    async function fetchBankDetails() {
+      try {
+        const response = await fetch('https://urban-wealth.onrender.com/api/defaulterpayment/payments');
+        const data = await response.json();
+    
+        const list = document.getElementById('bank-details-list');
+        list.innerHTML = ''; // Clear previous list
+    
+        if (Array.isArray(data) && data.length > 0) {
+          data.forEach(account => {
+            const li = document.createElement('li');
+            li.textContent = `Bank: ${account.bankName}, Acc No: ${account.accountNumber}`;
+            list.appendChild(li);
+          });
+        } else {
+          const li = document.createElement('li');
+          li.textContent = 'No bank details available.';
+          list.appendChild(li);
+        }
+      } catch (error) {
+        console.error('Error fetching bank details:', error);
+      }
+    }
+    
+    // Immediately call it when page loads
+    fetchBankDetails();
+    </script>
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/modernizr-3.6.0.min.js"></script>

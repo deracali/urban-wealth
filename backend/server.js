@@ -8,6 +8,7 @@ import adminRoutes from './route/adminRoute.js';
 import paymentRoutes from './route/paymentRoute.js';
 import bankdetailsRoutes from './route/bankdetailsRoute.js';
 import defaultersRoutes from './route/defaultersRoute.js';
+import defaultPaymentRoutes from './route/defaultPaymentRoute.js';
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api', withdrawalRoutes);
 app.use('/api/upload', paymentRoutes);
 app.use('/api/defaulters', defaultersRoutes);
+app.use('/api/defaulterpayment', defaultPaymentRoutes);
 app.use('/api/account', bankdetailsRoutes);
 
 const PORT = process.env.PORT || 5000;

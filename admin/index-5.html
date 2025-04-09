@@ -67,10 +67,12 @@
           <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
           <span>Dashboard</span>
         </a>
-        <li>
+         <li>
           <a href="index-5.html"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Investment</a>
         </li>   <li>
           <a href="bankdetails.html"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Account</a>
+        </li>  <li>
+          <a href="defaulterspayment.html"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i>Defaulters Account</a>
         </li>
   </div>
 </aside>
@@ -329,6 +331,50 @@
         <!-- Latest Investments End -->
 
 
+        <div class="col-span-12 2xl:col-span-6">
+          <div class="card h-full border-0">
+            <div class="card-body p-6">
+              <div class="flex items-center flex-wrap gap-2 justify-between mb-5">
+                <h6 class="font-bold text-lg mb-0">Defaulter Payments</h6>
+                <a href="javascript:void(0)" class="text-primary-600 dark:text-primary-600 hover-text-primary flex items-center gap-1">
+                  View All
+                  <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
+                </a>
+              </div>
+        
+              <div class="table-responsive scroll-sm">
+                <table class="table bordered-table sm-table mb-0" id="paymentTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Date</th>
+                      <th scope="col" class="text-center">User Email</th>
+                      <th scope="col" class="text-center">Image</th>
+                      <th scope="col" class="text-center">Action</th> <!-- Added Block User Column -->
+                    </tr>
+                  </thead>
+                  <tbody id="paymentBody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+        
+              <div id="loadMoreContainer" class="text-center my-4 hidden">
+                <button id="loadMoreButton" class="bg-primary text-white px-4 py-2 rounded-lg" onclick="loadMorePayments()">Load More</button>
+              </div>
+        
+              <!-- Image Popup Modal -->
+              <div id="imageModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center">
+                <div class="bg-white p-4 rounded-lg relative">
+                  <button class="absolute top-2 right-2 text-black" onclick="closeImagePopup()">✕</button>
+                  <img id="popupImage" src="" alt="Payment Image" class="max-w-full h-auto rounded-md" />
+                </div>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+        
  
 
         <!-- Project Status Start -->
@@ -431,6 +477,43 @@
                 </table>
               </div>
               <div id="loadMoreContainer" class="text-center my-4">
+                <button id="loadMoreButton" class="bg-primary text-white px-4 py-2 rounded-lg" onclick="loadMorePayments()">Load More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+
+        <div class="col-span-12 2xl:col-span-6">
+          <div class="card h-full border-0">
+            <div class="card-body p-6">
+              <div class="flex items-center flex-wrap gap-2 justify-between mb-5">
+                <h6 class="font-bold text-lg mb-0">Defaulter Accounts</h6>
+                <a href="javascript:void(0)" class="text-primary-600 dark:text-primary-600 hover-text-primary flex items-center gap-1">
+                  View All
+                  <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
+                </a>
+              </div>
+        
+              <div class="table-responsive scroll-sm">
+                <table class="table bordered-table sm-table mb-0" id="defaulterAccountsTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Date</th>
+                      <th scope="col" class="text-center">Account Number</th>
+                      <th scope="col" class="text-center">Account Holder Name</th>
+                      <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bankdetails">
+                    <!-- Rows will be populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+        
+              <div id="loadMoreContainer" class="text-center my-4 hidden">
                 <button id="loadMoreButton" class="bg-primary text-white px-4 py-2 rounded-lg" onclick="loadMorePayments()">Load More</button>
               </div>
             </div>
@@ -607,7 +690,7 @@
         <td>${user.email}</td>
         <td><span class="text-green-600 font-medium">$${user.balance.toFixed(2)}</span></td>
         <td>
-          <a href="fund-transfer.html?userId=${user._id}" class="btn btn-sm bg-blue-600 text-white rounded-md px-3 py-1 hover:bg-blue-700">View</a>
+          <a href="fund-transfer.html?userId=${user._id}" class="btn btn-sm bg-blue-600 text-white rounded-md px-3 py-1 hover:bg-blue-700">Transfer</a>
         </td>
         <td>
           <button onclick="deleteUser('${user._id}')" class="btn btn-sm bg-red-600 text-white rounded-md px-3 py-1 hover:bg-red-700">Delete</button>
@@ -879,8 +962,239 @@
   
 
 
+  <script>
+    async function fetchDefaulterAccounts() {
+      try {
+        const response = await fetch('https://urban-wealth.onrender.com/api/defaulters/get');
+        const data = await response.json();
+  
+        const tbody = document.getElementById('defaulterdetails');
+        tbody.innerHTML = '';
+  
+        data.forEach(detail => {
+          const row = document.createElement('tr');
+          row.setAttribute('data-id', detail._id);
+  
+          row.innerHTML = `
+            <td class="text-center">
+              <span class="bank-text">${detail.bank}</span>
+              <input type="text" class="bank-input hidden form-input" value="${detail.bank}" />
+            </td>
+            <td class="text-center">
+              <span class="name-text">${detail.name}</span>
+              <input type="text" class="name-input hidden form-input" value="${detail.name}" />
+            </td>
+            <td class="text-center">
+              <span class="amount-text">${detail.amount}</span>
+              <input type="number" class="amount-input hidden form-input" value="${detail.amount}" />
+            </td>
+            <td class="text-center">
+              <span class="account-text">${detail.account}</span>
+              <input type="text" class="account-input hidden form-input" value="${detail.account}" />
+            </td>
+            <td class="text-center">
+              <button class="edit-btn text-blue-600" onclick="toggleDefaulterEdit(this)">Edit</button>
+              <button class="save-btn text-green-600 hidden" onclick="saveDefaulterEdit(this)">Save</button>
+              <button class="delete-btn text-red-600 ml-2" onclick="deleteDefaulter('${detail._id}')">Delete</button>
+            </td>
+          `;
+  
+          tbody.appendChild(row);
+        });
+  
+      } catch (error) {
+        console.error('Error fetching defaulter accounts:', error);
+      }
+    }
+  
+    function toggleDefaulterEdit(btn) {
+      const row = btn.closest('tr');
+  
+      row.querySelector('.bank-text').classList.add('hidden');
+      row.querySelector('.name-text').classList.add('hidden');
+      row.querySelector('.amount-text').classList.add('hidden');
+      row.querySelector('.account-text').classList.add('hidden');
+  
+      row.querySelector('.bank-input').classList.remove('hidden');
+      row.querySelector('.name-input').classList.remove('hidden');
+      row.querySelector('.amount-input').classList.remove('hidden');
+      row.querySelector('.account-input').classList.remove('hidden');
+  
+      row.querySelector('.edit-btn').classList.add('hidden');
+      row.querySelector('.save-btn').classList.remove('hidden');
+    }
+  
+    async function saveDefaulterEdit(btn) {
+      const row = btn.closest('tr');
+      const id = row.getAttribute('data-id');
+  
+      const updatedData = {
+        bank: row.querySelector('.bank-input').value,
+        name: row.querySelector('.name-input').value,
+        amount: parseFloat(row.querySelector('.amount-input').value),
+        account: row.querySelector('.account-input').value,
+      };
+  
+      try {
+        const res = await fetch(`https://urban-wealth.onrender.com/api/defaulters/update/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedData)
+        });
+  
+        if (res.ok) {
+          fetchDefaulterAccounts();
+        } else {
+          alert('Failed to update defaulter entry.');
+        }
+      } catch (error) {
+        console.error('Update defaulter error:', error);
+      }
+    }
+  
+    async function deleteDefaulter(id) {
+      if (!confirm('Are you sure you want to delete this defaulter account?')) return;
+  
+      try {
+        const res = await fetch(`https://urban-wealth.onrender.com/api/defaulters/delete/${id}`, {
+          method: 'DELETE',
+        });
+  
+        if (res.ok) {
+          fetchDefaulterAccounts();
+        } else {
+          alert('Failed to delete defaulter entry.');
+        }
+      } catch (error) {
+        console.error('Delete defaulter error:', error);
+      }
+    }
+  
+    window.addEventListener('DOMContentLoaded', fetchDefaulterAccounts);
+  </script>
+  
 
 
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let allPayments = [];
+      let currentPage = 0;
+      const paymentsPerPage = 10;
+  
+      // Fetch Defaulter Payments
+      async function fetchDefaulterPayments() {
+        try {
+          const res = await fetch('https://urban-wealth.onrender.com/api/defaulterpayment/payments');
+          const data = await res.json();
+          console.log('Defaulter Payments API Response:', data);
+  
+          allPayments = Array.isArray(data) ? data : data.payments || [];
+          renderDefaulterPayments();
+  
+          if (allPayments.length > paymentsPerPage) {
+            document.getElementById('loadMoreContainer').style.display = 'block';
+          }
+        } catch (err) {
+          console.error('Error fetching defaulter payments:', err);
+        }
+      }
+  
+      // Render Payments
+      async function renderDefaulterPayments() {
+        const tbody = document.getElementById('bankdetails');
+        tbody.innerHTML = '';
+  
+        const startIndex = currentPage * paymentsPerPage;
+        const endIndex = startIndex + paymentsPerPage;
+        const paymentsToDisplay = allPayments.slice(startIndex, endIndex);
+  
+        for (const payment of paymentsToDisplay) {
+          const userEmail = await getUserEmail(payment.userId);
+  
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>$${payment.amount.toLocaleString()}</td>
+            <td>${new Date(payment.createdAt).toLocaleDateString()}</td>
+            <td class="text-center">${payment.userId}</td>
+            <td class="text-center">${userEmail}</td>
+            <td class="text-center flex items-center justify-center gap-2">
+              <button class="bg-primary text-white px-3 py-1.5 rounded-lg text-sm" onclick="showImagePopup('${payment.image}')">View</button>
+              <button class="bg-red-600 text-white px-3 py-1.5 rounded-lg text-sm" onclick="blockUser('${payment.userId}')">Block User</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        }
+  
+        if (currentPage * paymentsPerPage + paymentsPerPage >= allPayments.length) {
+          document.getElementById('loadMoreButton').style.display = 'none';
+        }
+      }
+  
+      // Get User Email
+      async function getUserEmail(userId) {
+        try {
+          const res = await fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`);
+          const data = await res.json();
+          return data.email || 'Unknown';
+        } catch (err) {
+          console.error('Error fetching user email:', err);
+          return 'Error';
+        }
+      }
+  
+      // Load more payments
+      window.loadMorePayments = function () {
+        currentPage += 1;
+        renderDefaulterPayments();
+      };
+  
+      // Show Image Popup
+      window.showImagePopup = function (imageUrl) {
+        const modal = document.getElementById('imageModal');
+        const popupImage = document.getElementById('popupImage');
+        popupImage.src = imageUrl;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      };
+  
+      // Close Image Popup
+      window.closeImagePopup = function () {
+        const modal = document.getElementById('imageModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      };
+  
+      // Block User by userId
+      window.blockUser = async function (userId) {
+        if (confirm('Are you sure you want to block this user?')) {
+          try {
+            const res = await fetch(`https://urban-wealth.onrender.com/api/users/block/${userId}`, {
+              method: 'PATCH', // Use PATCH for updating the status
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+  
+            const result = await res.json();
+            if (res.ok) {
+              alert('User successfully blocked.');
+            } else {
+              alert('Failed to block user: ' + result.message);
+            }
+          } catch (error) {
+            console.error('Error blocking user:', error);
+            alert('Error blocking user.');
+          }
+        }
+      };
+  
+      // Start
+      fetchDefaulterPayments();
+    });
+  </script>
+  
 
   <!-- jQuery library js -->
   <script src="assets/js/lib/jquery-3.7.1.min.js"></script>

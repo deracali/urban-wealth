@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,115 +21,7 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 </head>
-<style>
-    
-.card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
 
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  padding: 10px 15px;
-  background: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  text-align: left;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.status-pending {
-  background: #e0f0ff;
-  color: #007bff;
-  padding: 5px 10px;
-  border-radius: 12px;
-}
-
-.cancel-btn {
-  background: #dc3545;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.deposit-system{
-    width: 70%;
-    margin: 0 auto;
-}
-
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th, td {
-    padding: 12px;
-    text-align: left;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 600px) {
-    table, thead, tbody, th, td, tr {
-      display: block;
-    }
-
-    thead tr {
-      display: none;
-    }
-
-    tr {
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 8px;
-    }
-
-    td {
-      text-align: right;
-      position: relative;
-      padding-left: 50%;
-    }
-
-    td::before {
-      content: attr(data-label);
-      position: absolute;
-      left: 10px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-      text-align: left;
-      font-weight: bold;
-    }
-  }
-</style>
 <body>
     <div class="main--body dashboard-bg">
         <!--========== Preloader ==========-->
@@ -182,10 +74,10 @@ th, td {
                          <li>
                             <a href="withdrawalhistory.html"><i class="flaticon-interest"></i>History</a>
                         </li>
-                      
                         <li>
-                            <a href="fund-transfer.html" class="active"><i class="flaticon-exchange"></i>Fund Transfer</a>
+                            <a href="javascript:void(0)" class="active"><i class="flaticon-atm"></i>Withdraw</a>
                         </li>
+                      
                        
                        
                        
@@ -215,7 +107,7 @@ th, td {
                                         <a href="#0"><i class="flaticon-support"></i>Support</a>
                                     </li>
                                     <li>
-                                        <a href="Mailto:info@Urban Wealth.com"><i class="flaticon-email"></i><span class="__cf_email__" data-cfemail="6d04030b022d0514041d010c0309430e0200">[email&#160;protected]</span> </a>
+                                        <a href="Mailto:info@Urban Wealth.com"><i class="flaticon-email"></i><span class="__cf_email__" data-cfemail="82ebece4edc2eafbebf2eee3ece6ace1edef">[email&#160;protected]</span> </a>
                                     </li>
                                   
                                 </ul>
@@ -243,7 +135,7 @@ th, td {
                                                         <img src="assets/images/dashboard/author.png" alt="dashboard">
                                                     </div>
                                                     <h6 class="title">John Doe</h6>
-                                                    <a href="#mailto:johndoe@gmail.com"><span class="__cf_email__" data-cfemail="b9f3d6d1d7ddd6dcf9ded4d8d0d597dad6d4">[email&#160;protected]</span></a>
+                                                    <a href="#mailto:johndoe@gmail.com"><span class="__cf_email__" data-cfemail="3e745156505a515b7e59535f5752105d5153">[email&#160;protected]</span></a>
                                                 </div>
                                                 <div class="author-body">
                                                     <ul>
@@ -264,13 +156,13 @@ th, td {
                         </div>
                     </div>
                     <div class="dashboard-hero-content text-white">
-                        <h3 class="title">Funds Transfer</h3>
+                        <h3 class="title">Withdraw Funds</h3>
                         <ul class="breadcrumb">
                             <li>
                                 <a href="index.html">Home</a>
                             </li>
                             <li>
-                               Bid
+                                Withdraw Funds
                             </li>
                         </ul>
                     </div>
@@ -282,9 +174,9 @@ th, td {
                                 <div class="dashboard-inner">
                                     <div class="cont">
                                         <span class="title">Balance</span>
-                                        <h5 class="amount" id="demoBalance">Loading...</h5>
+                                        <h5 class="amount" id="userBalance">Loading...</h5>
                                         <div class="text-center">
-                                            <a href="fund-transfer.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
+                                            <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                  
@@ -293,7 +185,7 @@ th, td {
                         </div>
                     </div>
                     <div class="deposit">
-                       
+                        <h3 class="main-title">Withdraw Funds</h3>
                         <div class="deposit-system pt-0">
                             <h4 class="main-subtitle">01. Choose Payment  System</h4>
                             <div class="text-center deposit-method-slider owl-theme owl-carousel">
@@ -412,33 +304,49 @@ th, td {
                             </div>
                         </div>
                         <div class="deposit-system">
-                            <div class="card">
-                                <h2>Bid Coin</h2>
-                                <input type="number" id="amountInput" placeholder="Amount">
-                                <button onclick="submitBid()">Bid</button>
-                              </div>
-                            <div class="card">
-                                <h2>Bided Coins</h2>
-                                <table>
-                                  <thead>
-                                    <tr>
-                                      <th>Type</th>
-                                      <th>Date</th>
-                                      <th>Status</th>
-                                      <th>Value</th>
-                                      <th>Countdown</th>
-                                      <th>Action</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody id="bidsTableBody">
-                                    <!-- Bids will appear here -->
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
+                            <h4 class="main-subtitle">02. Enter the amount to Withdraw (Referral Bonus):</h4>
                           
+                            <form class="make-deposit" id="withdrawalForm">
+                              <div class="form-group">
+                                <label for="paymentMethod">Select Payment Method</label>
+                                <select id="paymentMethod" class="make-amount" required>
+                                  <option value="">Select Payment Method</option>
+                                </select>
+                              </div>
+                          
+                              <div class="form-group">
+                                <input type="number" id="withdrawAmount" placeholder="Enter your amount" class="make-amount" min="1">
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="total-profit">Total Referral Bonus</label>
+                                <input type="text" id="availableReferralBonus" readonly class="readonly" value="$0.00">
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="accountNumber">Account Number</label>
+                                <input type="text" id="accountNumber" placeholder="Enter your account number" class="make-amount" required>
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="bankName">Bank Name</label>
+                                <input type="text" id="bankName" placeholder="Enter your bank name" class="make-amount">
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="accountHolderName">Account Holder Name</label>
+                                <input type="text" id="accountHolderName" placeholder="Enter your account holder name" class="make-amount">
+                              </div>
+                          
+                              <div class="form-group">
+                                <button type="submit" class="custom-button border-0">Withdraw Referral Bonus</button>
+                              </div>
+                            </form>
                           </div>
                           
+                          
+                        
+                        
                     </div>
                 </div>
                 <div class="container-fluid sticky-bottom">
@@ -467,6 +375,8 @@ th, td {
 
     </div>
 
+
+
  <script>
     document.addEventListener('DOMContentLoaded', () => {
         const userId = localStorage.getItem('userId');
@@ -484,233 +394,198 @@ th, td {
 </script>
 
 
+
 <script>
-    // Load existing bids from localStorage on page load
-    document.addEventListener('DOMContentLoaded', loadBids);
-
-    function submitBid() {
-    const amountInput = document.getElementById('amountInput');
-    const amount = parseFloat(amountInput.value);
-    const tableBody = document.getElementById('bidsTableBody');
-
-    if (!amount || amount <= 0) {
-        alert("Please enter a valid amount");
-        return;
+    const userIds = localStorage.getItem('userId');
+    const paymentMethods = JSON.parse(localStorage.getItem('paymentMethods')) || {};
+    
+    function fetchAndDisplayReferralBonus() {
+      fetch(`https://urban-wealth.onrender.com/api/users/user/${userIds}`)
+        .then(response => response.json())
+        .then(data => {
+          const referralBonus = data.referralBonus || 0;
+          document.getElementById('availableReferralBonus').value = `$${referralBonus.toFixed(2)}`;
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+          document.getElementById('availableReferralBonus').value = 'Error loading referral bonus';
+        });
     }
-
-    if (amount < 20000) {
-        alert("Minimum daily bidding amount is ₦20,000");
-        return;
+    
+    function populatePaymentDropdown() {
+      const paymentSelect = document.getElementById('paymentMethod');
+    
+      if (paymentMethods) {
+        for (const method in paymentMethods) {
+          if (paymentMethods[method]) {
+            const option = document.createElement('option');
+            option.value = method;
+            option.text = method.charAt(0).toUpperCase() + method.slice(1);
+            paymentSelect.appendChild(option);
+          }
+        }
+      }
     }
-
-    if (amount > 300000) {
-        alert("Maximum daily bidding amount is ₦300,000");
-        return;
+    
+    document.getElementById('paymentMethod').addEventListener('change', function() {
+      const selectedMethod = this.value;
+    
+      if (selectedMethod && paymentMethods[selectedMethod]) {
+        document.getElementById('accountNumber').value = paymentMethods[selectedMethod];
+    
+        if (selectedMethod === 'bankAccount') {
+          document.getElementById('bankName').value = 'Bank Name';
+          document.getElementById('accountHolderName').value = 'Account Holder';
+        } else {
+          document.getElementById('bankName').value = '';
+          document.getElementById('accountHolderName').value = '';
+        }
+      } else {
+        document.getElementById('accountNumber').value = '';
+        document.getElementById('bankName').value = '';
+        document.getElementById('accountHolderName').value = '';
+      }
+    });
+    
+    // Fetch user referral bonus
+    if (userIds) {
+      fetchAndDisplayReferralBonus();
+    } else {
+      console.error('User ID not found in localStorage');
+      document.getElementById('availableReferralBonus').value = 'User ID not found';
     }
-
-    const userId = localStorage.getItem('userId');
-    if (!userId) {
-        alert("User ID not found in localStorage");
+    
+    // Withdrawal form submit handler
+    document.getElementById('withdrawalForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+    
+      const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
+      const availableReferralBonus = parseFloat(document.getElementById('availableReferralBonus').value.replace('$', ''));
+      const accountNumber = document.getElementById('accountNumber').value.trim();
+      const bankName = document.getElementById('bankName').value.trim();
+      const accountHolderName = document.getElementById('accountHolderName').value.trim();
+      const submitBtn = document.querySelector("#withdrawalForm button[type='submit']");
+      submitBtn.disabled = true;
+    
+      if (availableReferralBonus < 15000) {
+        alert('You need at least $15,000 in referral bonus to withdraw.');
+        submitBtn.disabled = false;
         return;
-    }
-
-    const today = new Date().toISOString().split('T')[0];
-    const countdownId = `countdown-${Date.now()}`;
-    const timestamp = Date.now();
-
-    // Add bid row to UI
-    const row = document.createElement('tr');
-    row.innerHTML = `
-        <td style="color: green;">Bid</td>
-        <td>${today}</td>
-        <td><span class="status-pending">pending</span></td>
-        <td>₦${Number(amount).toLocaleString()}.00</td>
-        <td id="${countdownId}">24:00:00</td>
-        <td><button class="cancel-btn" onclick="cancelBid(this)">Cancel</button></td>
-    `;
-    tableBody.appendChild(row);
-    amountInput.value = '';
-
-    // Start countdown for 24 hours
-    startCountdown(countdownId, 24 * 60 * 60);
-
-    // Save bid to localStorage
-    saveBid({ amount, date: today, countdownId, status: 'pending', timestamp });
-
-    // Update backend
-    fetch(`https://urban-wealth.onrender.com/api/users/update-demo-balance/${userId}`, {
-        method: 'PATCH',
+      }
+    
+      if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
+        alert('Please enter a valid amount to withdraw.');
+        submitBtn.disabled = false;
+        return;
+      }
+    
+      if (withdrawAmount > availableReferralBonus) {
+        alert('Insufficient referral bonus for withdrawal.');
+        submitBtn.disabled = false;
+        return;
+      }
+    
+      if (!accountNumber) {
+        alert('Please fill in the account number.');
+        submitBtn.disabled = false;
+        return;
+      }
+    
+      fetch('https://urban-wealth.onrender.com/api/withdrawal', {
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ demoBalance: amount })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            console.log('Bid successful');
-        } else {
-            alert(data.message || 'Failed to update balance');
+        body: JSON.stringify({
+          userIds,
+          accountNumber,
+          bankName,
+          accountHolderName,
+          amount: withdrawAmount,
+          withdrawalType: "referralBonus" // Optional: You can send this info too
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (!data || data.error) {
+          throw new Error('Withdrawal record failed.');
         }
-    })
-    .catch(err => {
-        console.error('Error:', err);
-        alert('Error updating balance');
-    });
-}
-
-
-    // Start countdown with given seconds left
-    function startCountdown(elementId, totalSeconds) {
-        const countdownEl = document.getElementById(elementId);
-
-        const interval = setInterval(() => {
-            if (totalSeconds <= 0) {
-                clearInterval(interval);
-                countdownEl.textContent = "Expired";
-                return;
-            }
-
-            const hrs = Math.floor(totalSeconds / 3600);
-            const mins = Math.floor((totalSeconds % 3600) / 60);
-            const secs = totalSeconds % 60;
-
-            countdownEl.textContent = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            totalSeconds--;
-        }, 1000);
-    }
-
-    // Save bid data to localStorage
-    function saveBid(bid) {
-        const bids = JSON.parse(localStorage.getItem('bids')) || [];
-        bids.push(bid);
-        localStorage.setItem('bids', JSON.stringify(bids));
-    }
-
-    // Load bids from localStorage and display them
-    function loadBids() {
-    let bids = JSON.parse(localStorage.getItem('bids')) || [];
-    const tableBody = document.getElementById('bidsTableBody');
-
-    // Patch missing timestamps
-    bids = bids.map(bid => {
-        if (!bid.timestamp) {
-            bid.timestamp = Date.now(); // Assume added now
-        }
-        return bid;
-    });
-
-    // Save back patched bids
-    localStorage.setItem('bids', JSON.stringify(bids));
-
-    bids.forEach(bid => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-        <td style="color: green;" data-label="Type">Bid</td>
-        <td data-label="Date">${bid.date}</td>
-        <td data-label="Status"><span class="status-pending">${bid.status}</span></td>
-        <td data-label="Value">₦${Number(bid.amount).toLocaleString()}.00</td>
-        <td data-label="Countdown" id="${bid.countdownId}">Loading...</td>
-        <td data-label="Action"><button class="cancel-btn" onclick="cancelBid(this)">Cancel</button></td>
-    `;
-    tableBody.appendChild(row);
-
-
-        const timePassed = Math.floor((Date.now() - bid.timestamp) / 1000);
-        const timeLeft = 24 * 60 * 60 - timePassed;
-
-        if (timeLeft > 0) {
-            startCountdown(bid.countdownId, timeLeft);
-        } else {
-            document.getElementById(bid.countdownId).textContent = "Expired";
-        }
-    });
-}
-
-    // Function to cancel a bid and remove it from localStorage
-    // Updated function to cancel a bid and adjust demoBalance
-function cancelBid(button) {
-    const row = button.parentElement.parentElement;
-    const countdownEl = row.querySelector('td[id]');
-    const countdownId = countdownEl.id;
-
-    const bids = JSON.parse(localStorage.getItem('bids')) || [];
-
-    // Find the bid being canceled
-    const bidToCancel = bids.find(bid => bid.countdownId === countdownId);
-
-    if (!bidToCancel) {
-        alert('Bid not found');
-        return;
-    }
-
-    const amountToSubtract = bidToCancel.amount;
-    const userId = localStorage.getItem('userId');
-
-    if (!userId) {
-        alert("User ID not found");
-        return;
-    }
-
-    // Remove bid from localStorage
-    const updatedBids = bids.filter(bid => bid.countdownId !== countdownId);
-    localStorage.setItem('bids', JSON.stringify(updatedBids));
-
-    // Remove bid from UI
-    row.remove();
-
-    // Update backend: Subtract the canceled amount
-    fetch(`https://urban-wealth.onrender.com/api/users/update-demo-balance/${userId}`, {
-        method: 'PATCH',
-        headers: {
+    
+        return fetch(`https://urban-wealth.onrender.com/api/users/update/${userIds}`, {
+          method: 'PUT',
+          headers: {
             'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ demoBalance: -amountToSubtract }) // Notice the minus (-)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            console.log('Bid canceled and balance updated');
+          },
+          body: JSON.stringify({ referralBonusWithdrawal: withdrawAmount }),
+        });
+      })
+      .then(response => response.json())
+      .then(updateData => {
+        if (updateData.message === 'User updated successfully') {
+          alert('Withdrawal successful!');
+          fetchAndDisplayReferralBonus();
+    
+          document.getElementById('withdrawAmount').value = '';
+          document.getElementById('accountNumber').value = '';
+          document.getElementById('bankName').value = '';
+          document.getElementById('accountHolderName').value = '';
+          document.getElementById('paymentMethod').value = '';
+        } else if (updateData.message === 'Insufficient funds for withdrawal') {
+          alert('Insufficient referral bonus on the server.');
         } else {
-            alert(data.message || 'Failed to update balance');
+          throw new Error('Referral bonus update failed.');
         }
-    })
-    .catch(err => {
-        console.error('Error:', err);
-        alert('Error updating balance');
+      })
+      .catch(error => {
+        console.error('Error during withdrawal process:', error);
+        alert('Something went wrong. Please try again.');
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+      });
     });
-}
+    
+    // Populate payment dropdown at page load
+    populatePaymentDropdown();
+    </script>
 
+    
+<script>
+    document.getElementById('logoutButton').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        
+        // Remove userId and token from localStorage
+        localStorage.removeItem('userId');
+        localStorage.removeItem('token');
+        
+        // Optionally, redirect to the login page or homepage
+        window.location.href = '/login';  // Change '/login' to your actual login route
+    });
 </script>
 
 
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const userId = localStorage.getItem('userId');
-      const balanceEl = document.getElementById('demoBalance');
+<script>
+    // Get the userId from localStorage
+    const Id = localStorage.getItem('userId');
   
-      if (!userId) {
-        balanceEl.textContent = 'User not found';
-        return;
-      }
-  
-      fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`)
-        .then(res => res.json())
+    if (Id) {
+      // Fetch the balance from the API
+      fetch(`https://urban-wealth.onrender.com/api/users/user/${Id}`)
+        .then(response => response.json())
         .then(data => {
-          if (data && data.demoBalance !== undefined) {
-            balanceEl.textContent = `₦${Number(data.demoBalance).toLocaleString()}.00`;
-          } else {
-            balanceEl.textContent = 'Unable to load balance';
-          }
+          const balance = data.referralBonus || 0;
+          document.getElementById('userBalance').innerText = `${balance} NGN`;
         })
-        .catch(err => {
-          console.error('Error fetching demoBalance:', err);
-          balanceEl.textContent = 'Error';
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+          document.getElementById('userBalance').innerText = 'Error loading balance';
         });
-    });
+    } else {
+      console.error('User ID not found in localStorage');
+      document.getElementById('userBalance').innerText = 'User ID not found';
+    }
   </script>
-
 
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>

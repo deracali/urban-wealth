@@ -112,38 +112,46 @@ export const getUserById = async (req, res) => {
 // Update user by ID
 export const updateUserById = async (req, res) => {
   const { id } = req.params;
-  const { name, email, password, balance, withdrawalAmount } = req.body;
+  const { name, email, password, balance, withdrawalAmount, referralBonusWithdrawal } = req.body;
 
   try {
     const user = await User.findById(id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    // Handle balance deposit or update
+    // Handle balance deposit
     if (balance !== undefined) {
-      user.balance += balance; // Add the new balance to the existing balance
+      user.balance += balance;
       user.balanceHistory.push({
         withdrawalAmount: balance,
-        status: 'deposit', // Mark as 'deposit' for balance addition
+        status: 'deposit',
       });
     }
 
-    // Handle withdrawal
+    // Handle normal withdrawal
     if (withdrawalAmount !== undefined) {
       if (user.balance < withdrawalAmount) {
         return res.status(400).json({ message: 'Insufficient funds for withdrawal' });
       }
-
-      // Subtract the withdrawal amount from the balance
       user.balance -= withdrawalAmount;
-
-      // Add withdrawal to balance history
       user.balanceHistory.push({
         withdrawalAmount,
-        status: 'withdrawal', // Mark as 'withdrawal' for balance deduction
+        status: 'withdrawal',
       });
     }
 
-    // Handle password update if provided
+    // Handle referral bonus withdrawal
+    if (referralBonusWithdrawal !== undefined) {
+      if (user.referralBonus < referralBonusWithdrawal) {
+        return res.status(400).json({ message: 'Insufficient referral bonus for withdrawal' });
+      }
+      user.referralBonus -= referralBonusWithdrawal;
+      user.balanceHistory.push({
+        withdrawalAmount: referralBonusWithdrawal,
+        status: 'referral_bonus_withdrawal', // Custom status to track this action
+      });
+    }
+
+    // Update password if provided
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
       user.password = hashedPassword;
@@ -153,10 +161,8 @@ export const updateUserById = async (req, res) => {
     user.name = name || user.name;
     user.email = email || user.email;
 
-    // Save the updated user data
     await user.save();
 
-    // Exclude password from response
     const { password: _, ...userWithoutPassword } = user.toObject();
 
     res.status(200).json({
@@ -167,6 +173,7 @@ export const updateUserById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 
 // Delete user by ID
@@ -255,3 +262,6 @@ export const updateBlockStatus = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+
+

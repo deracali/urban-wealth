@@ -1,19 +1,18 @@
+// defaultersRoutes.js
 import express from 'express';
-import fileUpload from 'express-fileupload';
-import { createPayment, getAllPayments, getPaymentById } from '../controller/defaultersController.js';
+import { addBankDetail, deleteBankDetail, getBankDetails, updateBankDetail } from '../controller/defaultersController.js';
 
 const defaultersRoutes = express.Router();
 
-// Use express-fileupload middleware
-defaultersRoutes.use(fileUpload({ useTempFiles: true }));
+// Get all bank details
+defaultersRoutes.get('/get', getBankDetails);
 
-// Route to create payment with file upload
-defaultersRoutes.post('/payment', createPayment);
+// Add a new bank detail
+defaultersRoutes.post('/bank-details', addBankDetail);
 
-// Route to get all payments
-defaultersRoutes.get('/payments', getAllPayments);
+bankdetailsRoutes.put('/update/:id', updateBankDetail);
+defaultersRoutes.delete('/delete/:id', deleteBankDetail);
 
-// Route to get a payment by ID
-defaultersRoutes.get('/payment/:id', getPaymentById);
+
 
 export default defaultersRoutes;

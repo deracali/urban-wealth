@@ -1,7 +1,14 @@
+// DefaulterAccountSchema.js
 import mongoose from 'mongoose';
 
-const DefaultersSchema = new mongoose.Schema({
-  image: {
+const { Schema, model } = mongoose;
+
+const DefaulterAccountSchema = new Schema({
+  bank: {
+    type: String,
+    required: true,
+  },
+  name: {
     type: String,
     required: true,
   },
@@ -9,10 +16,11 @@ const DefaultersSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  userId: {
+  account: {
     type: String,
     required: true,
   },
-}, { timestamps: true });
+});
 
-export default mongoose.model('DefaulterAccount', DefaultersSchema);
+const DefaulterAccount = model('DefaulterAccount', DefaulterAccountSchema);
+export default DefaulterAccount;

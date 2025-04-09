@@ -821,92 +821,121 @@
 </script>
 
 
-
 <script>
-    // Fetch data from your API and populate the list
-    fetch('https://urban-wealth.onrender.com/api/account/get')
-      .then(response => response.json())
-      .then(data => {
-        const ul = document.getElementById('bank-details-list');
-  
-        data.forEach((detail, index) => {
-          const listItem = document.createElement('li');
-          listItem.innerHTML = `
-            <strong>Bank:</strong> ${detail.bank}<br>
-            <strong>Name:</strong> ${detail.name}<br>
-            <strong>Account:</strong> ${detail.account}<br>
-            <strong>Amount:</strong> ${detail.amount}<br>
-            <button onclick="showUploadSection(this)">Upload</button>
-            <div class="upload-section" style="display: none; margin-top: 10px;">
-              <input type="file" accept="image/*,application/pdf" id="file-input-${index}"><br><br>
-              <button onclick="submitProof(this, ${detail.amount}, ${index})">Submit</button>
-            </div>
-            ${index !== data.length - 1 ? '<hr>' : ''}
-          `;
-          ul.appendChild(listItem);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching bank details:', error);
-      });
-  
-    function showUploadSection(button) {
-      // Find the next sibling div (the upload section) and toggle its visibility
-      const section = button.nextElementSibling;
-      section.style.display = section.style.display === 'none' ? 'block' : 'none';
-    }
-  
-    async function submitProof(btn, bankAmount, index) {
-  const uploadSection = btn.parentElement;
-  const fileInput = uploadSection.querySelector(`#file-input-${index}`);
-  
-  if (!fileInput) {
-    alert("File input is not available.");
-    return;
-  }
-
-  const userId = localStorage.getItem('userId');
-  const file = fileInput.files[0];
-
-  if (!file || !userId) {
-    alert("Please upload a file and ensure userId is in localStorage.");
-    return;
-  }
-
-  // Convert the amount to a string before appending to FormData (string conversion for safety)
-  const amount = String(bankAmount);  // Ensure it's converted to a string if needed
-
-  const formData = new FormData();
-  formData.append('image', file);        // image or pdf
-  formData.append('amount', amount);     // Append as a string to ensure safe serialization
-  formData.append('userId', userId);     // from localStorage
-
-  try {
-    const res = await fetch('https://urban-wealth.onrender.com/api/upload/payment', {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (!res.ok) {
-      throw new Error(`Network response was not ok. Status: ${res.status}`);
-    }
-
-    const responseData = await res.json();
+    let proofSubmitted = false;
     
-    if (responseData && responseData.status) {
-      alert("Upload successful!");
-      console.log(responseData);
-    } else {
-      alert("Upload failed: " + (responseData?.message || "Unknown error"));
+    // Function to check if user is blocked
+    async function checkIfBlocked() {
+      const userId = localStorage.getItem('userId');
+      if (!userId) return false;
+    
+      try {
+        const res = await fetch(`https://urban-wealth.onrender.com/api/users/${userId}`);
+        const userData = await res.json();
+        
+        if (userData?.isBlocked) {
+          alert("Your account has been blocked. You cannot perform this action.");
+          localStorage.clear();
+          window.location.href = '/login.html'; // redirect to login page
+          return true; // yes, user is blocked
+        }
+      } catch (error) {
+        console.error("Failed to check user block status:", error);
+      }
+      return false; // user is not blocked
     }
-  } catch (error) {
-    alert(error);
-    console.error("Error during upload:", error);
-  }
-}
-
-  </script>
-  
+    
+    // When the upload proof succeeds
+    async function submitProof(btn, bankAmount, index) {
+      // First check if the user is blocked
+      if (await checkIfBlocked()) return;
+    
+      const uploadSection = btn.parentElement;
+      const fileInput = uploadSection.querySelector(`#file-input-${index}`);
+    
+      if (!fileInput) {
+        alert("File input not found.");
+        return;
+      }
+    
+      const userId = localStorage.getItem('userId');
+      const file = fileInput.files[0];
+    
+      if (!file || !userId) {
+        alert("Please upload a file and ensure userId exists.");
+        return;
+      }
+    
+      const amount = String(bankAmount);
+      const formData = new FormData();
+      formData.append('image', file);
+      formData.append('amount', amount);
+      formData.append('userId', userId);
+    
+      try {
+        const res = await fetch('https://urban-wealth.onrender.com/api/upload/payment', {
+          method: 'POST',
+          body: formData,
+        });
+    
+        const responseData = await res.json();
+        if (res.ok && responseData?.status) {
+          alert("Upload successful!");
+          proofSubmitted = true; // mark proof as submitted
+        } else {
+          alert("Upload failed: " + (responseData?.message || "Unknown error"));
+        }
+      } catch (error) {
+        alert("Error: " + error);
+        console.error(error);
+      }
+    }
+    
+    // After timer popup
+    refreshBtn.onclick = function () {
+      popup.style.display = "block";
+    
+      // Start 6-hour timer only when popup is displayed
+      if (!localStorage.getItem('proofDeadline')) {
+        const sixHoursLater = Date.now() + 6 * 60 * 60 * 1000; // 6 hours in ms
+        localStorage.setItem('proofDeadline', sixHoursLater);
+      }
+    };
+    
+    // Check periodically if 6 hours have passed and user didn't submit
+    setInterval(() => {
+      const deadline = localStorage.getItem('proofDeadline');
+      const userId = localStorage.getItem('userId');
+    
+      if (!deadline || !userId) return;
+    
+      const now = Date.now();
+      if (now > Number(deadline) && !proofSubmitted) {
+        // Block the user
+        fetch(`https://urban-wealth.onrender.com/api/users/block/${userId}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ isBlocked: true }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Your account has been blocked due to failure to submit proof.');
+            localStorage.removeItem('proofDeadline');
+            localStorage.clear();
+            window.location.href = '/login.html'; // Redirect to login
+          } else {
+            console.error('Blocking failed:', data.message);
+          }
+        })
+        .catch(error => console.error('Error blocking user:', error));
+      }
+    }, 60 * 1000); // Check every minute
+    
+    </script>
+    
 
 
     

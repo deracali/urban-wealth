@@ -305,31 +305,45 @@
                         </div>
                         <div class="deposit-system">
                             <h4 class="main-subtitle">02. Enter the amount of Withdraw:</h4>
+                            
                             <form class="make-deposit" id="withdrawalForm">
-                                <div class="form-group">
-                                    <input type="number" id="withdrawAmount" placeholder="Enter your amount" class="make-amount" min="1">
-                                </div>
-                                <div class="form-group">
-                                    <label for="total-profit">Total Available Balance</label>
-                                    <input type="text" id="availableBalance" readonly class="readonly" value="$0.00">
-                                </div>
-                                <div class="form-group">
-                                    <label for="accountNumber">Account Number</label>
-                                    <input type="text" id="accountNumber" placeholder="Enter your account number" class="make-amount" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bankName">Bank Name</label>
-                                    <input type="text" id="bankName" placeholder="Enter your bank name" class="make-amount" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="accountHolderName">Account Holder Name</label>
-                                    <input type="text" id="accountHolderName" placeholder="Enter your account holder name" class="make-amount" required>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="custom-button border-0">Withdraw Funds</button>
-                                </div>
+                              
+                              <div class="form-group">
+                                <label for="paymentMethod">Select Payment Method</label>
+                                <select id="paymentMethod" class="make-amount" required>
+                                  <option value="">Select Payment Method</option>
+                                </select>
+                              </div>
+                          
+                              <div class="form-group">
+                                <input type="number" id="withdrawAmount" placeholder="Enter your amount" class="make-amount" min="1">
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="total-profit">Total Available Balance</label>
+                                <input type="text" id="availableBalance" readonly class="readonly" value="$0.00">
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="accountNumber">Account Number</label>
+                                <input type="text" id="accountNumber" placeholder="Enter your account number" class="make-amount" required>
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="bankName">Bank Name</label>
+                                <input type="text" id="bankName" placeholder="Enter your bank name" class="make-amount">
+                              </div>
+                          
+                              <div class="form-group">
+                                <label for="accountHolderName">Account Holder Name</label>
+                                <input type="text" id="accountHolderName" placeholder="Enter your account holder name" class="make-amount">
+                              </div>
+                          
+                              <div class="form-group">
+                                <button type="submit" class="custom-button border-0">Withdraw Funds</button>
+                              </div>
                             </form>
-                        </div>
+                          </div>
                         
                         
                     </div>
@@ -383,115 +397,172 @@
 
 <script>
     const userIds = localStorage.getItem('userId');
-
+    const paymentMethods = JSON.parse(localStorage.getItem('paymentMethods')) || {};
+    
     function fetchAndDisplayBalance() {
-        fetch(`https://urban-wealth.onrender.com/api/users/user/${userIds}`)
-            .then(response => response.json())
-            .then(data => {
-                const balance = data.balance || 0;
-                document.getElementById('availableBalance').value = `$${balance.toFixed(2)}`;
-            })
-            .catch(error => {
-                console.error('Error fetching user data:', error);
-                document.getElementById('availableBalance').value = 'Error loading balance';
-            });
-    }
-
-    if (userIds) {
-        fetchAndDisplayBalance();
-    } else {
-        console.error('User ID not found in localStorage');
-        document.getElementById('availableBalance').value = 'User ID not found';
-    }
-
-    document.getElementById('withdrawalForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
-        const availableBalance = parseFloat(document.getElementById('availableBalance').value.replace('$', ''));
-        const accountNumber = document.getElementById('accountNumber').value.trim();
-        const bankName = document.getElementById('bankName').value.trim();
-        const accountHolderName = document.getElementById('accountHolderName').value.trim();
-        const submitBtn = document.querySelector("#withdrawalForm button[type='submit']");
-        submitBtn.disabled = true;
-
-        if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
-            alert('Please enter a valid amount to withdraw.');
-            submitBtn.disabled = false;
-            return;
-        }
-
-        if (withdrawAmount > availableBalance) {
-            alert('Insufficient funds for withdrawal.');
-            submitBtn.disabled = false;
-            return;
-        }
-
-        if (!accountNumber || !bankName || !accountHolderName) {
-            alert('Please fill in all withdrawal details.');
-            submitBtn.disabled = false;
-            return;
-        }
-
-        // Step 1: Record the withdrawal in the DB
-        fetch('https://urban-wealth.onrender.com/api/withdrawal', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                userIds,
-                accountNumber,
-                bankName,
-                accountHolderName,
-                amount: withdrawAmount,
-            }),
-        })
+      fetch(`https://urban-wealth.onrender.com/api/users/user/${userIds}`)
         .then(response => response.json())
         .then(data => {
-            if (!data || data.error) {
-                throw new Error('Withdrawal record failed.');
-            }
-
-            // Step 2: Update user balance
-            return fetch(`https://urban-wealth.onrender.com/api/users/update/${userIds}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    withdrawalAmount: withdrawAmount
-                }),
-            });
-        })
-        .then(response => response.json())
-        .then(updateData => {
-            if (updateData.message === 'User updated successfully') {
-                alert('Withdrawal successful!');
-                fetchAndDisplayBalance();
-
-                // Clear fields
-                document.getElementById('withdrawAmount').value = '';
-                document.getElementById('accountNumber').value = '';
-                document.getElementById('bankName').value = '';
-                document.getElementById('accountHolderName').value = '';
-            } else if (updateData.message === 'Insufficient funds for withdrawal') {
-                alert('Insufficient funds on the server.');
-            } else {
-                throw new Error('Balance update failed.');
-            }
+          const balance = data.balance || 0;
+          document.getElementById('availableBalance').value = `$${balance.toFixed(2)}`;
         })
         .catch(error => {
-            console.error('Error during withdrawal process:', error);
-            alert('Something went wrong. Please try again.');
-        })
-        .finally(() => {
-            submitBtn.disabled = false;
+          console.error('Error fetching user data:', error);
+          document.getElementById('availableBalance').value = 'Error loading balance';
         });
+    }
+    
+    function populatePaymentDropdown() {
+      const paymentSelect = document.getElementById('paymentMethod');
+      
+      if (paymentMethods) {
+        for (const method in paymentMethods) {
+          if (paymentMethods[method]) {
+            const option = document.createElement('option');
+            option.value = method;
+            option.text = method.charAt(0).toUpperCase() + method.slice(1); // Capitalize first letter
+            paymentSelect.appendChild(option);
+          }
+        }
+      }
+    }
+    
+    // Populate the fields when payment method changes
+    document.getElementById('paymentMethod').addEventListener('change', function() {
+      const selectedMethod = this.value;
+    
+      if (selectedMethod && paymentMethods[selectedMethod]) {
+        document.getElementById('accountNumber').value = paymentMethods[selectedMethod];
+    
+        // If the selected method is "bankAccount", we can suggest to also fill bankName/accountHolderName
+        if (selectedMethod === 'bankAccount') {
+          document.getElementById('bankName').value = 'Bank Name'; // Optional: You can save/fetch real bank names if you have
+          document.getElementById('accountHolderName').value = 'Account Holder'; // Optional: Same here
+        } else {
+          document.getElementById('bankName').value = '';
+          document.getElementById('accountHolderName').value = '';
+        }
+      } else {
+        document.getElementById('accountNumber').value = '';
+        document.getElementById('bankName').value = '';
+        document.getElementById('accountHolderName').value = '';
+      }
     });
-</script>
+    
+    // Fetch user balance
+    if (userIds) {
+      fetchAndDisplayBalance();
+    } else {
+      console.error('User ID not found in localStorage');
+      document.getElementById('availableBalance').value = 'User ID not found';
+    }
+    
 
+  // Withdrawal form submit handler
+document.getElementById('withdrawalForm').addEventListener('submit', async function (event) {
+  event.preventDefault();
 
+  const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
+  const availableBalance = parseFloat(document.getElementById('availableBalance').value.replace('$', ''));
+  const accountNumber = document.getElementById('accountNumber').value.trim();
+  const bankName = document.getElementById('bankName').value.trim();
+  const accountHolderName = document.getElementById('accountHolderName').value.trim();
+  const submitBtn = document.querySelector("#withdrawalForm button[type='submit']");
+  submitBtn.disabled = true;
+
+  if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
+    alert('Please enter a valid amount to withdraw.');
+    submitBtn.disabled = false;
+    return;
+  }
+
+  if (withdrawAmount > availableBalance) {
+    alert('Insufficient funds for withdrawal.');
+    submitBtn.disabled = false;
+    return;
+  }
+
+  if (!accountNumber) {
+    alert('Please fill in the account number.');
+    submitBtn.disabled = false;
+    return;
+  }
+
+  try {
+    // First fetch full user info to get balance and demoBalance
+    const userRes = await fetch(`https://urban-wealth.onrender.com/api/users/user/${userIds}`);
+    const userData = await userRes.json();
+    const { balance, demoBalance } = userData;
+
+    if (demoBalance !== undefined && balance !== undefined) {
+      if (demoBalance < balance) {
+        const confirmWithdrawal = confirm('Warning: Your demo balance is below your real balance.\nAre you 100% committed to withdrawing?');
+        if (!confirmWithdrawal) {
+          submitBtn.disabled = false;
+          return;
+        }
+      }
+    } else {
+      alert('Unable to verify demo balance, please try again later.');
+      submitBtn.disabled = false;
+      return;
+    }
+
+    // Proceed with withdrawal if confirmed
+    const withdrawalRes = await fetch('https://urban-wealth.onrender.com/api/withdrawal', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userIds,
+        accountNumber,
+        bankName,
+        accountHolderName,
+        amount: withdrawAmount,
+      }),
+    });
+    const withdrawalData = await withdrawalRes.json();
+
+    if (!withdrawalData || withdrawalData.error) {
+      throw new Error('Withdrawal record failed.');
+    }
+
+    const updateRes = await fetch(`https://urban-wealth.onrender.com/api/users/update/${userIds}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ withdrawalAmount: withdrawAmount }),
+    });
+    const updateData = await updateRes.json();
+
+    if (updateData.message === 'User updated successfully') {
+      alert('Withdrawal successful!');
+      fetchAndDisplayBalance();
+
+      document.getElementById('withdrawAmount').value = '';
+      document.getElementById('accountNumber').value = '';
+      document.getElementById('bankName').value = '';
+      document.getElementById('accountHolderName').value = '';
+      document.getElementById('paymentMethod').value = '';
+    } else if (updateData.message === 'Insufficient funds for withdrawal') {
+      alert('Insufficient funds on the server.');
+    } else {
+      throw new Error('Balance update failed.');
+    }
+
+  } catch (error) {
+    console.error('Error during withdrawal process:', error);
+    alert('Something went wrong. Please try again.');
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+
+    // Populate payment dropdown at page load
+    populatePaymentDropdown();
+    </script>
 
 
     
