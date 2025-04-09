@@ -45,13 +45,7 @@
                 </a>
             </div>
             <div class="account-wrapper">
-                <div class="account-header">
-                    <h4 class="title">Let's get started</h4>
-                    <a href="#0" class="sign-in-with"><img src="assets/images/icon/google.png" alt="icon"><span>Sign Up with Google</span></a>
-                </div>
-                <div class="or">
-                    <span>OR</span>
-                </div>
+               
                 <div class="account-body">
                     <span class="d-block mb-20">Sign up with your work email</span>
                     <form class="account-form" id="signup-form">
@@ -126,21 +120,7 @@
     </div>
     <!--============= Sign In Section Ends Here =============-->
 
- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const userId = localStorage.getItem('userId');
-        
-        if (!userId) {
-            const dashboardLink = document.getElementById('dashboard-link');
-            if (dashboardLink) {
-                dashboardLink.style.display = 'none';
-            }
-
-            // Redirect to sign-in
-            window.location.href = 'sign-in.html';
-        }
-    });
-</script>
+ 
 
 
 

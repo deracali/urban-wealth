@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   demoBalance: {
     type: Number,
-    default: 1000,
+    default: 0,
   },
   referralBonus: { type: Number, default: 0 },
   balanceHistory: [
