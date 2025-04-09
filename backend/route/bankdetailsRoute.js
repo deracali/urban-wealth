@@ -1,4 +1,4 @@
-// bankDetailsRoutes.js
+
 import express from 'express';
 import { getBankDetails, addBankDetail, deleteBankDetail, updateBankDetail } from '../controller/bankdetailsController.js';
 

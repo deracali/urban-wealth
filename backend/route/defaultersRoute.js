@@ -1,4 +1,4 @@
-// defaultersRoutes.js
+
 import express from 'express';
 import { addBankDetail, deleteBankDetail, getBankDetails, updateBankDetail } from '../controller/defaultersController.js';
 

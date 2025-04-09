@@ -134,8 +134,7 @@
                                                     <div class="thumb">
                                                         <img src="assets/images/dashboard/author.png" alt="dashboard">
                                                     </div>
-                                                    <h6 class="title">John Doe</h6>
-                                                    <a href="#mailto:johndoe@gmail.com"><span class="__cf_email__" data-cfemail="3e745156505a515b7e59535f5752105d5153">[email&#160;protected]</span></a>
+                                                   
                                                 </div>
                                                 <div class="author-body">
                                                     <ul>
@@ -173,10 +172,10 @@
                             <div class="dashboard-item">
                                 <div class="dashboard-inner">
                                     <div class="cont">
-                                        <span class="title">Balance</span>
+                                        <span class="title"> referralBonus</span>
                                         <h5 class="amount" id="userBalance">Loading...</h5>
                                         <div class="text-center">
-                                            <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
+                                            <a href="bonusWithdrawal.html" class="normal-button">Withdraw<i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                  
@@ -586,6 +585,37 @@
       document.getElementById('userBalance').innerText = 'User ID not found';
     }
   </script>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userId = localStorage.getItem('userId');
+      const balanceEl = document.getElementById('userBalance');
+  
+      if (!userId) {
+        balanceEl.textContent = 'User not found';
+        return;
+      }
+  
+      fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.referralBonus !== undefined) {
+            balanceEl.textContent = `₦${Number(data.referralBonus).toLocaleString()}.00`;
+          } else {
+            balanceEl.textContent = 'Unable to load  referralBonusbalance';
+          }
+        })
+        .catch(err => {
+          console.error('Error fetching  referralBonus:', err);
+          balanceEl.textContent = 'Error';
+        });
+    });
+  </script>
+
+
 
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
