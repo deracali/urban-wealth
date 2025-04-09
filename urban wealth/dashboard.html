@@ -179,9 +179,7 @@
                                             <a href="deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
-                                    <div class="thumb">
-                                        <img src="assets/images/dashboard/dashboard1.png" alt="dasboard">
-                                    </div>
+                                 
                                 </div>
                             </div>
                         </div>
@@ -195,9 +193,7 @@
                                             <a href="fund-transfer.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
-                                    <div class="thumb">
-                                        <img src="assets/images/dashboard/dashboard1.png" alt="dasboard">
-                                    </div>
+                                 
                                 </div>
                             </div>
                         </div>
@@ -207,7 +203,7 @@
                         <div class="col-lg-6">
                             <div class="total-earning-item">
                                 <div class="total-earning-heading">
-                                    <h5 class="title">Return in 4 days</h5>
+                                   
                                     <h4 class="amount cl-1" id="userTotalBalance">Loading...</h4>
                                 </div>
                                 <div class="d-flex flex-wrap justify-content-between">
@@ -216,9 +212,7 @@
                                             <h4 class="cl-theme" id="monthlyProfit">Loading...</h4>
                                             <span class="month" id="currentMonth">Loading...</span>
                                         </div>
-                                        <div class="thumb">
-                                            <img src="assets/images/dashboard/graph1.png" alt="dashboard">
-                                        </div>
+                                      
                                     </div>
                                     <div class="item">
                                         <div class="cont">
@@ -273,11 +267,11 @@
                                     <ul class="mb--5">
                                         <li>
                                             <div class="icon">
-                                                <img src="assets/images/dashboard/earn/usd.png" alt="dashboard-earn">
+                                                <img src="assets/images/dashboard/earn/NGN.png" alt="dashboard-earn">
                                             </div>
                                             <div class="cont">
                                                 <span class="cl-1">0.00</span>
-                                                <span class="cl-4">USD</span>
+                                                <span class="cl-4">NGN</span>
                                             </div>
                                         </li>
                                         <li>
@@ -355,11 +349,11 @@
                                     <ul class="mb--5">
                                         <li>
                                             <div class="icon">
-                                                <img src="assets/images/dashboard/earn/usd.png" alt="dashboard-earn">
+                                                <img src="assets/images/dashboard/earn/NGN.png" alt="dashboard-earn">
                                             </div>
                                             <div class="cont">
                                                 <span class="cl-1">0.00</span>
-                                                <span class="cl-4">USD</span>
+                                                <span class="cl-4">NGN</span>
                                             </div>
                                         </li>
                                         <li>
@@ -403,11 +397,11 @@
                                     <ul class="mb--5">
                                         <li>
                                             <div class="icon">
-                                                <img src="assets/images/dashboard/earn/usd.png" alt="dashboard-earn">
+                                                <img src="assets/images/dashboard/earn/NGN.png" alt="dashboard-earn">
                                             </div>
                                             <div class="cont">
                                                 <span class="cl-1">0.00</span>
-                                                <span class="cl-4">USD</span>
+                                                <span class="cl-4">NGN</span>
                                             </div>
                                         </li>
                                         <li>
@@ -451,11 +445,11 @@
                                     <ul class="mb--5">
                                         <li>
                                             <div class="icon">
-                                                <img src="assets/images/dashboard/earn/usd.png" alt="dashboard-earn">
+                                                <img src="assets/images/dashboard/earn/NGN.png" alt="dashboard-earn">
                                             </div>
                                             <div class="cont">
                                                 <span class="cl-1">0.00</span>
-                                                <span class="cl-4">USD</span>
+                                                <span class="cl-4">NGN</span>
                                             </div>
                                         </li>
                                         <li>
@@ -517,11 +511,11 @@
                                     <ul class="mb--5">
                                         <li>
                                             <div class="icon">
-                                                <img src="assets/images/dashboard/earn/usd.png" alt="dashboard-earn">
+                                                <img src="assets/images/dashboard/earn/NGN.png" alt="dashboard-earn">
                                             </div>
                                             <div class="cont">
                                                 <span class="cl-1">0.00</span>
-                                                <span class="cl-4">USD</span>
+                                                <span class="cl-4">NGN</span>
                                             </div>
                                         </li>
                                     </ul>
@@ -631,61 +625,53 @@
     
 
 
-  
-<script>
-    // Get the userId from localStorage
-    const userId = localStorage.getItem('userId');
-
-    if (userId) {
-        // Fetch the balance from the API
-        fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Get balance and update Balance section
-                const balance = data.balance || 0;
-                document.getElementById('userBalance').innerText = `${balance} USD`;
-
-                // Calculate the earnings after 5 days (5% of balance over 5 days)
-                const earningsAfter5Days = balance * 0.05;  // 5% of balance
-                const totalEarnings = balance + earningsAfter5Days;
-
-                // Update Total earnings section
-                document.getElementById('userTotalBalance').innerText = `${totalEarnings.toFixed(2)} USD`;
-
-                // Calculate and display the monthly and yearly profit
-                const monthlyProfit = (earningsAfter5Days * 12) / 5; // Monthly equivalent of 5-day earnings
-                const yearlyProfit = monthlyProfit * 12; // Annual equivalent of monthly profit
-
-                // Get the current month
-                const currentMonth = new Date().toLocaleString('default', { month: 'long' });
-                const currentYear = new Date().getFullYear();
-
-                // Update Monthly profit
-                const monthlyProfitPercentage = (monthlyProfit / balance) * 100; // Percentage of balance
-                document.getElementById('monthlyProfit').innerText = `+${monthlyProfitPercentage.toFixed(2)}%`;
-                document.getElementById('currentMonth').innerText = `${currentMonth} Profit`;
-
-                // Update Yearly profit
-                const yearlyProfitPercentage = (yearlyProfit / balance) * 100; // Percentage of balance
-                document.getElementById('yearlyProfit').innerText = `+${yearlyProfitPercentage.toFixed(2)}%`;
-                document.getElementById('yearLabel').innerText = `${currentYear} Profit`;
-            })
-            .catch(error => {
-                console.error('Error fetching user data:', error);
-                document.getElementById('userBalance').innerText = 'Error loading balance';
-                document.getElementById('userTotalBalance').innerText = 'Error loading earnings';
-                document.getElementById('monthlyProfit').innerText = 'Error loading profit';
-                document.getElementById('yearlyProfit').innerText = 'Error loading profit';
-            });
-    } else {
-        console.error('User ID not found in localStorage');
-        document.getElementById('userBalance').innerText = 'User ID not found';
-        document.getElementById('userTotalBalance').innerText = 'User ID not found';
-        document.getElementById('monthlyProfit').innerText = 'Error loading profit';
-        document.getElementById('yearlyProfit').innerText = 'Error loading profit';
-    }
-</script>
-
+    <script>
+        const userId = localStorage.getItem('userId');
+    
+        if (userId) {
+            fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balance = data.balance || 0;
+                    document.getElementById('userBalance').innerText = `${balance} NGN`;
+    
+                    // ✅ 100% return in 4 days means: totalEarnings = 2x balance after 4 days
+                    const earningsAfter4Days = balance; // 100% of balance
+                    const totalEarnings = balance + earningsAfter4Days;
+    
+                    document.getElementById('userTotalBalance').innerText = `${totalEarnings.toFixed(2)} NGN`;
+    
+                    // Monthly profit: (100% every 4 days = 7.5x per 30-day month)
+                    const monthlyProfit = balance * 7.5;
+                    const yearlyProfit = monthlyProfit * 12;
+    
+                    const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+                    const currentYear = new Date().getFullYear();
+    
+                    const monthlyProfitPercentage = (monthlyProfit / balance) * 100;
+                    document.getElementById('monthlyProfit').innerText = `+${monthlyProfitPercentage.toFixed(2)}%`;
+                    document.getElementById('currentMonth').innerText = `${currentMonth} Profit`;
+    
+                    const yearlyProfitPercentage = (yearlyProfit / balance) * 100;
+                    document.getElementById('yearlyProfit').innerText = `+${yearlyProfitPercentage.toFixed(2)}%`;
+                    document.getElementById('yearLabel').innerText = `${currentYear} Profit`;
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                    document.getElementById('userBalance').innerText = 'Error loading balance';
+                    document.getElementById('userTotalBalance').innerText = 'Error loading earnings';
+                    document.getElementById('monthlyProfit').innerText = 'Error loading profit';
+                    document.getElementById('yearlyProfit').innerText = 'Error loading profit';
+                });
+        } else {
+            console.error('User ID not found in localStorage');
+            document.getElementById('userBalance').innerText = 'User ID not found';
+            document.getElementById('userTotalBalance').innerText = 'User ID not found';
+            document.getElementById('monthlyProfit').innerText = 'Error loading profit';
+            document.getElementById('yearlyProfit').innerText = 'Error loading profit';
+        }
+    </script>
+    
 
 
 

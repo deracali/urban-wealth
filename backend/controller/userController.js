@@ -3,8 +3,18 @@ import jwt from 'jsonwebtoken';
 import User from '../model/userModel.js';
 
 // Signup controller
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../model/userModel.js';
+
+// Utility to generate a simple random referral code
+const generateReferralCode = () => {
+  return Math.random().toString(36).substring(2, 8).toUpperCase(); // 6 character code
+};
+
+// Signup controller
 export const signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, referralCode: referralInput } = req.body;
 
   try {
     const userExist = await User.findOne({ email });
@@ -12,11 +22,33 @@ export const signup = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = await User.create({
+    const newUserData = {
       name,
       email,
-      password: hashedPassword
-    });
+      password: hashedPassword,
+      referralCode: generateReferralCode(), // Generate new referral code
+    };
+
+    if (referralInput) {
+      const referrer = await User.findOne({ referralCode: referralInput });
+
+      if (referrer) {
+        newUserData.referredBy = referralInput;
+
+        // Add bonus to referralBonus instead of balance
+        referrer.referralBonus += 5000;
+
+        // (Optional) Track in balanceHistory
+        referrer.balanceHistory.push({
+          withdrawalAmount: 5000,
+          status: 'deposit',
+        });
+
+        await referrer.save();
+      }
+    }
+
+    const newUser = await User.create(newUserData);
 
     const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
@@ -28,10 +60,11 @@ export const signup = async (req, res) => {
       token
     });
   } catch (err) {
-    console.error('Error during signup:', err);  // Log errors
+    console.error('Error during signup:', err);
     res.status(500).json({ error: err.message });
   }
 };
+
 
 // Login controller
 export const login = async (req, res) => {
@@ -200,3 +233,29 @@ export const updateDemoBalance = async (req, res) => {
   }
 };
 
+
+
+// Block or unblock user by ID
+export const updateBlockStatus = async (req, res) => {
+  const { id } = req.params;
+  const { isBlocked } = req.body;
+
+  try {
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    user.isBlocked = isBlocked;
+
+    await user.save();
+
+    // Exclude password from response
+    const { password: _, ...userWithoutPassword } = user.toObject();
+
+    res.status(200).json({
+      message: `User has been ${isBlocked ? 'blocked' : 'unblocked'} successfully`,
+      user: userWithoutPassword,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

@@ -16,12 +16,13 @@ const userSchema = new mongoose.Schema({
   },
   balance: {
     type: Number,
-    default: 0,  // Initialize the balance to 0 or any starting value
+    default: 0,
   },
   demoBalance: {
     type: Number,
-    default: 1000,  // Set a demo balance for testing purposes
+    default: 1000,
   },
+  referralBonus: { type: Number, default: 0 },
   balanceHistory: [
     {
       withdrawalAmount: {
@@ -34,11 +35,23 @@ const userSchema = new mongoose.Schema({
       },
       status: {
         type: String,
-        enum: ['pending', 'completed', 'failed', 'deposit', 'withdrawal'], // Add 'deposit' and 'withdrawal' here
+        enum: ['pending', 'completed', 'failed', 'deposit', 'withdrawal'],
         default: 'pending',
       },
     }
-  ]
+  ],
+  isBlocked: {
+    type: Boolean,
+    default: false,
+  },
+  referralCode: {
+    type: String,
+    unique: true,
+  },
+  referredBy: {
+    type: String,  // store the referralCode of the referrer
+    default: null,
+  }
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

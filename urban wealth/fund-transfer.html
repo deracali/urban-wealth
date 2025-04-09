@@ -287,9 +287,7 @@ th, td {
                                             <a href="fund-transfer.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
-                                    <div class="thumb">
-                                        <img src="assets/images/dashboard/dashboard1.png" alt="dasboard">
-                                    </div>
+                                 
                                 </div>
                             </div>
                         </div>
@@ -491,65 +489,76 @@ th, td {
     document.addEventListener('DOMContentLoaded', loadBids);
 
     function submitBid() {
-        const amountInput = document.getElementById('amountInput');
-        const amount = parseFloat(amountInput.value);
-        const tableBody = document.getElementById('bidsTableBody');
+    const amountInput = document.getElementById('amountInput');
+    const amount = parseFloat(amountInput.value);
+    const tableBody = document.getElementById('bidsTableBody');
 
-        if (!amount || amount <= 0) {
-            alert("Please enter a valid amount");
-            return;
-        }
-
-        const userId = localStorage.getItem('userId');
-        if (!userId) {
-            alert("User ID not found in localStorage");
-            return;
-        }
-
-        const today = new Date().toISOString().split('T')[0];
-        const countdownId = `countdown-${Date.now()}`;
-        const timestamp = Date.now(); // Store creation time
-
-        // Add bid row to UI
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td style="color: green;">Bid</td>
-            <td>${today}</td>
-            <td><span class="status-pending">pending</span></td>
-            <td>₦${Number(amount).toLocaleString()}.00</td>
-            <td id="${countdownId}">24:00:00</td>
-            <td><button class="cancel-btn" onclick="cancelBid(this)">Cancel</button></td>
-        `;
-        tableBody.appendChild(row);
-        amountInput.value = '';
-
-        // Start countdown for 24 hours (86400 seconds)
-        startCountdown(countdownId, 24 * 60 * 60);
-
-        // Save bid to localStorage with timestamp
-        saveBid({ amount, date: today, countdownId, status: 'pending', timestamp });
-
-        // Update demo balance on backend
-        fetch(`https://urban-wealth.onrender.com/api/users/update-demo-balance/${userId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ demoBalance: amount })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                console.log('Bid successful');
-            } else {
-                alert(data.message || 'Failed to update balance');
-            }
-        })
-        .catch(err => {
-            console.error('Error:', err);
-            alert('Error updating balance');
-        });
+    if (!amount || amount <= 0) {
+        alert("Please enter a valid amount");
+        return;
     }
+
+    if (amount < 20000) {
+        alert("Minimum daily bidding amount is ₦20,000");
+        return;
+    }
+
+    if (amount > 300000) {
+        alert("Maximum daily bidding amount is ₦300,000");
+        return;
+    }
+
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+        alert("User ID not found in localStorage");
+        return;
+    }
+
+    const today = new Date().toISOString().split('T')[0];
+    const countdownId = `countdown-${Date.now()}`;
+    const timestamp = Date.now();
+
+    // Add bid row to UI
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td style="color: green;">Bid</td>
+        <td>${today}</td>
+        <td><span class="status-pending">pending</span></td>
+        <td>₦${Number(amount).toLocaleString()}.00</td>
+        <td id="${countdownId}">24:00:00</td>
+        <td><button class="cancel-btn" onclick="cancelBid(this)">Cancel</button></td>
+    `;
+    tableBody.appendChild(row);
+    amountInput.value = '';
+
+    // Start countdown for 24 hours
+    startCountdown(countdownId, 24 * 60 * 60);
+
+    // Save bid to localStorage
+    saveBid({ amount, date: today, countdownId, status: 'pending', timestamp });
+
+    // Update backend
+    fetch(`https://urban-wealth.onrender.com/api/users/update-demo-balance/${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ demoBalance: amount })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Bid successful');
+        } else {
+            alert(data.message || 'Failed to update balance');
+        }
+    })
+    .catch(err => {
+        console.error('Error:', err);
+        alert('Error updating balance');
+    });
+}
+
 
     // Start countdown with given seconds left
     function startCountdown(elementId, totalSeconds) {

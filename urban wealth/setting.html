@@ -155,17 +155,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="dashboard-hero-content text-white">
+                    <div class="dashboard-hero-content text-white"> 
                         <h3 class="title">Settings</h3>
                         <ul class="breadcrumb">
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>
-                                Settings
-                            </li>
+                          <li>
+                            <a href="index.html">Home</a>
+                          </li>
+                          <li>Settings</li>
                         </ul>
-                    </div>
+                      
+                        <!-- Referral Link will be inserted here -->
+                        <div id="referral-link" style="margin-top: 20px; color: #fff;"></div>
+                      </div>
                 </div>
                 <div class="container-fluid">
                     <div class="row justify-content-center mt--85">
@@ -179,9 +180,7 @@
                                             <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
-                                    <div class="thumb">
-                                        <img src="assets/images/dashboard/dashboard1.png" alt="dasboard">
-                                    </div>
+                                 
                                 </div>
                             </div>
                         </div>
@@ -381,6 +380,74 @@
         </section>
         <!--=======SideHeader-Section Ends Here=======-->
     </div>
+
+
+
+
+    <script>
+        async function fetchUserById() {
+          const token = localStorage.getItem('token');
+          const userId = localStorage.getItem('userId'); // get userId from localStorage
+      
+          if (!token || !userId) {
+            console.error('Missing token or userId');
+            return;
+          }
+      
+          try {
+            const response = await fetch(`http://localhost:5000/api/users/user/${userId}`, {
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              }
+            });
+      
+            const data = await response.json();
+            console.log(data);
+      
+            if (response.ok) {
+  // Use referralCode, not userId
+  const referralCode = data.user.referralCode;
+  const referralLink = `https://yourwebsite.com/signup.html?ref=${referralCode}`;
+
+  document.getElementById('referral-link').innerHTML = `
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <strong>Your Referral Link:</strong> 
+      <input type="text" id="referralInput" value="${referralLink}" readonly style="flex: 1; padding: 5px; font-size: 14px; border-radius: 5px; border: none;">
+      <button id="copyButton" style="padding: 6px 10px; background-color: #4fd1c5; color: white; border: none; border-radius: 5px; cursor: pointer;">Copy</button>
+    </div>
+  `;
+
+  document.getElementById('copyButton').addEventListener('click', function() {
+    const copyText = document.getElementById('referralInput');
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // for mobile devices
+
+    navigator.clipboard.writeText(copyText.value)
+      .then(() => {
+        alert('Referral link copied!');
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+});
+
+      
+            } else {
+              console.error(data.message || 'Failed to fetch user');
+            }
+          } catch (err) {
+            console.error('Error fetching user:', err);
+          }
+        }
+      
+        // Run the function after page loads
+        window.addEventListener('DOMContentLoaded', fetchUserById);
+      </script>
+
+
+
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/modernizr-3.6.0.min.js"></script>

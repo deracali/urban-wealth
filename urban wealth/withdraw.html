@@ -179,9 +179,7 @@
                                             <a href="/urban wealth/deposit.html" class="normal-button">Trade <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </div>
-                                    <div class="thumb">
-                                        <img src="assets/images/dashboard/dashboard1.png" alt="dasboard">
-                                    </div>
+                                 
                                 </div>
                             </div>
                         </div>
@@ -522,7 +520,7 @@
         .then(response => response.json())
         .then(data => {
           const balance = data.balance || 0;
-          document.getElementById('userBalance').innerText = `${balance} USD`;
+          document.getElementById('userBalance').innerText = `${balance} NGN`;
         })
         .catch(error => {
           console.error('Error fetching user data:', error);

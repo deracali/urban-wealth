@@ -315,16 +315,16 @@
       $( "#btc-amount" ).val( "BTC " +  $( "#btc-range" ).slider( "value" ) );
     } );
     $( function() {
-      $( "#usd-range" ).slider({
+      $( "#NGN-range" ).slider({
         range: "min",
         value: 500,
         min: 1,
         max: 1000,
         slide: function( event, ui ) {
-          $( "#usd-amount" ).val( ui.value + " USD" );
+          $( "#NGN-amount" ).val( ui.value + " NGN" );
         }
       });
-      $( "#usd-amount" ).val( "USD " +  $( "#usd-range" ).slider( "value" ) );
+      $( "#NGN-amount" ).val( "NGN " +  $( "#NGN-range" ).slider( "value" ) );
     } );
     $( function() {
       $( "#eth-range" ).slider({

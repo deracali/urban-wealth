@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteUserById, getAllUsers, getUserById, login, signup, updateDemoBalance, updateUserById } from '../controller/userController.js';
+import { deleteUserById, getAllUsers, getUserById, login, signup, updateBlockStatus, updateDemoBalance, updateUserById } from '../controller/userController.js';
 
 const userRoutes = express.Router();
 
@@ -10,5 +10,6 @@ userRoutes.get('/user/:id', getUserById);  // Get user by ID
 userRoutes.put('/update/:id', updateUserById);  // Update user by ID
 userRoutes.delete('/delete/:id', deleteUserById);  // Delete user by ID
 userRoutes.patch('/update-demo-balance/:id', updateDemoBalance);
+userRoutes.patch('/block/:id', updateBlockStatus);
 
 export default userRoutes;
