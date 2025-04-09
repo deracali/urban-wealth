@@ -10,7 +10,7 @@ defaultersRoutes.get('/get', getBankDetails);
 // Add a new bank detail
 defaultersRoutes.post('/bank-details', addBankDetail);
 
-bankdetailsRoutes.put('/update/:id', updateBankDetail);
+defaultersRoutes.put('/update/:id', updateBankDetail);
 defaultersRoutes.delete('/delete/:id', deleteBankDetail);
 
 
