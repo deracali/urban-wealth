@@ -1,5 +1,5 @@
 import express from 'express';
-import { createWithdrawal, getAllWithdrawals, updateWithdrawalStatus } from '../controller/withdrawal.js';
+import { createWithdrawal, getAllWithdrawals, getWithdrawalsByUserId, updateWithdrawalStatus } from '../controller/withdrawal.js';
 
 const withdrawalRoutes = express.Router();
 

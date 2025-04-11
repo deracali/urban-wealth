@@ -353,13 +353,28 @@
 
 
     <script>
-        // Function to fetch withdrawal history from the API
+        // Function to fetch withdrawal history from the API based on userId
         async function fetchWithdrawals() {
             try {
-                const response = await fetch('https://urban-wealth.onrender.com/api/withdrawals');
+                // Get userId from localStorage
+                const userId = localStorage.getItem('userId');
+                
+                if (!userId) {
+                    console.error('User not logged in or userId not found in localStorage');
+                    return;
+                }
+    
+                // Construct the API URL with the userId
+                const response = await fetch(`https://urban-wealth.onrender.com/api/withdrawals/user/${userId}`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch withdrawals');
+                }
+    
                 const withdrawals = await response.json();
-                const data = withdrawals.withdrawals
-                console.log(data)
+                const data = withdrawals.withdrawals;
+    
+                console.log(data);
                 if (data && Array.isArray(data)) {
                     renderWithdrawals(data);
                 } else {
@@ -417,6 +432,9 @@
         // Fetch and render withdrawals when the page loads
         fetchWithdrawals();
     </script>
+
+
+
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/modernizr-3.6.0.min.js"></script>
