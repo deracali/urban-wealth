@@ -1,22 +1,22 @@
 // Avoid `console` errors in browsers that lack a console.
 (function() {
-  var method;
+  var mngnod;
   var noop = function () {};
-  var methods = [
+  var mngnods = [
     'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
     'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
     'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
     'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
   ];
-  var length = methods.length;
+  var length = mngnods.length;
   var console = (window.console = window.console || {});
 
   while (length--) {
-    method = methods[length];
+    mngnod = mngnods[length];
 
-    // Only stub undefined methods.
-    if (!console[method]) {
-      console[method] = noop;
+    // Only stub undefined mngnods.
+    if (!console[mngnod]) {
+      console[mngnod] = noop;
     }
   }
 }());

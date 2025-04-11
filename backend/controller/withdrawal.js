@@ -68,3 +68,25 @@ export const updateWithdrawalStatus = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+
+// Get withdrawals by userId
+export const getWithdrawalsByUserId = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const withdrawals = await Withdrawal.find({ userId });
+
+    if (withdrawals.length === 0) {
+      return res.status(404).json({ error: 'No withdrawals found for this user' });
+    }
+
+    res.status(200).json({
+      message: 'Withdrawals fetched successfully',
+      withdrawals,
+    });
+  } catch (err) {
+    console.error('Error fetching withdrawals by userId:', err);
+    res.status(500).json({ error: err.message });
+  }
+};

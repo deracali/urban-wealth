@@ -82,7 +82,9 @@
                         </li>
                        
                         <li>
-                            <a href="javascript:void(0)"><i class="flaticon-right-arrow"></i>Logout</a>
+                              <li id="logoutButton1">
+                            <a href="#0"><i class="flaticon-right-arrow"></i>Logout</a>
+                        </li>
                         </li>
                     </ul>
                 </div>
@@ -159,7 +161,7 @@
                         <h3 class="title">Settings</h3>
                         <ul class="breadcrumb">
                           <li>
-                            <a href="index.html">Home</a>
+                            <a href="dashboard.html">Home</a>
                           </li>
                           <li>Settings</li>
                         </ul>
@@ -244,8 +246,8 @@
                                         <input type="text" id="dogecoin_account" value="55550002220022">
                                       </div>
                                       <div class="create_form_group col-sm-12">
-                                        <label for="ethereum_account">Your Ethereum acc no:</label>
-                                        <input type="text" id="ethereum_account" value="55550002220022">
+                                        <label for="ngnereum_account">Your ngnereum acc no:</label>
+                                        <input type="text" id="ngnereum_account" value="55550002220022">
                                       </div>
                                       <div class="create_form_group col-sm-12">
                                         <label for="bank_account">Your Bank Account:</label>
@@ -377,7 +379,7 @@
       
           try {
             const response = await fetch(`https://urban-wealth.onrender.com/api/users/user/${userId}`, {
-              method: 'GET',
+              mngnod: 'GET',
               headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -390,13 +392,13 @@
             if (response.ok) {
   // Use referralCode, not userId
   const referralCode = data.referralCode;
-  const referralLink = `https://urbanwealth.netlify.app/sign-up.html?ref=${referralCode}`;
+  const referralLink = `https://Urbanwealth.it.com/sign-up.html?ref=${referralCode}`;
 
   document.getElementById('referral-link').innerHTML = `
     <div style="display: flex; align-items: center; gap: 10px;">
       <strong>Your Referral Link:</strong> 
       <input type="text" id="referralInput" value="${referralLink}" readonly style="flex: 1; padding: 5px; font-size: 14px; border-radius: 5px; border: none;">
-      <button id="copyButton" style="padding: 6px 10px; width: 8%; background-color: #4fd1c5; color: white; border: none; border-radius: 5px; cursor: pointer;">Copy</button>
+      <button id="copyButton" style="padding: 6px 10px; width: 8%; font-size:13px; background-color: #4fd1c5; color: white; border: none; border-radius: 5px; cursor: pointer;">Copy</button>
     </div>
   `;
 
@@ -478,20 +480,20 @@
         bitcoin: document.getElementById('bitcoin_account_no').value.trim(),
         litecoin: document.getElementById('litecoin_account').value.trim(),
         dogecoin: document.getElementById('dogecoin_account').value.trim(),
-        ethereum: document.getElementById('ethereum_account').value.trim(),
+        ngnereum: document.getElementById('ngnereum_account').value.trim(),
         bankAccount: document.getElementById('bank_account').value.trim()  // <-- NEW BANK ACCOUNT FIELD
       };
   
       // Save to LocalStorage
-      localStorage.setItem('paymentMethods', JSON.stringify(paymentData));
+      localStorage.setItem('paymentMngnods', JSON.stringify(paymentData));
   
-      alert('Payment methods saved successfully!');
-      console.log('Saved Payment Methods:', paymentData);
+      alert('Payment mngnods saved successfully!');
+      console.log('Saved Payment Mngnods:', paymentData);
     });
   
     // Auto-fill form if data exists (optional)
     window.addEventListener('load', function() {
-      const savedPayment = localStorage.getItem('paymentMethods');
+      const savedPayment = localStorage.getItem('paymentMngnods');
       if (savedPayment) {
         const payment = JSON.parse(savedPayment);
         document.getElementById('perfect_money').value = payment.perfectMoney || '';
@@ -500,13 +502,24 @@
         document.getElementById('bitcoin_account_no').value = payment.bitcoin || '';
         document.getElementById('litecoin_account').value = payment.litecoin || '';
         document.getElementById('dogecoin_account').value = payment.dogecoin || '';
-        document.getElementById('ethereum_account').value = payment.ethereum || '';
+        document.getElementById('ngnereum_account').value = payment.ngnereum || '';
         document.getElementById('bank_account').value = payment.bankAccount || ''; // <-- LOAD BANK ACCOUNT FIELD
       }
     });
   </script>
 
-
+<script>
+    document.getElementById('logoutButton1').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        
+        // Remove userId and token from localStorage
+        localStorage.removeItem('userId');
+        localStorage.removeItem('token');
+        
+        // Optionally, redirect to the login page or homepage
+        window.location.href = 'sign-in.html';  // Change '/login' to your actual login route
+    });
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

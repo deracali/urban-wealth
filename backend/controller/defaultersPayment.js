@@ -64,7 +64,7 @@ const createPayment = async (req, res) => {
       payment: newPayment,
     });
   } catch (error) {
-    console.error("Error during payment creation:", error); // Log the error if something goes wrong
+    console.error("Error during payment creation:", error); // Log the error if somngning goes wrong
     return res.status(500).json({ message: 'Server error', error: error.message });
   }
 };

@@ -204,7 +204,7 @@
           }
       }
     })
-    $('.deposit-method-slider').owlCarousel({
+    $('.deposit-mngnod-slider').owlCarousel({
       loop: true,
       margin: 0,
       responsiveClass: true,
@@ -233,8 +233,8 @@
           }
       }
     })
-    $( ".deposit-method-slider .owl-prev").html('<i class="fas fa-angle-left"></i>');
-    $( ".deposit-method-slider .owl-next").html('<i class="fas fa-angle-right"></i>');
+    $( ".deposit-mngnod-slider .owl-prev").html('<i class="fas fa-angle-left"></i>');
+    $( ".deposit-mngnod-slider .owl-next").html('<i class="fas fa-angle-right"></i>');
     $('#copy').on('click', function(){
         var copyText = $("#copyLinks");
         copyText.select();
@@ -298,21 +298,21 @@
         $(this).addClass('active');
       }
     });
-    $('.deposit-method-item').on('click', function(){
-        $(this).parent('.owl-item').siblings().children('.deposit-method-item').removeClass('active');
+    $('.deposit-mngnod-item').on('click', function(){
+        $(this).parent('.owl-item').siblings().children('.deposit-mngnod-item').removeClass('active');
         $(this).addClass('active');
     })
     $( function() {
-      $( "#btc-range" ).slider({
+      $( "#ngn-range" ).slider({
         range: "min",
         value: 300,
         min: 1,
         max: 1000,
         slide: function( event, ui ) {
-          $( "#btc-amount" ).val( ui.value + " BTC" );
+          $( "#ngn-amount" ).val( ui.value + " ngn" );
         }
       });
-      $( "#btc-amount" ).val( "BTC " +  $( "#btc-range" ).slider( "value" ) );
+      $( "#ngn-amount" ).val( "ngn " +  $( "#ngn-range" ).slider( "value" ) );
     } );
     $( function() {
       $( "#NGN-range" ).slider({
@@ -327,16 +327,16 @@
       $( "#NGN-amount" ).val( "NGN " +  $( "#NGN-range" ).slider( "value" ) );
     } );
     $( function() {
-      $( "#eth-range" ).slider({
+      $( "#ngn-range" ).slider({
         range: "min",
         value: 400,
         min: 1,
         max: 1000,
         slide: function( event, ui ) {
-          $( "#eth-amount" ).val( ui.value + " ETH" );
+          $( "#ngn-amount" ).val( ui.value + " ngn" );
         }
       });
-      $( "#eth-amount" ).val( "ETH " +  $( "#eth-range" ).slider( "value" ) );
+      $( "#ngn-amount" ).val( "ngn " +  $( "#ngn-range" ).slider( "value" ) );
     } );
     $( function() {
       $( "#rub-range" ).slider({

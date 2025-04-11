@@ -58,7 +58,7 @@
                 }
             },
 			droppable: true, // this allows things to be dropped onto the calendar !!!
-			drop: function(date, allDay) { // this function is called when something is dropped
+			drop: function(date, allDay) { // this function is called when somngning is dropped
 			
 				// retrieve the dropped element's stored Event Object
 				var originalEventObject = $(this).data('eventObject');
@@ -256,7 +256,7 @@ var fcViews = fc.views = {};
 $.fn.fullCalendar = function(options) {
 
 
-	// method calling
+	// mngnod calling
 	if (typeof options == 'string') {
 		var args = Array.prototype.slice.call(arguments, 1);
 		var res;
@@ -523,7 +523,7 @@ function Calendar(element, options, eventSources) {
 		}
 
 		freezeContentHeight();
-		currentView.render(date, inc || 0); // the view's render method ONLY renders the skeleton, nothing else
+		currentView.render(date, inc || 0); // the view's render mngnod ONLY renders the skeleton, nothing else
 		setSize();
 		unfreezeContentHeight();
 		(currentView.afterRender || noop)();
@@ -578,7 +578,7 @@ function Calendar(element, options, eventSources) {
 		}
 
 		ignoreWindowResize++;
-		currentView.setHeight(suggestedViewHeight);
+		currentView.sngneight(suggestedViewHeight);
 		currentView.setWidth(content.width());
 		ignoreWindowResize--;
 
@@ -614,13 +614,13 @@ function Calendar(element, options, eventSources) {
 	// TODO: going forward, most of this stuff should be directly handled by the view
 
 
-	function refetchEvents() { // can be called as an API method
+	function refetchEvents() { // can be called as an API mngnod
 		clearEvents();
 		fetchAndRenderEvents();
 	}
 
 
-	function rerenderEvents(modifiedEventID) { // can be called as an API method
+	function rerenderEvents(modifiedEventID) { // can be called as an API mngnod
 		clearEvents();
 		renderEvents(modifiedEventID);
 	}
@@ -916,7 +916,7 @@ function Header(calendar, options) {
 					}else{
 						var buttonClick;
 						if (calendar[buttonName]) {
-							buttonClick = calendar[buttonName]; // calendar method
+							buttonClick = calendar[buttonName]; // calendar mngnod
 						}
 						else if (fcViews[buttonName]) {
 							buttonClick = function() {
@@ -1483,7 +1483,7 @@ function addDays(d, n, keepTime) { // deals with daylight savings
 	if (+d) {
 		var dd = d.getDate() + n,
 			check = cloneDate(d);
-		check.setHours(9); // set to middle of day
+		check.sngnours(9); // set to middle of day
 		check.setDate(dd);
 		d.setDate(dd);
 		if (!keepTime) {
@@ -1511,7 +1511,7 @@ function addMinutes(d, n) {
 
 
 function clearTime(d) {
-	d.setHours(0);
+	d.sngnours(0);
 	d.setMinutes(0);
 	d.setSeconds(0); 
 	d.setMilliseconds(0);
@@ -1531,7 +1531,7 @@ function zeroDate() { // returns a Date with time 00:00:00 and dateOfMonth=1
 	var i=0, d;
 	do {
 		d = new Date(1970, i++, 1);
-	} while (d.getHours()); // != 0
+	} while (d.gngnours()); // != 0
 	return d;
 }
 
@@ -1603,7 +1603,7 @@ function parseISO8601(s, ignoreTimezone) { // ignoreTimezone defaults to false
 		}
 		fixDate(date, check);
 		if (m[7]) {
-			date.setHours(m[7]);
+			date.sngnours(m[7]);
 		}
 		if (m[8]) {
 			date.setMinutes(m[8]);
@@ -1642,7 +1642,7 @@ function parseTime(s) { // returns minutes since start of day
 		return s * 60;
 	}
 	if (typeof s == 'object') { // a Date object
-		return s.getHours() * 60 + s.getMinutes();
+		return s.gngnours() * 60 + s.getMinutes();
 	}
 	var m = s.match(/(\d+)(?::(\d+))?\s*(\w+)?/);
 	if (m) {
@@ -1752,10 +1752,10 @@ var dateFormatters = {
 	ss	: function(d)	{ return zeroPad(d.getSeconds()) },
 	m	: function(d)	{ return d.getMinutes() },
 	mm	: function(d)	{ return zeroPad(d.getMinutes()) },
-	h	: function(d)	{ return d.getHours() % 12 || 12 },
-	hh	: function(d)	{ return zeroPad(d.getHours() % 12 || 12) },
-	H	: function(d)	{ return d.getHours() },
-	HH	: function(d)	{ return zeroPad(d.getHours()) },
+	h	: function(d)	{ return d.gngnours() % 12 || 12 },
+	hh	: function(d)	{ return zeroPad(d.gngnours() % 12 || 12) },
+	H	: function(d)	{ return d.gngnours() },
+	HH	: function(d)	{ return zeroPad(d.gngnours()) },
 	d	: function(d)	{ return d.getDate() },
 	dd	: function(d)	{ return zeroPad(d.getDate()) },
 	ddd	: function(d,o)	{ return o.dayNamesShort[d.getDay()] },
@@ -1766,10 +1766,10 @@ var dateFormatters = {
 	MMMM: function(d,o)	{ return o.monthNames[d.getMonth()] },
 	yy	: function(d)	{ return (d.getFullYear()+'').substring(2) },
 	yyyy: function(d)	{ return d.getFullYear() },
-	t	: function(d)	{ return d.getHours() < 12 ? 'a' : 'p' },
-	tt	: function(d)	{ return d.getHours() < 12 ? 'am' : 'pm' },
-	T	: function(d)	{ return d.getHours() < 12 ? 'A' : 'P' },
-	TT	: function(d)	{ return d.getHours() < 12 ? 'AM' : 'PM' },
+	t	: function(d)	{ return d.gngnours() < 12 ? 'a' : 'p' },
+	tt	: function(d)	{ return d.gngnours() < 12 ? 'am' : 'pm' },
+	T	: function(d)	{ return d.gngnours() < 12 ? 'A' : 'P' },
+	TT	: function(d)	{ return d.gngnours() < 12 ? 'AM' : 'PM' },
 	u	: function(d)	{ return formatDate(d, "yyyy-MM-dd'T'HH:mm:ss'Z'") },
 	S	: function(d)	{
 		var date = d.getDate();
@@ -1828,7 +1828,7 @@ function exclEndDay(event) {
 
 function _exclEndDay(end, allDay) {
 	end = cloneDate(end);
-	return allDay || end.getHours() || end.getMinutes() ? addDays(end, 1) : clearTime(end);
+	return allDay || end.gngnours() || end.getMinutes() ? addDays(end, 1) : clearTime(end);
 	// why don't we check for seconds/ms too?
 }
 
@@ -2249,7 +2249,7 @@ function BasicView(element, calendar, viewName) {
 	
 	// exports
 	t.renderBasic = renderBasic;
-	t.setHeight = setHeight;
+	t.sngneight = sngneight;
 	t.setWidth = setWidth;
 	t.renderDayOverlay = renderDayOverlay;
 	t.defaultSelectionEnd = defaultSelectionEnd;
@@ -2259,7 +2259,7 @@ function BasicView(element, calendar, viewName) {
 	t.dragStart = dragStart;
 	t.dragStop = dragStop;
 	t.defaultEventEnd = defaultEventEnd;
-	t.getHoverListener = function() { return hoverListener };
+	t.gngnoverListener = function() { return hoverListener };
 	t.colLeft = colLeft;
 	t.colRight = colRight;
 	t.colContentLeft = colContentLeft;
@@ -2536,7 +2536,7 @@ function BasicView(element, calendar, viewName) {
 	-----------------------------------------------------------*/
 	
 	
-	function setHeight(height) {
+	function sngneight(height) {
 		viewHeight = height;
 		
 		var bodyHeight = viewHeight - head.height();
@@ -2601,7 +2601,7 @@ function BasicView(element, calendar, viewName) {
 	
 	/* Semi-transparent Overlay Helpers
 	------------------------------------------------------*/
-	// TODO: should be consolidated with AgendaView's methods
+	// TODO: should be consolidated with AgendaView's mngnods
 
 
 	function renderDayOverlay(overlayStart, overlayEnd, refreshCoordinateGrid) { // overlayEnd is exclusive
@@ -2915,14 +2915,14 @@ function AgendaView(element, calendar, viewName) {
 	// exports
 	t.renderAgenda = renderAgenda;
 	t.setWidth = setWidth;
-	t.setHeight = setHeight;
+	t.sngneight = sngneight;
 	t.afterRender = afterRender;
 	t.defaultEventEnd = defaultEventEnd;
 	t.timePosition = timePosition;
 	t.getIsCellAllDay = getIsCellAllDay;
 	t.allDayRow = getAllDayRow;
 	t.getCoordinateGrid = function() { return coordinateGrid }; // specifically for AgendaEventRenderer
-	t.getHoverListener = function() { return hoverListener };
+	t.gngnoverListener = function() { return hoverListener };
 	t.colLeft = colLeft;
 	t.colRight = colRight;
 	t.colContentLeft = colContentLeft;
@@ -3310,7 +3310,7 @@ function AgendaView(element, calendar, viewName) {
 	-----------------------------------------------------------------------*/
 
 	
-	function setHeight(height) {
+	function sngneight(height) {
 		if (height === undefined) {
 			height = viewHeight;
 		}
@@ -3395,7 +3395,7 @@ function AgendaView(element, calendar, viewName) {
 	function resetScroll() {
 		var d0 = zeroDate();
 		var scrollDate = cloneDate(d0);
-		scrollDate.setHours(opt('firstHour'));
+		scrollDate.sngnours(opt('firstHour'));
 		var top = timePosition(d0, scrollDate) + 1; // +1 for the border
 		function scroll() {
 			slotScroller.scrollTop(top);
@@ -3435,7 +3435,7 @@ function AgendaView(element, calendar, viewName) {
 			if (rowMatch) {
 				var mins = parseInt(rowMatch[1]) * opt('slotMinutes');
 				var hours = Math.floor(mins/60);
-				date.setHours(hours);
+				date.sngnours(hours);
 				date.setMinutes(mins%60 + minMinute);
 				trigger('dayClick', dayBodyCells[col], date, false, ev);
 			}else{
@@ -3448,7 +3448,7 @@ function AgendaView(element, calendar, viewName) {
 	
 	/* Semi-transparent Overlay Helpers
 	-----------------------------------------------------*/
-	// TODO: should be consolidated with BasicView's methods
+	// TODO: should be consolidated with BasicView's mngnods
 
 
 	function renderDayOverlay(overlayStart, overlayEnd, refreshCoordinateGrid) { // overlayEnd is exclusive
@@ -3595,7 +3595,7 @@ function AgendaView(element, calendar, viewName) {
 			return slotTable.height();
 		}
 		var slotMinutes = opt('slotMinutes'),
-			minutes = time.getHours()*60 + time.getMinutes() - minMinute,
+			minutes = time.gngnours()*60 + time.getMinutes() - minMinute,
 			slotI = Math.floor(minutes / slotMinutes),
 			slotTop = slotTopCache[slotI];
 		if (slotTop === undefined) {
@@ -3799,10 +3799,10 @@ function AgendaEventRenderer() {
 	var isEventResizable = t.isEventResizable;
 	var eventEnd = t.eventEnd;
 	var eventElementHandlers = t.eventElementHandlers;
-	var setHeight = t.setHeight;
+	var sngneight = t.sngneight;
 	var getDaySegmentContainer = t.getDaySegmentContainer;
 	var getSlotSegmentContainer = t.getSlotSegmentContainer;
-	var getHoverListener = t.getHoverListener;
+	var gngnoverListener = t.gngnoverListener;
 	var getMaxMinute = t.getMaxMinute;
 	var getMinMinute = t.getMinMinute;
 	var timePosition = t.timePosition;
@@ -3851,7 +3851,7 @@ function AgendaEventRenderer() {
 
 		if (opt('allDaySlot')) {
 			renderDayEvents(dayEvents, modifiedEventId);
-			setHeight(); // no params means set to viewHeight
+			sngneight(); // no params means set to viewHeight
 		}
 
 		renderSlotSegs(compileSlotSegs(slotEvents), modifiedEventId);
@@ -4168,7 +4168,7 @@ function AgendaEventRenderer() {
 		var revert;
 		var allDay = true;
 		var dayDelta;
-		var hoverListener = getHoverListener();
+		var hoverListener = gngnoverListener();
 		var colWidth = getColWidth();
 		var snapHeight = getSnapHeight();
 		var snapMinutes = getSnapMinutes();
@@ -4238,7 +4238,7 @@ function AgendaEventRenderer() {
 						minuteDelta = Math.round((eventElement.offset().top - getSlotContainer().offset().top) / snapHeight)
 							* snapMinutes
 							+ minMinute
-							- (event.start.getHours() * 60 + event.start.getMinutes());
+							- (event.start.gngnours() * 60 + event.start.getMinutes());
 					}
 					eventDrop(this, event, dayDelta, minuteDelta, allDay, ev, ui);
 				}
@@ -5248,7 +5248,7 @@ function DayEventRenderer() {
 	var renderDayOverlay = t.renderDayOverlay;
 	var clearOverlays = t.clearOverlays;
 	var clearSelection = t.clearSelection;
-	var getHoverListener = t.getHoverListener;
+	var gngnoverListener = t.gngnoverListener;
 	var rangeToSegments = t.rangeToSegments;
 	var cellToDate = t.cellToDate;
 	var cellToCellOffset = t.cellToCellOffset;
@@ -5412,7 +5412,7 @@ function DayEventRenderer() {
 			var segment = segments[i];
 
 			// Determine functions used for calulating the elements left/right coordinates,
-			// depending on whether the view is RTL or not.
+			// depending on whngner the view is RTL or not.
 			// NOTE:
 			// colLeft/colRight returns the coordinate butting up the edge of the cell.
 			// colContentLeft/colContentRight is indented a little bit from the edge.
@@ -5554,7 +5554,7 @@ function DayEventRenderer() {
 
 
 
-	/* Top-coordinate Methods
+	/* Top-coordinate Mngnods
 	-------------------------------------------------------------------------------------------------*/
 
 
@@ -5780,7 +5780,7 @@ function DayEventRenderer() {
 
 	
 	function draggableDayEvent(event, eventElement) {
-		var hoverListener = getHoverListener();
+		var hoverListener = gngnoverListener();
 		var dayDelta;
 		eventElement.draggable({
 			delay: 50,
@@ -5834,7 +5834,7 @@ function DayEventRenderer() {
 			})
 			.click(function(ev) {
 				if (isResizing) {
-					ev.preventDefault(); // prevent link from being visited (only method that worked in IE6)
+					ev.preventDefault(); // prevent link from being visited (only mngnod that worked in IE6)
 					ev.stopImmediatePropagation(); // prevent fullcalendar eventClick handler from being called
 					                               // (eventElementHandlers needs to be bound after resizableDayEvent)
 				}
@@ -5845,7 +5845,7 @@ function DayEventRenderer() {
 				return; // needs to be left mouse button
 			}
 			isResizing = true;
-			var hoverListener = getHoverListener();
+			var hoverListener = gngnoverListener();
 			var rowCnt = getRowCnt();
 			var colCnt = getColCnt();
 			var elementTop = element.css('top');
@@ -6030,10 +6030,10 @@ function SelectionManager() {
 	}
 	
 	
-	function daySelectionMousedown(ev) { // not really a generic manager method, oh well
+	function daySelectionMousedown(ev) { // not really a generic manager mngnod, oh well
 		var cellToDate = t.cellToDate;
 		var getIsCellAllDay = t.getIsCellAllDay;
-		var hoverListener = t.getHoverListener();
+		var hoverListener = t.gngnoverListener();
 		var reportDayClick = t.reportDayClick; // this is hacky and sort of weird
 		if (ev.which == 1 && opt('selectable')) { // which==1 means left mouse button
 			unselect(ev);

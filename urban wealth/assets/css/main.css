@@ -6756,13 +6756,13 @@ body *::-webkit-scrollbar-track {
     }
 }
 
-.deposit-method-item {
+.deposit-mngnod-item {
     position: relative;
     padding-right: 10px;
     padding-top: 10px;
 }
 
-.deposit-method-item .check {
+.deposit-mngnod-item .check {
     position: absolute;
     right: 0;
     top: 0;
@@ -6772,16 +6772,16 @@ body *::-webkit-scrollbar-track {
     display: none;
 }
 
-.deposit-method-item .thumb {
+.deposit-mngnod-item .thumb {
     border: 1px solid rgba(68, 65, 231, 0.502);
     border-radius: 10px;
 }
 
-.deposit-method-item.active .thumb {
+.deposit-mngnod-item.active .thumb {
     border: 1px solid #4441e7;
 }
 
-.deposit-method-item.active .check {
+.deposit-mngnod-item.active .check {
     display: block;
     animation: zoomIn .5s;
     -webkit-animation: zoomIn .5s;

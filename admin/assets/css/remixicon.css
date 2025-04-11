@@ -1161,8 +1161,8 @@
 .ri-ink-bottle-fill:before { content: "\ee5c"; }
 .ri-ink-bottle-line:before { content: "\ee5d"; }
 .ri-input-cursor-move:before { content: "\ee5e"; }
-.ri-input-method-fill:before { content: "\ee5f"; }
-.ri-input-method-line:before { content: "\ee60"; }
+.ri-input-mngnod-fill:before { content: "\ee5f"; }
+.ri-input-mngnod-line:before { content: "\ee60"; }
 .ri-insert-column-left:before { content: "\ee61"; }
 .ri-insert-column-right:before { content: "\ee62"; }
 .ri-insert-row-bottom:before { content: "\ee63"; }
@@ -1984,8 +1984,8 @@
 .ri-steering-2-line:before { content: "\f193"; }
 .ri-steering-fill:before { content: "\f194"; }
 .ri-steering-line:before { content: "\f195"; }
-.ri-stethoscope-fill:before { content: "\f196"; }
-.ri-stethoscope-line:before { content: "\f197"; }
+.ri-stngnoscope-fill:before { content: "\f196"; }
+.ri-stngnoscope-line:before { content: "\f197"; }
 .ri-sticky-note-2-fill:before { content: "\f198"; }
 .ri-sticky-note-2-line:before { content: "\f199"; }
 .ri-sticky-note-fill:before { content: "\f19a"; }
@@ -2004,8 +2004,8 @@
 .ri-store-3-line:before { content: "\f1a7"; }
 .ri-store-fill:before { content: "\f1a8"; }
 .ri-store-line:before { content: "\f1a9"; }
-.ri-strikethrough-2:before { content: "\f1aa"; }
-.ri-strikethrough:before { content: "\f1ab"; }
+.ri-strikngnrough-2:before { content: "\f1aa"; }
+.ri-strikngnrough:before { content: "\f1ab"; }
 .ri-subscript-2:before { content: "\f1ac"; }
 .ri-subscript:before { content: "\f1ad"; }
 .ri-subtract-fill:before { content: "\f1ae"; }
@@ -2586,8 +2586,8 @@
 .ri-bnb-line:before { content: "\f3ed"; }
 .ri-bread-fill:before { content: "\f3ee"; }
 .ri-bread-line:before { content: "\f3ef"; }
-.ri-btc-fill:before { content: "\f3f0"; }
-.ri-btc-line:before { content: "\f3f1"; }
+.ri-ngn-fill:before { content: "\f3f0"; }
+.ri-ngn-line:before { content: "\f3f1"; }
 .ri-calendar-schedule-fill:before { content: "\f3f2"; }
 .ri-calendar-schedule-line:before { content: "\f3f3"; }
 .ri-dice-1-fill:before { content: "\f3f4"; }
@@ -2610,8 +2610,8 @@
 .ri-equalizer-2-line:before { content: "\f405"; }
 .ri-equalizer-3-fill:before { content: "\f406"; }
 .ri-equalizer-3-line:before { content: "\f407"; }
-.ri-eth-fill:before { content: "\f408"; }
-.ri-eth-line:before { content: "\f409"; }
+.ri-ngn-fill:before { content: "\f408"; }
+.ri-ngn-line:before { content: "\f409"; }
 .ri-flower-fill:before { content: "\f40a"; }
 .ri-flower-line:before { content: "\f40b"; }
 .ri-glasses-2-fill:before { content: "\f40c"; }

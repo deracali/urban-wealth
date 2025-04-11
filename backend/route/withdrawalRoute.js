@@ -10,5 +10,6 @@ withdrawalRoutes.post('/withdrawal', createWithdrawal);
 withdrawalRoutes.get('/withdrawals', getAllWithdrawals);
 
 withdrawalRoutes.patch('/:id/status', updateWithdrawalStatus);
+withdrawalRoutes.get('/withdrawals/user/:userId', getWithdrawalsByUserId);
 
 export default withdrawalRoutes;

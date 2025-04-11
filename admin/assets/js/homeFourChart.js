@@ -132,7 +132,7 @@
 
     // Call the function for each chart with the desired ID and color
     createChart('bitcoinAreaChart', '#F98C08');
-    createChart('ethereumAreaChart', '#5F80FF');
+    createChart('ngnereumAreaChart', '#5F80FF');
     createChart('solanaAreaChart', '#C817F8');
     createChart('litecoinAreaChart', '#2171EA');
     createChart('dogecoinAreaChart', '#C2A633');
@@ -536,7 +536,7 @@
 
     // Call the function for each chart with the desired ID and color
     createChartTwo('markerBitcoinChart', '#45B369');
-    createChartTwo('markerEthereumChart', '#EF4A00');
+    createChartTwo('markerngnereumChart', '#EF4A00');
     createChartTwo('markerSolanaChart', '#45B369');
     createChartTwo('markerLitecoinChart', '#45B369');
     createChartTwo('markerDogecoinChart', '#EF4A00');

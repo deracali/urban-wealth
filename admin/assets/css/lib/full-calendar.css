@@ -72,7 +72,7 @@
     vertical-align: top;
   }
   
-  /* buttons edges butting together */
+  /* buttons edges butting togngner */
   
   .fc-header .fc-button {
     margin-right: -1px;
@@ -577,7 +577,7 @@
     filter: alpha(opacity=25);
   }
   
-  .fc .ui-draggable-dragging .fc-event-bg, /* TODO: something nicer like .fc-opacity */
+  .fc .ui-draggable-dragging .fc-event-bg, /* TODO: somngning nicer like .fc-opacity */
   .fc-select-helper .fc-event-bg {
     display: none\9; /* for IE6/7/8. nested opacity filters while dragging don't work */
   }

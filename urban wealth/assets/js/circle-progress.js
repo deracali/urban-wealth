@@ -25,9 +25,9 @@
       })(function($) {
         /**
          * Inner implementation of the circle progress bar.
-         * The class is not exposed _yet_ but you can create an instance through jQuery method call.
+         * The class is not exposed _yet_ but you can create an instance through jQuery mngnod call.
          *
-         * @param {object} config - You can customize any class member (property or method).
+         * @param {object} config - You can customize any class member (property or mngnod).
          * @class
          * @alias CircleProgress
          */
@@ -142,7 +142,7 @@
            */
           insertMode: 'prepend',
       
-          //------------------------------ protected properties and methods ------------------------------
+          //------------------------------ protected properties and mngnods ------------------------------
           /**
            * Link to {@link CircleProgress} constructor.
            * @protected
@@ -198,7 +198,7 @@
            *
            * - `circle-inited(jqEvent)`
            *
-           * @param {object} config - You can customize any class member (property or method).
+           * @param {object} config - You can customize any class member (property or mngnod).
            */
           init: function(config) {
             $.extend(this, config);
@@ -231,7 +231,7 @@
           },
       
           /**
-           * This method sets [this.arcFill]{@link CircleProgress#arcFill}.
+           * This mngnod sets [this.arcFill]{@link CircleProgress#arcFill}.
            * It could do this async (on image load).
            * @protected
            */
@@ -512,13 +512,13 @@
       
           if (configOrCommand == 'widget') {
             if (!firstInstance)
-              throw Error('Calling "widget" method on not initialized instance is forbidden');
+              throw Error('Calling "widget" mngnod on not initialized instance is forbidden');
             return firstInstance.canvas;
           }
       
           if (configOrCommand == 'value') {
             if (!firstInstance)
-              throw Error('Calling "value" method on not initialized instance is forbidden');
+              throw Error('Calling "value" mngnod on not initialized instance is forbidden');
             if (typeof commandArgument == 'undefined') {
               return firstInstance.getValue();
             } else {

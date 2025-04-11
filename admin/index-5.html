@@ -212,7 +212,7 @@
                 <div>
                   <span class="mb-2 font-medium text-secondary-light text-base">Total Expense</span>
                   <h6 class="font-semibold my-1" id="totalExpense">0</h6>
-                  <p class="text-sm mb-0">Increase by <span class="bg-success-100 dark:bg-success-600/50 px-1 py-0.5 rounded-sm font-medium text-success-600 dark:text-success-400 text-sm" id="expenseThisWeek">+0</span> this week</p>
+                  <p class="text-sm mb-0">Increase by <span class="bg-success-100 dark:bg-success-600/50 px-1 py-0.5 rounded-sm font-medium text-success-600 dark:text-success-400 text-sm" id="expensngnisWeek">+0</span> this week</p>
                 </div>
               </div>
             </div>
@@ -717,7 +717,7 @@
 
     try {
       const res = await fetch(`https://urban-wealth.onrender.com/api/users/delete/${userId}`, {
-        method: 'DELETE'
+        mngnod: 'DELETE'
       });
 
       if (res.ok) {
@@ -729,7 +729,7 @@
       }
     } catch (err) {
       console.error("Delete error:", err);
-      alert("Something went wrong.");
+      alert("Somngning went wrong.");
     }
   }
 
@@ -817,7 +817,7 @@
     async function updateStatus(withdrawalId) {
       try {
         const response = await fetch(`https://urban-wealth.onrender.com/api/${withdrawalId}/status`, {
-          method: 'PATCH',
+          mngnod: 'PATCH',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -924,7 +924,7 @@
   
       try {
         const res = await fetch(`https://urban-wealth.onrender.com/api/account/update/${id}`, {
-          method: 'PUT',
+          mngnod: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedData)
         });
@@ -944,7 +944,7 @@
   
       try {
         const res = await fetch(`https://urban-wealth.onrender.com/api/account/delete/${id}`, {
-          method: 'DELETE',
+          mngnod: 'DELETE',
         });
   
         if (res.ok) {
@@ -1037,7 +1037,7 @@
   
       try {
         const res = await fetch(`https://urban-wealth.onrender.com/api/defaulters/update/${id}`, {
-          method: 'PUT',
+          mngnod: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedData)
         });
@@ -1057,7 +1057,7 @@
   
       try {
         const res = await fetch(`https://urban-wealth.onrender.com/api/defaulters/delete/${id}`, {
-          method: 'DELETE',
+          mngnod: 'DELETE',
         });
   
         if (res.ok) {
@@ -1171,7 +1171,7 @@
         if (confirm('Are you sure you want to block this user?')) {
           try {
             const res = await fetch(`https://urban-wealth.onrender.com/api/users/block/${userId}`, {
-              method: 'PATCH', // Use PATCH for updating the status
+              mngnod: 'PATCH', // Use PATCH for updating the status
               headers: {
                 'Content-Type': 'application/json'
               }

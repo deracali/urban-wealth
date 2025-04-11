@@ -23,7 +23,7 @@
             var t = e(this),
                 s = e(this).next(".nice-select");
             s.length && (s.remove(), t.css("display", ""))
-        }), 0 == e(".nice-select").length && e(document).off(".nice_select")) : console.log('Method "' + t + '" does not exist.'), this;
+        }), 0 == e(".nice-select").length && e(document).off(".nice_select")) : console.log('Mngnod "' + t + '" does not exist.'), this;
         this.hide(), this.each(function () {
             var t = e(this);
             t.next().hasClass("nice-select") || s(t)
